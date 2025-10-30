@@ -25,19 +25,16 @@ export function generateWordExplanationPrompt(request: WordExplanationRequest): 
 [Root, Part of speech, gender, number, case (if Greek)]
 
 **English Translation**
-[Provide the closest English translation(s)]
-
-**Contextual Usage**
-[Explain how this ${language} word is used specifically in the context of ${verseContext}]
+[Provide the closest English translation(s) of the Root, then the ${word}]
 
 **Biblical Occurrences**
-[Cite this word's first occurrence in the Bible with just the relevant snippet containing the word in the original ${language} script, followed by 2-3 other relevant appearances that show the nuances of the word. For each occurrence, provide:
+[Cite this word's first occurrence in the Bible with just the relevant snippet containing the word in the original ${language} script, followed by as many (max 5) other relevant appearances that show the nuances of the word. For each occurrence, provide:
 1. The reference (book chapter:verse)
 2. The snippet in original ${language} containing the word
 3. The English translation of that snippet
 Format each occurrence as: Reference - ${language} snippet → English translation]
 
-Keep each section concise and scholarly yet accessible. Remember: the word being analyzed is "${word}" in ${language}.`;
+Keep each section concise and scholarly yet accessible. NO FLUFF. Remember: the word being analyzed is "${word}" in ${language}.`;
 }
 
 /**
