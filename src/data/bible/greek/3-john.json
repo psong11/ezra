@@ -422,11 +422,6 @@
               "transliteration": "kai"
             },
             {
-              "word": "εἰς",
-              "translation": "for",
-              "transliteration": "eis"
-            },
-            {
               "word": "τοῦτο",
               "translation": "that",
               "transliteration": "touto"
@@ -666,9 +661,9 @@
               "transliteration": "tēa"
             },
             {
-              "word": "ἀληθείᾳ.¶",
-              "translation": "truth.",
-              "transliteration": "alētheia"
+              "word": "ἀληθείᾳ",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -706,14 +701,14 @@
               "transliteration": "tēa"
             },
             {
-              "word": "ἐκκλησίᾳ·",
-              "translation": "church;",
-              "transliteration": "ekklēsia"
+              "word": "ἐκκλησίᾳ",
+              "translation": "",
+              "transliteration": ""
             },
             {
-              "word": "ἀλλ᾽",
-              "translation": "but",
-              "transliteration": "all᾽"
+              "word": "ἀλλʼ",
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "ὁ",
@@ -857,9 +852,9 @@
               "transliteration": "phluarōn"
             },
             {
-              "word": "ἡμᾶς·",
-              "translation": "us;",
-              "transliteration": "hēmas"
+              "word": "ἡμᾶς",
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "καὶ",
@@ -952,9 +947,9 @@
               "transliteration": "ekklēsias"
             },
             {
-              "word": "ἐκβάλλει.¶",
-              "translation": "he casts  out.",
-              "transliteration": "ekballei"
+              "word": "ἐκβάλλει",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -1050,19 +1045,14 @@
               "transliteration": "theou"
             },
             {
-              "word": "ἐστιν·",
-              "translation": "is;",
-              "transliteration": "estin"
+              "word": "ἐστιν",
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "ὁ",
               "translation": "the",
               "transliteration": "ho"
-            },
-            {
-              "word": "δὲ",
-              "translation": "now",
-              "transliteration": "de"
             },
             {
               "word": "κακοποιῶν",
@@ -1159,9 +1149,9 @@
               "transliteration": "tēs"
             },
             {
-              "word": "ἀληθείας·",
-              "translation": "truth;",
-              "transliteration": "alētheias"
+              "word": "ἀληθείας",
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "καὶ",
@@ -1219,9 +1209,9 @@
               "transliteration": "alēthēs"
             },
             {
-              "word": "ἐστιν.¶",
-              "translation": "is.",
-              "transliteration": "estin"
+              "word": "ἐστιν",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -1265,9 +1255,9 @@
               "transliteration": "soi"
             },
             {
-              "word": "ἀλλ᾽",
-              "translation": "but",
-              "transliteration": "all᾽"
+              "word": "ἀλλʼ",
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "οὐ",
@@ -1305,9 +1295,9 @@
               "transliteration": "soi"
             },
             {
-              "word": "γράφειν·",
-              "translation": "to write;",
-              "transliteration": "graphein"
+              "word": "γράφειν",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -1442,14 +1432,14 @@
               "transliteration": "philous"
             },
             {
-              "word": "κατ᾽",
-              "translation": "by",
-              "transliteration": "kat᾽"
+              "word": "κατʼ",
+              "translation": "",
+              "transliteration": ""
             },
             {
-              "word": "ὄνομα.¶",
-              "translation": "name.",
-              "transliteration": "onoma"
+              "word": "ὄνομα",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         }

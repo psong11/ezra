@@ -19,7 +19,7 @@ export default function BibleBooksPage() {
             Hebrew Bible
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Listen to the ancient words of the Torah, Prophets, and Writings in their original Hebrew,
+            Listen to the ancient words of the Torah, Prophets, Writings, and New Testament in their original Hebrew and Greek,
             brought to life with modern text-to-speech technology.
           </p>
         </div>

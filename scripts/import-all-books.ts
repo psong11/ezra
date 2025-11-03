@@ -242,7 +242,61 @@ async function processFile(url: string, fileNum: number, totalFiles: number, isG
 }
 
 /**
+ * Normalize a word for matching (remove punctuation, accents, etc.)
+ */
+function normalizeWord(word: string | any): string {
+  // Handle edge cases where word might not be a string
+  if (!word) return '';
+  
+  // If word is an object with _ property (from XML parsing), extract the text
+  const wordText = typeof word === 'object' && word !== null && '_' in word ? word._ : word;
+  
+  // Ensure we have a string
+  const str = String(wordText);
+  
+  return str
+    // Remove common punctuation
+    .replace(/[,\.\;\:\!\?\—\-\'\"\(\)\[\]]/g, '')
+    // Normalize spaces
+    .trim()
+    // Lowercase for comparison
+    .toLowerCase()
+    // Remove Hebrew vowel points and cantillation (U+0591 to U+05C7)
+    .replace(/[\u0591-\u05C7]/g, '')
+    // Remove Greek diacritics (combining marks)
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+}
+
+/**
+ * Find matching translation for a word from the STEPBible data
+ */
+function findMatchingTranslation(
+  word: string, 
+  stepBibleWords: WordTranslation[], 
+  usedIndices: Set<number>
+): WordTranslation | null {
+  const normalizedWord = normalizeWord(word);
+  
+  // Try to find an unused match
+  for (let i = 0; i < stepBibleWords.length; i++) {
+    if (usedIndices.has(i)) continue;
+    
+    const stepWord = stepBibleWords[i];
+    const normalizedStepWord = normalizeWord(stepWord.word);
+    
+    if (normalizedWord === normalizedStepWord) {
+      usedIndices.add(i);
+      return stepWord;
+    }
+  }
+  
+  return null;
+}
+
+/**
  * Update a book's JSON file with word translations
+ * NEW: Aligns wordTranslations array to match the existing words array
  */
 function updateBookFile(bookId: string, verseMap: Map<string, WordTranslation[]>, isHebrew: boolean): number {
   const folder = isHebrew ? 'hebrew' : 'greek';
@@ -255,17 +309,53 @@ function updateBookFile(bookId: string, verseMap: Map<string, WordTranslation[]>
   
   const bookData: BibleBook = JSON.parse(fs.readFileSync(bookPath, 'utf-8'));
   let wordsAdded = 0;
+  let wordsMatched = 0;
+  let wordsMissed = 0;
   
   for (const chapter of bookData.chapters) {
     for (const verse of chapter.verses) {
       const key = `${chapter.chapter}:${verse.verse}`;
-      const wordTranslations = verseMap.get(key);
+      const stepBibleWords = verseMap.get(key);
       
-      if (wordTranslations && wordTranslations.length > 0) {
-        verse.wordTranslations = wordTranslations;
-        wordsAdded += wordTranslations.length;
+      if (!stepBibleWords || stepBibleWords.length === 0) {
+        continue;
       }
+      
+      // Get the actual words array (or split from text if not available)
+      const actualWords = verse.words || verse.text.split(/\s+/);
+      
+      // Match each word in actualWords to a translation from stepBibleWords
+      const alignedTranslations: WordTranslation[] = [];
+      const usedIndices = new Set<number>();
+      
+      for (const word of actualWords) {
+        // Handle word objects from XML parsing
+        const wordText = typeof word === 'object' && word !== null && '_' in word ? (word as any)._ : word;
+        const wordStr = String(wordText);
+        
+        const match = findMatchingTranslation(wordStr, stepBibleWords, usedIndices);
+        
+        if (match) {
+          alignedTranslations.push(match);
+          wordsMatched++;
+        } else {
+          // No match found - add empty translation to maintain alignment
+          alignedTranslations.push({
+            word: wordStr,
+            translation: '',
+            transliteration: ''
+          });
+          wordsMissed++;
+        }
+      }
+      
+      verse.wordTranslations = alignedTranslations;
+      wordsAdded += alignedTranslations.length;
     }
+  }
+  
+  if (wordsMissed > 0) {
+    console.log(`      ⚠️  ${bookId}: ${wordsMissed} words without matches`);
   }
   
   fs.writeFileSync(bookPath, JSON.stringify(bookData, null, 2));

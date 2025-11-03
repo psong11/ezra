@@ -41,11 +41,6 @@
               "transliteration": "apostolos"
             },
             {
-              "word": "κυριόυ",
-              "translation": "of  Lord",
-              "transliteration": "kuriou"
-            },
-            {
               "word": "Χριστοῦ",
               "translation": "Christ",
               "transliteration": "Christou"
@@ -56,9 +51,9 @@
               "transliteration": "Iēsou"
             },
             {
-              "word": "κατ᾽",
-              "translation": "according to",
-              "transliteration": "kat᾽"
+              "word": "κατʼ",
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "ἐπιταγὴν",
@@ -84,11 +79,6 @@
               "word": "καὶ",
               "translation": "and",
               "transliteration": "kai"
-            },
-            {
-              "word": "κυριόυ",
-              "translation": "Lord",
-              "transliteration": "kuriou"
             },
             {
               "word": "Χριστοῦ",
@@ -161,9 +151,9 @@
               "transliteration": "en"
             },
             {
-              "word": "πίστει·",
-              "translation": "faith:",
-              "transliteration": "pistei"
+              "word": "πίστει",
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "χάρις,",
@@ -196,11 +186,6 @@
               "transliteration": "patros"
             },
             {
-              "word": "ἡμῶν",
-              "translation": "of us",
-              "transliteration": "hēmōn"
-            },
-            {
               "word": "καὶ",
               "translation": "and",
               "transliteration": "kai"
@@ -226,8 +211,8 @@
               "transliteration": "kuriou"
             },
             {
-              "word": "ἡμῶν.¶",
-              "translation": "of us.",
+              "word": "ἡμῶν",
+              "translation": "of us",
               "transliteration": "hēmōn"
             }
           ]
@@ -387,9 +372,9 @@
               "transliteration": "ekzētēseis"
             },
             {
-              "word": "παρέχουσιν",
-              "translation": "bring",
-              "transliteration": "parechousin"
+              "word": "παρέχουσι",
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "μᾶλλον",
@@ -650,9 +635,9 @@
               "transliteration": "tinōn"
             },
             {
-              "word": "διαβεβαιοῦνται.¶",
-              "translation": "they confidently assert.",
-              "transliteration": "diabebaiountai"
+              "word": "διαβεβαιοῦνται",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -813,9 +798,9 @@
               "transliteration": "anupotaktois"
             },
             {
-              "word": "ἀσεβέσιν",
-              "translation": "for  ungodly",
-              "transliteration": "asebesin"
+              "word": "ἀσεβέσι",
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "καὶ",
@@ -1018,9 +1003,9 @@
               "transliteration": "episteuthēn"
             },
             {
-              "word": "ἐγώ.¶",
-              "translation": "I myself.",
-              "transliteration": "egō"
+              "word": "ἐγώ",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -1047,11 +1032,6 @@
             "διακονίαν"
           ],
           "wordTranslations": [
-            {
-              "word": "Καὶ",
-              "translation": "and",
-              "transliteration": "Kai"
-            },
             {
               "word": "χάριν",
               "translation": "Thankfulness",
@@ -1196,14 +1176,14 @@
               "transliteration": "kai"
             },
             {
-              "word": "ὑβριστήν·",
-              "translation": "insolent;",
-              "transliteration": "hubristēn"
+              "word": "ὑβριστήν",
+              "translation": "",
+              "transliteration": ""
             },
             {
-              "word": "ἀλλ᾽",
-              "translation": "but",
-              "transliteration": "all᾽"
+              "word": "ἀλλὰ",
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "ἠλεήθην,",
@@ -1231,9 +1211,9 @@
               "transliteration": "en"
             },
             {
-              "word": "ἀπιστίᾳ·",
-              "translation": "unbelief;",
-              "transliteration": "apistia"
+              "word": "ἀπιστίᾳ",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -1329,9 +1309,9 @@
               "transliteration": "Christō"
             },
             {
-              "word": "Ἰησοῦ.¶",
-              "translation": "Jesus.",
-              "transliteration": "Iēsou"
+              "word": "Ἰησοῦ",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -1457,9 +1437,9 @@
               "transliteration": "eimi"
             },
             {
-              "word": "ἐγώ·",
-              "translation": "I myself;",
-              "transliteration": "egō"
+              "word": "ἐγώ",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -1589,9 +1569,9 @@
               "transliteration": "pisteuein"
             },
             {
-              "word": "ἐπ᾽",
-              "translation": "on",
-              "transliteration": "ep᾽"
+              "word": "ἐπʼ",
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "αὐτῷ",
@@ -1609,9 +1589,9 @@
               "transliteration": "zōēn"
             },
             {
-              "word": "αἰώνιον.¶",
-              "translation": "eternal.",
-              "transliteration": "aiōnion"
+              "word": "αἰώνιον",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -1680,11 +1660,6 @@
               "transliteration": "monō"
             },
             {
-              "word": "σοφῷ",
-              "translation": "wise",
-              "transliteration": "sophō"
-            },
-            {
               "word": "θεῷ,",
               "translation": "God,",
               "transliteration": "theō"
@@ -1730,9 +1705,9 @@
               "transliteration": "aiōnōn"
             },
             {
-              "word": "ἀμήν.¶",
-              "translation": "Amen.",
-              "transliteration": "amēn"
+              "word": "ἀμήν",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -2014,9 +1989,9 @@
               "transliteration": "ina"
             },
             {
-              "word": "παιδευθῶσιν",
-              "translation": "they may be disciplined",
-              "transliteration": "paideuthōsin"
+              "word": "παιδευθῶσι",
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "μὴ",
@@ -2024,9 +1999,9 @@
               "transliteration": "mē"
             },
             {
-              "word": "βλασφημεῖν.¶",
-              "translation": "to blaspheme.",
-              "transliteration": "blasphēmein"
+              "word": "βλασφημεῖν",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         }
@@ -2258,11 +2233,6 @@
               "transliteration": "touto"
             },
             {
-              "word": "γὰρ",
-              "translation": "for",
-              "transliteration": "gar"
-            },
-            {
               "word": "καλὸν",
               "translation": "good",
               "transliteration": "kalon"
@@ -2366,9 +2336,9 @@
               "transliteration": "alētheias"
             },
             {
-              "word": "ἐλθεῖν.¶",
-              "translation": "to come.",
-              "transliteration": "elthein"
+              "word": "ἐλθεῖν",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -2589,16 +2559,6 @@
               "transliteration": "legō"
             },
             {
-              "word": "ἐν",
-              "translation": "in",
-              "transliteration": "en"
-            },
-            {
-              "word": "Χριστῷ,",
-              "translation": "Christ",
-              "transliteration": "Christō"
-            },
-            {
               "word": "οὐ",
               "translation": "not",
               "transliteration": "ou"
@@ -2634,9 +2594,9 @@
               "transliteration": "kai"
             },
             {
-              "word": "ἀληθείᾳ.¶",
-              "translation": "truth.",
-              "transliteration": "alētheia"
+              "word": "ἀληθείᾳ",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -2732,9 +2692,9 @@
               "transliteration": "kai"
             },
             {
-              "word": "διαλογισμοῦ·",
-              "translation": "dissension;",
-              "transliteration": "dialogismou"
+              "word": "διαλογισμοῦ",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -2775,11 +2735,6 @@
               "word": "καὶ",
               "translation": "also",
               "transliteration": "kai"
-            },
-            {
-              "word": "τὰς",
-              "translation": "<the>",
-              "transliteration": "tas"
             },
             {
               "word": "γυναῖκας",
@@ -2899,9 +2854,9 @@
           ],
           "wordTranslations": [
             {
-              "word": "ἀλλ᾽",
-              "translation": "but",
-              "transliteration": "all᾽"
+              "word": "ἀλλʼ",
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "ὃ",
@@ -2929,9 +2884,9 @@
               "transliteration": "theosebeian"
             },
             {
-              "word": "δι᾽",
-              "translation": "through",
-              "transliteration": "di᾽"
+              "word": "διʼ",
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "ἔργων",
@@ -2989,9 +2944,9 @@
               "transliteration": "pasē"
             },
             {
-              "word": "ὑποταγῇ·",
-              "translation": "submissiveness;",
-              "transliteration": "hupotagēa"
+              "word": "ὑποταγῇ",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -3054,9 +3009,9 @@
               "transliteration": "andros"
             },
             {
-              "word": "ἀλλ᾽",
-              "translation": "but",
-              "transliteration": "all᾽"
+              "word": "ἀλλʼ",
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "εἶναι",
@@ -3187,9 +3142,9 @@
               "transliteration": "parabasei"
             },
             {
-              "word": "γέγονεν·",
-              "translation": "has come;",
-              "transliteration": "gegonen"
+              "word": "γέγονεν",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -3285,9 +3240,9 @@
               "transliteration": "meta"
             },
             {
-              "word": "σωφροσύνης.¶",
-              "translation": "self-restraint.",
-              "transliteration": "sōphrosunēs"
+              "word": "σωφροσύνης",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         }
@@ -3323,9 +3278,9 @@
               "transliteration": "ho"
             },
             {
-              "word": "λόγος·",
-              "translation": "saying:",
-              "transliteration": "logos"
+              "word": "λόγος",
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "εἴ",
@@ -3491,19 +3446,9 @@
               "transliteration": "plēktēn"
             },
             {
-              "word": "μὴ",
-              "translation": "not",
-              "transliteration": "mē"
-            },
-            {
-              "word": "αἰσχροκερδῆ,",
-              "translation": "greedy of base gain",
-              "transliteration": "aischrokerdē"
-            },
-            {
-              "word": "ἀλλ᾽",
-              "translation": "but",
-              "transliteration": "all᾽"
+              "word": "ἀλλὰ",
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "ἐπιεικῆ,",
@@ -3596,9 +3541,9 @@
               "transliteration": "pasēs"
             },
             {
-              "word": "σεμνότητος.¶",
-              "translation": "dignity —.",
-              "transliteration": "semnotētos"
+              "word": "σεμνότητος",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -3682,9 +3627,9 @@
               "transliteration": "theou"
             },
             {
-              "word": "ἐπιμελήσεται;",
-              "translation": "will he care for?",
-              "transliteration": "epimelēsetai"
+              "word": "ἐπιμελήσεται",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -3791,11 +3736,6 @@
               "transliteration": "de"
             },
             {
-              "word": "αὐτὸν",
-              "translation": "him",
-              "transliteration": "auton"
-            },
-            {
               "word": "καὶ",
               "translation": "also",
               "transliteration": "kai"
@@ -3871,9 +3811,9 @@
               "transliteration": "tou"
             },
             {
-              "word": "διαβόλου.¶",
-              "translation": "devil.",
-              "transliteration": "diabolou"
+              "word": "διαβόλου",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -4063,9 +4003,9 @@
               "transliteration": "anegklētoi"
             },
             {
-              "word": "ὄντες.¶",
-              "translation": "being.",
-              "transliteration": "ontes"
+              "word": "ὄντες",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -4315,9 +4255,9 @@
               "transliteration": "Christō"
             },
             {
-              "word": "Ἰησοῦ.¶",
-              "translation": "Jesus.",
-              "transliteration": "Iēsou"
+              "word": "Ἰησοῦ",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -4377,9 +4317,9 @@
               "transliteration": "en"
             },
             {
-              "word": "τάχει·",
-              "translation": "speed;",
-              "transliteration": "tachei"
+              "word": "τάχει",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -4511,9 +4451,9 @@
               "transliteration": "tēs"
             },
             {
-              "word": "ἀληθείας.¶",
-              "translation": "truth.",
-              "transliteration": "alētheias"
+              "word": "ἀληθείας",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -4675,9 +4615,9 @@
               "transliteration": "en"
             },
             {
-              "word": "δόξῃ.¶",
-              "translation": "glory.",
-              "transliteration": "doxē"
+              "word": "δόξῃ",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         }
@@ -4782,9 +4722,9 @@
               "transliteration": "prosechontes"
             },
             {
-              "word": "πνεύμασιν",
-              "translation": "to spirits",
-              "transliteration": "pneumasin"
+              "word": "πνεύμασι",
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "πλάνοις",
@@ -4958,9 +4898,9 @@
               "transliteration": "kai"
             },
             {
-              "word": "ἐπεγνωκόσιν",
-              "translation": "by  already knowing",
-              "transliteration": "epegnōkosin"
+              "word": "ἐπεγνωκόσι",
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "τὴν",
@@ -5042,9 +4982,9 @@
               "transliteration": "eucharistias"
             },
             {
-              "word": "λαμβανόμενον·",
-              "translation": "being received;",
-              "transliteration": "lambanomenon"
+              "word": "λαμβανόμενον",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -5092,9 +5032,9 @@
               "transliteration": "kai"
             },
             {
-              "word": "ἐντεύξεως.¶",
-              "translation": "prayer.",
-              "transliteration": "enteuxeōs"
+              "word": "ἐντεύξεως",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -5220,9 +5160,9 @@
               "transliteration": "hē"
             },
             {
-              "word": "παρηκολούθηκας·",
-              "translation": "you have closely followed;",
-              "transliteration": "parēkolouthēkas"
+              "word": "παρηκολούθηκας",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -5275,9 +5215,9 @@
               "transliteration": "muthous"
             },
             {
-              "word": "παραιτοῦ·",
-              "translation": "do refuse;",
-              "transliteration": "paraitou"
+              "word": "παραιτοῦ",
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "γύμναζε",
@@ -5542,24 +5482,19 @@
               "transliteration": "gar"
             },
             {
-              "word": "καὶ",
-              "translation": "also",
-              "transliteration": "kai"
-            },
-            {
               "word": "κοπιῶμεν",
               "translation": "we toil",
               "transliteration": "kopiōmen"
             },
             {
               "word": "καὶ",
-              "translation": "and",
+              "translation": "also",
               "transliteration": "kai"
             },
             {
-              "word": "ἀγωνιζόμεθα,",
-              "translation": "strive,",
-              "transliteration": "agōnizometha"
+              "word": "ὀνειδιζόμεθα",
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "ὅτι",
@@ -5617,9 +5552,9 @@
               "transliteration": "malista"
             },
             {
-              "word": "πιστῶν.¶",
-              "translation": "of believers.",
-              "transliteration": "pistōn"
+              "word": "πιστῶν",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -5760,16 +5695,6 @@
               "word": "ἀγάπῃ",
               "translation": "love",
               "transliteration": "agapē"
-            },
-            {
-              "word": "ἐν",
-              "translation": "in",
-              "transliteration": "en"
-            },
-            {
-              "word": "πνεύματι,",
-              "translation": "spirit",
-              "transliteration": "pneumati"
             },
             {
               "word": "ἐν",
@@ -6039,11 +5964,6 @@
               "transliteration": "ē"
             },
             {
-              "word": "ἐν",
-              "translation": "in",
-              "transliteration": "en"
-            },
-            {
               "word": "πᾶσιν.",
               "translation": "all.",
               "transliteration": "pasin"
@@ -6094,9 +6014,9 @@
               "transliteration": "tēa"
             },
             {
-              "word": "διδασκαλίᾳ·",
-              "translation": "teaching;",
-              "transliteration": "didaskalia"
+              "word": "διδασκαλίᾳ",
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "ἐπίμενε",
@@ -6104,9 +6024,9 @@
               "transliteration": "epimene"
             },
             {
-              "word": "αὐτοῖς·",
-              "translation": "in them;",
-              "transliteration": "autois"
+              "word": "αὐτοῖς",
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "τοῦτο",
@@ -6154,9 +6074,9 @@
               "transliteration": "akouontas"
             },
             {
-              "word": "σου.¶",
-              "translation": "you.",
-              "transliteration": "sou"
+              "word": "σου",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         }
@@ -6456,9 +6376,9 @@
               "transliteration": "tois"
             },
             {
-              "word": "προγόνοις·",
-              "translation": "to parents;",
-              "transliteration": "progonois"
+              "word": "προγόνοις",
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "τοῦτο",
@@ -6476,16 +6396,6 @@
               "transliteration": "estin"
             },
             {
-              "word": "καλὸν",
-              "translation": "good",
-              "transliteration": "kalon"
-            },
-            {
-              "word": "καὶ",
-              "translation": "and",
-              "transliteration": "kai"
-            },
-            {
               "word": "ἀπόδεκτον",
               "translation": "pleasing",
               "transliteration": "apodekton"
@@ -6501,9 +6411,9 @@
               "transliteration": "tou"
             },
             {
-              "word": "θεοῦ.¶",
-              "translation": "God.",
-              "transliteration": "theou"
+              "word": "θεοῦ",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -6573,11 +6483,6 @@
               "transliteration": "epi"
             },
             {
-              "word": "τὸν",
-              "translation": "<the>",
-              "transliteration": "ton"
-            },
-            {
               "word": "θεὸν",
               "translation": "God",
               "transliteration": "theon"
@@ -6628,9 +6533,9 @@
               "transliteration": "kai"
             },
             {
-              "word": "ἡμέρας·",
-              "translation": "day;",
-              "transliteration": "hēmeras"
+              "word": "ἡμέρας",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -6710,9 +6615,9 @@
               "transliteration": "anepilēmptoi"
             },
             {
-              "word": "ὦσιν.¶",
-              "translation": "they may be.",
-              "transliteration": "ōsin"
+              "word": "ὦσιν",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -6773,11 +6678,6 @@
               "word": "μάλιστα",
               "translation": "especially",
               "transliteration": "malista"
-            },
-            {
-              "word": "τῶν",
-              "translation": "of the",
-              "transliteration": "tōn"
             },
             {
               "word": "οἰκείων",
@@ -7060,9 +6960,9 @@
               "transliteration": "chēras"
             },
             {
-              "word": "παραιτοῦ·",
-              "translation": "do refuse;",
-              "transliteration": "paraitou"
+              "word": "παραιτοῦ",
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "ὅταν",
@@ -7145,9 +7045,9 @@
               "transliteration": "pistin"
             },
             {
-              "word": "ἠθέτησαν·",
-              "translation": "they have cast off;",
-              "transliteration": "ēthetēsan"
+              "word": "ἠθέτησαν",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -7279,9 +7179,9 @@
               "transliteration": "mē"
             },
             {
-              "word": "δέοντα.¶",
-              "translation": "being proper.",
-              "transliteration": "deonta"
+              "word": "δέοντα",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -7365,9 +7265,9 @@
               "transliteration": "loidorias"
             },
             {
-              "word": "χάριν·",
-              "translation": "because;",
-              "transliteration": "charin"
+              "word": "χάριν",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -7455,16 +7355,6 @@
               "transliteration": "tis"
             },
             {
-              "word": "πιστὸς",
-              "translation": "faithful",
-              "transliteration": "pistos"
-            },
-            {
-              "word": "ἢ",
-              "translation": "or",
-              "transliteration": "ē"
-            },
-            {
               "word": "πιστὴ",
               "translation": "believing",
               "transliteration": "pistē"
@@ -7505,9 +7395,9 @@
               "transliteration": "bareisthō"
             },
             {
-              "word": "ἡ",
-              "translation": "the",
-              "transliteration": "hē"
+              "word": "ἢ",
+              "translation": "or",
+              "transliteration": "ē"
             },
             {
               "word": "ἐκκλησία,",
@@ -7535,9 +7425,9 @@
               "transliteration": "chērais"
             },
             {
-              "word": "ἐπαρκέσῃ.¶",
-              "translation": "it may impart relief.",
-              "transliteration": "eparkesē"
+              "word": "ἐπαρκέσῃ",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -7627,9 +7517,9 @@
               "transliteration": "kai"
             },
             {
-              "word": "διδασκαλίᾳ·",
-              "translation": "teaching;",
-              "transliteration": "didaskalia"
+              "word": "διδασκαλίᾳ",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -7670,9 +7560,9 @@
               "transliteration": "hē"
             },
             {
-              "word": "γραφή·",
-              "translation": "Scripture;",
-              "transliteration": "graphē"
+              "word": "γραφή",
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "βοῦν",
@@ -7690,9 +7580,9 @@
               "transliteration": "ou"
             },
             {
-              "word": "φιμώσεις·",
-              "translation": "you will muzzle;",
-              "transliteration": "phimōseis"
+              "word": "φιμώσεις",
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "καὶ",
@@ -7725,9 +7615,9 @@
               "transliteration": "misthou"
             },
             {
-              "word": "αὐτοῦ.¶",
-              "translation": "of him.",
-              "transliteration": "autou"
+              "word": "αὐτοῦ",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -7840,11 +7730,6 @@
               "transliteration": "tous"
             },
             {
-              "word": "δὲ",
-              "translation": "now",
-              "transliteration": "de"
-            },
-            {
               "word": "ἁμαρτάνοντας",
               "translation": "sinning",
               "transliteration": "hamartanontas"
@@ -7890,9 +7775,9 @@
               "transliteration": "phobon"
             },
             {
-              "word": "ἔχωσιν.¶",
-              "translation": "may have.",
-              "transliteration": "echōsin"
+              "word": "ἔχωσιν",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -7946,11 +7831,6 @@
               "word": "καὶ",
               "translation": "and",
               "transliteration": "kai"
-            },
-            {
-              "word": "κυρίου",
-              "translation": "Lord",
-              "transliteration": "kuriou"
             },
             {
               "word": "Χριστοῦ",
@@ -8134,9 +8014,9 @@
               "transliteration": "hudropotei"
             },
             {
-              "word": "ἀλλ᾽",
-              "translation": "but",
-              "transliteration": "all᾽"
+              "word": "ἀλλὰ",
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "οἴνῳ",
@@ -8167,11 +8047,6 @@
               "word": "στόμαχον",
               "translation": "stomach",
               "transliteration": "stomachon"
-            },
-            {
-              "word": "σου",
-              "translation": "of you",
-              "transliteration": "sou"
             },
             {
               "word": "καὶ",
@@ -8260,9 +8135,9 @@
               "transliteration": "eis"
             },
             {
-              "word": "κρίσιν·",
-              "translation": "judgment;",
-              "transliteration": "krisin"
+              "word": "κρίσιν",
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "τισὶν",
@@ -8342,11 +8217,6 @@
               "transliteration": "prodēla"
             },
             {
-              "word": "ἐστίν",
-              "translation": "is",
-              "transliteration": "estin"
-            },
-            {
               "word": "καὶ",
               "translation": "and even",
               "transliteration": "kai"
@@ -8377,9 +8247,9 @@
               "transliteration": "ou"
             },
             {
-              "word": "δύνανται.¶",
-              "translation": "are able.",
-              "transliteration": "dunantai"
+              "word": "δύνανται",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         }
@@ -8606,8 +8476,8 @@
               "transliteration": "adelphoi"
             },
             {
-              "word": "εἰσιν·",
-              "translation": "they are;",
+              "word": "εἰσιν",
+              "translation": "they are",
               "transliteration": "eisin"
             },
             {
@@ -8637,8 +8507,8 @@
             },
             {
               "word": "εἰσιν",
-              "translation": "they are",
-              "transliteration": "eisin"
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "καὶ",
@@ -8666,9 +8536,9 @@
               "transliteration": "euergesias"
             },
             {
-              "word": "ἀντιλαμβανόμενοι.¶",
-              "translation": "being helped.",
-              "transliteration": "antilambanomenoi"
+              "word": "ἀντιλαμβανόμενοι",
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "Ταῦτα",
@@ -8748,9 +8618,9 @@
               "transliteration": "proserchetai"
             },
             {
-              "word": "ὑγιαίνουσιν",
-              "translation": "to sound",
-              "transliteration": "hugiainousin"
+              "word": "ὑγιαίνουσι",
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "λόγοις",
@@ -8798,9 +8668,9 @@
               "transliteration": "tēa"
             },
             {
-              "word": "κατ᾽",
-              "translation": "according to",
-              "transliteration": "kat᾽"
+              "word": "κατʼ",
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "εὐσέβειαν",
@@ -9013,26 +8883,6 @@
               "word": "εὐσέβειαν",
               "translation": "godliness",
               "transliteration": "eusebeian"
-            },
-            {
-              "word": "Ἀφίστασο",
-              "translation": "do depart",
-              "transliteration": "Aphistaso"
-            },
-            {
-              "word": "ἀπὸ",
-              "translation": "from",
-              "transliteration": "apo"
-            },
-            {
-              "word": "τῶν",
-              "translation": "<the>[one of]",
-              "transliteration": "tōn"
-            },
-            {
-              "word": "τοιούτων.¶",
-              "translation": "such.",
-              "transliteration": "toioutōn"
             }
           ]
         },
@@ -9140,11 +8990,6 @@
               "transliteration": "kosmon"
             },
             {
-              "word": "δῆλον",
-              "translation": "evident",
-              "transliteration": "dēlon"
-            },
-            {
               "word": "ὅτι",
               "translation": "because",
               "transliteration": "hoti"
@@ -9165,9 +9010,9 @@
               "transliteration": "ti"
             },
             {
-              "word": "δυνάμεθα·",
-              "translation": "are we able;",
-              "transliteration": "dunametha"
+              "word": "δυνάμεθα",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -9215,9 +9060,9 @@
               "transliteration": "toutois"
             },
             {
-              "word": "ἀρκεσθησόμεθα.¶",
-              "translation": "we will be content.",
-              "transliteration": "arkesthēsometha"
+              "word": "ἀρκεσθησόμεθα",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -9331,9 +9176,9 @@
               "transliteration": "aitines"
             },
             {
-              "word": "βυθίζουσιν",
-              "translation": "plunge",
-              "transliteration": "buthizousin"
+              "word": "βυθίζουσι",
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "τοὺς",
@@ -9489,9 +9334,9 @@
               "transliteration": "odunais"
             },
             {
-              "word": "πολλαῖς.¶",
-              "translation": "many.",
-              "transliteration": "pollais"
+              "word": "πολλαῖς",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -9535,11 +9380,6 @@
               "word": "ἄνθρωπε",
               "translation": "man",
               "transliteration": "anthrōpe"
-            },
-            {
-              "word": "τοῦ",
-              "translation": "<the>",
-              "transliteration": "tou"
             },
             {
               "word": "θεοῦ,",
@@ -9592,9 +9432,9 @@
               "transliteration": "hupomonēn"
             },
             {
-              "word": "πραϋπαθίαν·",
-              "translation": "gentleness;",
-              "transliteration": "praupathian"
+              "word": "πραϋπαθίαν",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -9686,18 +9526,13 @@
               "transliteration": "hēn"
             },
             {
-              "word": "καὶ",
-              "translation": "also",
-              "transliteration": "kai"
-            },
-            {
               "word": "ἐκλήθης",
               "translation": "you were called",
               "transliteration": "eklēthēs"
             },
             {
               "word": "καὶ",
-              "translation": "and",
+              "translation": "also",
               "transliteration": "kai"
             },
             {
@@ -9731,9 +9566,9 @@
               "transliteration": "pollōn"
             },
             {
-              "word": "μαρτύρων.¶",
-              "translation": "witnesses.",
-              "transliteration": "marturōn"
+              "word": "μαρτύρων",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -10189,9 +10024,9 @@
               "transliteration": "aiōnion"
             },
             {
-              "word": "ἀμήν.¶",
-              "translation": "Amen.",
-              "transliteration": "amēn"
+              "word": "ἀμήν",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -10231,9 +10066,9 @@
               "transliteration": "Tois"
             },
             {
-              "word": "πλουσίοις",
-              "translation": "rich",
-              "transliteration": "plousiois"
+              "word": "πλουσίοις",
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "ἐν",
@@ -10296,19 +10131,14 @@
               "transliteration": "adēlotēti"
             },
             {
-              "word": "ἀλλ᾽",
-              "translation": "but",
-              "transliteration": "all᾽"
+              "word": "ἀλλʼ",
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "ἐπὶ",
               "translation": "on",
               "transliteration": "epi"
-            },
-            {
-              "word": "τῷ",
-              "translation": "<the>",
-              "transliteration": "tō"
             },
             {
               "word": "θεῷ",
@@ -10317,17 +10147,7 @@
             },
             {
               "word": "τῷ",
-              "translation": "who",
-              "transliteration": "tō"
-            },
-            {
-              "word": "ζῶντι",
-              "translation": "is living",
-              "transliteration": "zōnti"
-            },
-            {
-              "word": "τῷ",
-              "translation": "who",
+              "translation": "<the>",
               "transliteration": "tō"
             },
             {
@@ -10492,9 +10312,9 @@
               "transliteration": "ontōs"
             },
             {
-              "word": "ζωῆς.¶",
-              "translation": "life.",
-              "transliteration": "zōēs"
+              "word": "ζωῆς",
+              "translation": "",
+              "transliteration": ""
             }
           ]
         },
@@ -10638,9 +10458,9 @@
               "transliteration": "pistin"
             },
             {
-              "word": "ἠστόχησαν.¶",
-              "translation": "went astray.",
-              "transliteration": "ēstochēsan"
+              "word": "ἠστόχησαν",
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "Ἡ",
@@ -10653,79 +10473,14 @@
               "transliteration": "charis"
             },
             {
-              "word": "μεθ᾽",
-              "translation": "with",
-              "transliteration": "meth᾽"
+              "word": "μεθʼ",
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "ὑμῶν",
               "translation": "you",
               "transliteration": "humōn"
-            },
-            {
-              "word": "ἀμήν.",
-              "translation": "Amen.",
-              "transliteration": "amēn"
-            },
-            {
-              "word": "πρός",
-              "translation": "to",
-              "transliteration": "pros"
-            },
-            {
-              "word": "Τιμόθεον",
-              "translation": "Timothy",
-              "transliteration": "Timotheon"
-            },
-            {
-              "word": "πρώτη",
-              "translation": "first",
-              "transliteration": "prōtē"
-            },
-            {
-              "word": "ἐγράφη",
-              "translation": "it was written",
-              "transliteration": "egraphē"
-            },
-            {
-              "word": "ἀπό",
-              "translation": "from",
-              "transliteration": "apo"
-            },
-            {
-              "word": "Λαοδικείας",
-              "translation": "Laodicea",
-              "transliteration": "Laodikeias"
-            },
-            {
-              "word": "ἥτις",
-              "translation": "which",
-              "transliteration": "hētis"
-            },
-            {
-              "word": "ἐστίν",
-              "translation": "is",
-              "transliteration": "estin"
-            },
-            {
-              "word": "μητρόπολις",
-              "translation": "capital",
-              "transliteration": "mētropolis"
-            },
-            {
-              "word": "φρυγίας",
-              "translation": "of Phrygia",
-              "transliteration": "phrugias"
-            },
-            {
-              "word": "τῆς",
-              "translation": "<the>",
-              "transliteration": "tēs"
-            },
-            {
-              "word": "Πακατιανῆς.¶",
-              "translation": "of Pacatiana.",
-              "transliteration": "Pakatianēs"
             }
           ]
         }

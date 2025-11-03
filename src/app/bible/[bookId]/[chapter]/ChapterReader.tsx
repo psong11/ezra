@@ -8,7 +8,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { BibleBookData, BibleChapter } from '@/types/bible';
 import { prepareHebrewForTTS } from '@/lib/hebrewText';
-import WordTooltip from '@/components/bible/WordTooltip';
+import WordExplanationSidebar from '@/components/bible/WordExplanationSidebar';
 
 interface Props {
   bookData: BibleBookData;
@@ -362,9 +362,25 @@ export default function ChapterReader({
   };
 
   return (
-    <div className="space-y-6">
-      {/* Listen to Full Chapter Button */}
-      <div className="space-y-4">
+    <>
+      {/* Word Explanation Sidebar - Only shown when a word is clicked */}
+      {clickedWord && (
+        <WordExplanationSidebar
+          word={clickedWord.word}
+          explanation={wordExplanation}
+          isLoading={isLoadingExplanation}
+          error={explanationError}
+          onClose={() => {
+            setClickedWord(null);
+            setWordExplanation(null);
+            setExplanationError(null);
+          }}
+        />
+      )}
+
+      <div className="space-y-6">
+        {/* Listen to Full Chapter Button */}
+        <div className="space-y-4">
         <button
           onClick={handleGenerateSpeech}
           disabled={isGenerating}
@@ -441,7 +457,11 @@ export default function ChapterReader({
                     return (
                       <span
                         key={wordIndex}
-                        className="relative inline-flex flex-col items-center cursor-pointer hover:text-amber-600 hover:bg-amber-50 px-1 rounded transition-colors"
+                        className={`relative inline-flex flex-col items-center cursor-pointer px-1 rounded transition-colors ${
+                          isActive 
+                            ? 'text-amber-700 bg-amber-100 ring-2 ring-amber-500' 
+                            : 'hover:text-amber-600 hover:bg-amber-50'
+                        }`}
                         onClick={() => {
                           // Toggle: if same word is clicked, close it; otherwise open new one
                           if (isActive) {
@@ -462,15 +482,6 @@ export default function ChapterReader({
                           <span className="text-xs text-gray-500 mt-1 whitespace-nowrap">
                             {wordTranslation.translation}
                           </span>
-                        )}
-                        
-                        {/* Detailed tooltip on click */}
-                        {isActive && (
-                          <WordTooltip
-                            explanation={wordExplanation}
-                            isLoading={isLoadingExplanation}
-                            error={explanationError}
-                          />
                         )}
                       </span>
                     );
@@ -509,5 +520,6 @@ export default function ChapterReader({
         </div>
       </div>
     </div>
+    </>
   );
 }
