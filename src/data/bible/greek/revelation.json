@@ -1483,9 +1483,9 @@
               "transliteration": "kuriakēa"
             },
             {
-              "word": "ἡμέρᾳ",
-              "translation": "day",
-              "transliteration": "hēmera"
+              "word": "ἡμέρᾳ",
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "καὶ",
@@ -3416,8 +3416,8 @@
             },
             {
               "word": "οὐ",
-              "translation": "not",
-              "transliteration": "ou"
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "κεκοπίακες",
@@ -50101,9 +50101,9 @@
               "transliteration": "cheiros"
             },
             {
-              "word": "αὐτῆς",
-              "translation": "",
-              "transliteration": ""
+              "word": "τῆς",
+              "translation": "the",
+              "transliteration": "tēs"
             }
           ]
         },
@@ -51525,9 +51525,9 @@
               "transliteration": "onoma"
             },
             {
-              "word": "γεγραμμένον",
-              "translation": "written",
-              "transliteration": "gegrammenon"
+              "word": "γεγραμμένον",
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "ὃ",
@@ -54885,9 +54885,9 @@
               "transliteration": ""
             },
             {
-              "word": "αὐτοῦ",
-              "translation": "",
-              "transliteration": ""
+              "word": "τοῦ",
+              "translation": "<the>",
+              "transliteration": "tou"
             },
             {
               "word": "οὗ",
@@ -54901,8 +54901,8 @@
             },
             {
               "word": "τοῦ",
-              "translation": "<the>",
-              "transliteration": "tou"
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "προσώπου",

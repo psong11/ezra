@@ -2987,9 +2987,9 @@
               "transliteration": "tōn"
             },
             {
-              "word": "ἀντικειμένων",
-              "translation": "",
-              "transliteration": ""
+              "word": "μέν",
+              "translation": "indeed",
+              "transliteration": "men"
             },
             {
               "word": "ἥτις",
@@ -5186,9 +5186,9 @@
               "transliteration": "Iēsou"
             },
             {
-              "word": "Χριστοῦ",
-              "translation": "",
-              "transliteration": ""
+              "word": "τοῦ",
+              "translation": "<the>",
+              "transliteration": "tou"
             }
           ]
         },
@@ -6080,9 +6080,9 @@
               "transliteration": "me"
             },
             {
-              "word": "λειτουργίας",
-              "translation": "",
-              "transliteration": ""
+              "word": "τοῦ",
+              "translation": "<the>",
+              "transliteration": "tou"
             }
           ]
         }
@@ -9444,14 +9444,14 @@
               "transliteration": "husterēsin"
             },
             {
-              "word": "λέγω",
-              "translation": "",
-              "transliteration": ""
-            },
-            {
               "word": "ἐγὼ",
               "translation": "I myself",
               "transliteration": "egō"
+            },
+            {
+              "word": "ἐγὼ",
+              "translation": "",
+              "transliteration": ""
             },
             {
               "word": "γὰρ",

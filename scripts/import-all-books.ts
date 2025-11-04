@@ -187,8 +187,9 @@ function parseLine(line: string, isGreek: boolean = false): { book: string; chap
     .replace(/\[[^\]]*\]/g, '')
     .trim();
   
-  // Clean word (remove pointing/cantillation for Hebrew)
-  const cleanWord = originalWord.split(/[\/\\]/)[0] || originalWord;
+  // Keep the word as-is (including slashes for morphological parsing)
+  // The findMatchingTranslation function will handle slash removal during matching
+  const cleanWord = originalWord.split(/[\\]/)[0] || originalWord; // Only remove backslash verse endings
   
   return {
     book,
@@ -270,6 +271,7 @@ function normalizeWord(word: string | any): string {
 
 /**
  * Find matching translation for a word from the STEPBible data
+ * Uses multiple matching strategies for better coverage
  */
 function findMatchingTranslation(
   word: string, 
@@ -278,7 +280,7 @@ function findMatchingTranslation(
 ): WordTranslation | null {
   const normalizedWord = normalizeWord(word);
   
-  // Try to find an unused match
+  // Strategy 1: Exact normalized match
   for (let i = 0; i < stepBibleWords.length; i++) {
     if (usedIndices.has(i)) continue;
     
@@ -288,6 +290,53 @@ function findMatchingTranslation(
     if (normalizedWord === normalizedStepWord) {
       usedIndices.add(i);
       return stepWord;
+    }
+  }
+  
+  // Strategy 2: Match with slash removal (for morphologically parsed words)
+  // e.g., "וַיַּעַל" should match "וַ/יַּעַל"
+  for (let i = 0; i < stepBibleWords.length; i++) {
+    if (usedIndices.has(i)) continue;
+    
+    const stepWord = stepBibleWords[i];
+    // Remove slashes and normalize
+    const stepWordNoSlash = normalizeWord(stepWord.word.replace(/\//g, ''));
+    
+    if (normalizedWord === stepWordNoSlash) {
+      usedIndices.add(i);
+      return stepWord;
+    }
+  }
+  
+  // Strategy 3: Partial match - check if our word contains the STEPBible word
+  // This helps with cases where STEPBible has root form and we have inflected
+  for (let i = 0; i < stepBibleWords.length; i++) {
+    if (usedIndices.has(i)) continue;
+    
+    const stepWord = stepBibleWords[i];
+    const normalizedStepWord = normalizeWord(stepWord.word.replace(/\//g, ''));
+    
+    // Only try partial match if stepWord is at least 3 characters
+    if (normalizedStepWord.length >= 3 && normalizedWord.includes(normalizedStepWord)) {
+      usedIndices.add(i);
+      return stepWord;
+    }
+  }
+  
+  // Strategy 4: Substring match from beginning (for prefix matching)
+  // e.g., "הַפִּסְגָּה" might match "פִּסְגָּה"
+  if (normalizedWord.length >= 4) {
+    for (let i = 0; i < stepBibleWords.length; i++) {
+      if (usedIndices.has(i)) continue;
+      
+      const stepWord = stepBibleWords[i];
+      const normalizedStepWord = normalizeWord(stepWord.word.replace(/\//g, ''));
+      
+      // Check if our word ends with their word (prefix removed)
+      if (normalizedStepWord.length >= 3 && normalizedWord.endsWith(normalizedStepWord)) {
+        usedIndices.add(i);
+        return stepWord;
+      }
     }
   }
   
