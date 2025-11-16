@@ -381,6 +381,10 @@ export default function ChapterReader({
       <div className="space-y-6">
         {/* Listen to Full Chapter Button */}
         <div className="space-y-4">
+        {/* Engaging subheader to encourage word interaction */}
+        <p className="text-center text-gray-600 text-sm mb-2">
+          ✨ Click on any word to discover its meaning and explore the ancient text
+        </p>
         <button
           onClick={handleGenerateSpeech}
           disabled={isGenerating}
