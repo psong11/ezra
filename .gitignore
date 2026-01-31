@@ -47,3 +47,4 @@ public/tts-cache/
 # Dev server
 .dev-server.pid
 dev-server.log
+credentials.json
