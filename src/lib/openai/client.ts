@@ -24,4 +24,4 @@ export function getOpenAIClient(): OpenAI {
 
 export const OPENAI_MODEL = 'gpt-4o'; // GPT-4o - Most advanced model (GPT-5 not yet released)
 export const MAX_TOKENS = 200; // ~120-150 words
-export const TEMPERATURE = 0.7; // Balanced creativity
+export const TEMPERATURE = 0.3; // Lower temperature for more focused, deterministic responses

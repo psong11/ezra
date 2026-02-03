@@ -383,7 +383,7 @@ export default function ChapterReader({
         <div className="space-y-4">
         {/* Engaging subheader to encourage word interaction */}
         <p className="text-center text-gray-600 text-sm mb-2">
-          ✨ Click on any word to discover its meaning and explore the ancient text
+          Tap any word to explore its meaning. Hover over a verse and click play to hear it spoken.
         </p>
         <button
           onClick={handleGenerateSpeech}
