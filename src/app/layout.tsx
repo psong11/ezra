@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Ezra - Multilingual Poetry",
-  description: "A collection of original poems in 33 languages from around the world",
+  title: "Ezra",
+  description: "Ancient texts devotedly handwritten over, and over, and over.",
 };
 
 export default function RootLayout({
