@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { chunkText, isSSML, concatenateAudioBuffers, MAX_CHUNK_LENGTH } from '../chunking';
+import { chunkText, isSSML, concatenateAudioBuffers } from '../chunking';
 
 describe('TTS Chunking Utilities', () => {
   describe('isSSML', () => {
