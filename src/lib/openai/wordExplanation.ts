@@ -92,15 +92,25 @@ export async function getWordExplanation(
  * Converts markdown-style formatting to HTML
  */
 export function formatExplanation(text: string): string {
+  const escapeHtml = (s: string) =>
+    s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
   return text
-    // Bold section headers (**Text** -> <strong>Text</strong>)
-    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
-    // Italic text (*Text* -> <em>Text</em>)
-    .replace(/\*([^*]+)\*/g, '<em>$1</em>')
-    // Double line breaks to paragraph spacing
-    .replace(/\n\n/g, '<br><br>')
-    // Single line breaks to line breaks
-    .replace(/\n/g, '<br>')
-    // Preserve verse references in brackets [Book X:Y]
-    .replace(/\[([^\]]+)\]/g, '<span class="text-amber-600 font-medium">[$1]</span>');
+    .trim()
+    .split('\n')
+    .map(line => line.trim())
+    .filter(line => line.length > 0)
+    .map(line => {
+      // A line that is entirely bold ("**Grammar**") is a section header
+      const header = line.match(/^\*\*([^*]+)\*\*:?$/);
+      if (header) {
+        return `<h4>${escapeHtml(header[1])}</h4>`;
+      }
+      const inline = escapeHtml(line)
+        .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+        .replace(/\[([^\]]+)\]/g, '<span class="ref">[$1]</span>');
+      return `<p>${inline}</p>`;
+    })
+    .join('');
 }

@@ -9,9 +9,10 @@ const config: Config = {
   darkMode: 'class',
   theme: {
     extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+      fontFamily: {
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        serif: ["var(--font-serif)", "Georgia", "serif"],
+        hebrew: ["var(--font-hebrew)", "SBL Hebrew", "David", "serif"],
       },
     },
   },

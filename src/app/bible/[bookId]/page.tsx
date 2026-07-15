@@ -23,7 +23,7 @@ export default function BookDetailPage({ params }: Props) {
   const chapters = Array.from({ length: book.totalChapters }, (_, i) => i + 1);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50">
+    <div className="min-h-screen">
       <div className="container mx-auto px-4 py-12">
         {/* Breadcrumb */}
         <div className="mb-8">
