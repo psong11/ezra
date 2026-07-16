@@ -104,7 +104,7 @@ export default function ChapterReader({
     return () => window.removeEventListener('keydown', onKey);
   }, [closeWord, router, bookId, prevChapter, nextChapter]);
 
-  // Auto-play when audioUrl changes, and revoke stale object URLs
+  // Auto-play when audioUrl changes
   useEffect(() => {
     if (audioUrl && shouldAutoPlay && audioRef.current) {
       audioRef.current.load();
@@ -114,10 +114,15 @@ export default function ChapterReader({
       });
       setShouldAutoPlay(false);
     }
+  }, [audioUrl, shouldAutoPlay, playbackRate]);
+
+  // Revoke each object URL only after it has been replaced (or on unmount) —
+  // keyed on audioUrl alone so it can't fire mid-playback
+  useEffect(() => {
     return () => {
       if (audioUrl) URL.revokeObjectURL(audioUrl);
     };
-  }, [audioUrl, shouldAutoPlay, playbackRate]);
+  }, [audioUrl]);
 
   // Get full chapter text as SSML with pauses between verses,
   // chunked to stay under the 5000-byte TTS limit
