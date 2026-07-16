@@ -23,8 +23,11 @@
     "import-all-books": "npx tsx scripts/import-all-books.ts"
   },
   "dependencies": {
+    "@ai-sdk/openai": "^4.0.15",
     "@google-cloud/text-to-speech": "^5.8.1",
     "@types/xml2js": "^0.4.14",
+    "@vercel/blob": "^2.6.1",
+    "ai": "^7.0.29",
     "dotenv": "^17.2.3",
     "next": "^14.2.0",
     "openai": "^6.2.0",

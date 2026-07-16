@@ -12,6 +12,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { BibleChapter } from '@/types/bible';
 import { prepareHebrewForTTS } from '@/lib/hebrewText';
+import { formatExplanation } from '@/lib/explanation/format';
 import WordExplanationSidebar from '@/components/bible/WordExplanationSidebar';
 
 interface Props {
@@ -79,14 +80,21 @@ export default function ChapterReader({
   const [isLoadingExplanation, setIsLoadingExplanation] = useState(false);
   const [explanationError, setExplanationError] = useState<string | null>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
+  const explanationAbortRef = useRef<AbortController | null>(null);
 
   const prevChapter = chapterNum > 1 ? chapterNum - 1 : null;
   const nextChapter = chapterNum < totalChapters ? chapterNum + 1 : null;
 
   const closeWord = useCallback(() => {
+    explanationAbortRef.current?.abort();
     setClickedWord(null);
     setWordExplanation(null);
     setExplanationError(null);
+  }, []);
+
+  // Abort any in-flight explanation request on unmount
+  useEffect(() => {
+    return () => explanationAbortRef.current?.abort();
   }, []);
 
   // Keyboard: Escape closes the panel, arrows move between chapters
@@ -232,8 +240,13 @@ export default function ChapterReader({
     }
   };
 
-  // Fetch word explanation from the AI API
+  // Fetch word explanation as a text stream, rendering as tokens arrive.
+  // A new selection aborts the in-flight request so responses can't interleave.
   const fetchWordExplanation = async (word: string, verseNum: number, verseText: string) => {
+    explanationAbortRef.current?.abort();
+    const abort = new AbortController();
+    explanationAbortRef.current = abort;
+
     setIsLoadingExplanation(true);
     setExplanationError(null);
     setWordExplanation(null);
@@ -242,6 +255,7 @@ export default function ChapterReader({
       const response = await fetch('/api/word-explanation', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        signal: abort.signal,
         body: JSON.stringify({
           word,
           language: isHebrew ? 'Hebrew' : 'Greek',
@@ -256,14 +270,32 @@ export default function ChapterReader({
         const errorData = await response.json();
         throw new Error(errorData.message || 'Failed to get explanation');
       }
+      if (!response.body) throw new Error('No response body');
 
-      const data = await response.json();
-      setWordExplanation(data.explanation);
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let accumulated = '';
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        accumulated += decoder.decode(value, { stream: true });
+        if (abort.signal.aborted) return;
+        setIsLoadingExplanation(false);
+        setWordExplanation(formatExplanation(accumulated));
+      }
+      accumulated += decoder.decode();
+      if (!abort.signal.aborted && accumulated.trim()) {
+        setWordExplanation(formatExplanation(accumulated));
+      }
     } catch (err: any) {
+      if (err.name === 'AbortError') return; // superseded by a newer selection
       setExplanationError(err.message || 'Failed to load explanation');
       console.error('Word explanation error:', err);
     } finally {
-      setIsLoadingExplanation(false);
+      if (explanationAbortRef.current === abort) {
+        setIsLoadingExplanation(false);
+      }
     }
   };
 

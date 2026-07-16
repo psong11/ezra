@@ -48,3 +48,4 @@ public/tts-cache/
 .dev-server.pid
 dev-server.log
 credentials.json
+.explanation-cache/

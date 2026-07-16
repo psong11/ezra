@@ -1,0 +1,114 @@
+/**
+ * Layered persistent cache for word explanations (raw text, not HTML).
+ *
+ *   1. In-memory Map — instant hits while a serverless instance is warm
+ *   2. Vercel Blob   — durable across cold starts and shared by all users
+ *                      (requires BLOB_READ_WRITE_TOKEN; auto-set on Vercel)
+ *   3. Filesystem    — local-dev stand-in for Blob (.explanation-cache/)
+ *
+ * Explanations of ancient words don't go stale, so entries have no TTL.
+ * All persistence errors are logged and swallowed — a cache failure must
+ * never break the user-facing request.
+ */
+
+import { createHash } from 'crypto';
+
+const BLOB_PREFIX = 'word-explanations';
+const FS_CACHE_DIR = '.explanation-cache';
+const MAX_MEMORY_ENTRIES = 500;
+
+const memory = new Map<string, string>();
+
+export type CacheSource = 'memory' | 'blob' | 'fs' | null;
+
+export function explanationCacheKey(word: string, language: string, verse: string): string {
+  const raw = `${language}:${word}:${verse}`.normalize('NFC').toLowerCase();
+  return createHash('sha256').update(raw).digest('hex');
+}
+
+function rememberInMemory(key: string, text: string): void {
+  if (memory.size >= MAX_MEMORY_ENTRIES) {
+    // Maps iterate in insertion order — drop the oldest entry
+    const oldest = memory.keys().next().value;
+    if (oldest !== undefined) memory.delete(oldest);
+  }
+  memory.set(key, text);
+}
+
+function hasBlobStore(): boolean {
+  return Boolean(process.env.BLOB_READ_WRITE_TOKEN);
+}
+
+async function readFromBlob(key: string): Promise<string | null> {
+  const { get } = await import('@vercel/blob');
+  const result = await get(`${BLOB_PREFIX}/${key}.txt`, { access: 'private' });
+  if (!result) return null;
+  return new Response(result.stream).text();
+}
+
+async function writeToBlob(key: string, text: string): Promise<void> {
+  const { put } = await import('@vercel/blob');
+  await put(`${BLOB_PREFIX}/${key}.txt`, text, {
+    access: 'private',
+    allowOverwrite: true,
+    contentType: 'text/plain; charset=utf-8',
+  });
+}
+
+async function readFromFs(key: string): Promise<string | null> {
+  try {
+    const { readFile } = await import('fs/promises');
+    const { join } = await import('path');
+    return await readFile(join(process.cwd(), FS_CACHE_DIR, `${key}.txt`), 'utf8');
+  } catch {
+    return null;
+  }
+}
+
+async function writeToFs(key: string, text: string): Promise<void> {
+  const { mkdir, writeFile } = await import('fs/promises');
+  const { join } = await import('path');
+  const dir = join(process.cwd(), FS_CACHE_DIR);
+  await mkdir(dir, { recursive: true });
+  await writeFile(join(dir, `${key}.txt`), text, 'utf8');
+}
+
+export async function getCachedExplanation(
+  key: string
+): Promise<{ text: string; source: CacheSource } | null> {
+  const inMemory = memory.get(key);
+  if (inMemory) return { text: inMemory, source: 'memory' };
+
+  try {
+    if (hasBlobStore()) {
+      const text = await readFromBlob(key);
+      if (text) {
+        rememberInMemory(key, text);
+        return { text, source: 'blob' };
+      }
+    } else {
+      const text = await readFromFs(key);
+      if (text) {
+        rememberInMemory(key, text);
+        return { text, source: 'fs' };
+      }
+    }
+  } catch (err) {
+    console.error('Explanation cache read failed:', err);
+  }
+
+  return null;
+}
+
+export async function setCachedExplanation(key: string, text: string): Promise<void> {
+  rememberInMemory(key, text);
+  try {
+    if (hasBlobStore()) {
+      await writeToBlob(key, text);
+    } else {
+      await writeToFs(key, text);
+    }
+  } catch (err) {
+    console.error('Explanation cache write failed:', err);
+  }
+}
