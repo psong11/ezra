@@ -5,6 +5,11 @@
  * Owns the full reading layout: verses, TTS, and the word-explanation panel.
  * On desktop the panel is a real layout column, so opening it slides the
  * reading column aside instead of covering it. On mobile it is a bottom sheet.
+ *
+ * Audio is synthesized per verse and played sequentially through one hidden
+ * <audio> element: playback starts after fetching only the first verse, the
+ * next verse is prefetched while the current one plays, and the active verse
+ * is highlighted and kept in view.
  */
 
 import { useState, useRef, useEffect, useCallback } from 'react';
@@ -24,6 +29,15 @@ interface Props {
   chapterData: BibleChapter;
   isHebrew: boolean;
 }
+
+interface PlaybackState {
+  mode: 'chapter' | 'single';
+  verse: number;
+  paused: boolean;
+  fetching: boolean;
+}
+
+const PLAYBACK_RATES = [1, 1.25, 1.5];
 
 /** Turn STEP-style gloss notation like "<.obj>" into a readable muted label. */
 function cleanGloss(gloss: string | undefined): string | null {
@@ -50,6 +64,32 @@ function PlayIcon({ className = 'h-3.5 w-3.5' }: { className?: string }) {
   );
 }
 
+function PauseIcon({ className = 'h-3.5 w-3.5' }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <rect x="6" y="5" width="4" height="14" rx="1" />
+      <rect x="14" y="5" width="4" height="14" rx="1" />
+    </svg>
+  );
+}
+
+function StopIcon({ className = 'h-3.5 w-3.5' }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <rect x="6" y="6" width="12" height="12" rx="2" />
+    </svg>
+  );
+}
+
+function SkipIcon({ back = false, className = 'h-4 w-4' }: { back?: boolean; className?: string }) {
+  return (
+    <svg className={`${className} ${back ? 'rotate-180' : ''}`} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M5 5.14v13.72a1 1 0 0 0 1.52.86l10.13-6.86a1 1 0 0 0 0-1.72L6.52 4.28A1 1 0 0 0 5 5.14z" />
+      <rect x="17.5" y="5" width="2.5" height="14" rx="1" />
+    </svg>
+  );
+}
+
 function Spinner({ className = 'h-4 w-4' }: { className?: string }) {
   return (
     <svg className={`animate-spin ${className}`} viewBox="0 0 24 24" fill="none">
@@ -69,18 +109,32 @@ export default function ChapterReader({
   isHebrew,
 }: Props) {
   const router = useRouter();
-  const [isGenerating, setIsGenerating] = useState(false);
-  const [audioUrl, setAudioUrl] = useState<string | null>(null);
+  const verses = chapterData.verses;
+
   const [error, setError] = useState<string | null>(null);
-  const [selectedVerse, setSelectedVerse] = useState<number | null>(null);
-  const [playbackRate, setPlaybackRate] = useState(1.0);
-  const [shouldAutoPlay, setShouldAutoPlay] = useState(false);
+  const [playback, setPlayback] = useState<PlaybackState | null>(null);
+  const [playbackRate, setPlaybackRate] = useState(1);
   const [clickedWord, setClickedWord] = useState<{ verse: number; wordIndex: number; word: string } | null>(null);
   const [wordExplanation, setWordExplanation] = useState<string | null>(null);
   const [isLoadingExplanation, setIsLoadingExplanation] = useState(false);
   const [explanationError, setExplanationError] = useState<string | null>(null);
-  const audioRef = useRef<HTMLAudioElement>(null);
+
+  const audioElRef = useRef<HTMLAudioElement>(null);
   const explanationAbortRef = useRef<AbortController | null>(null);
+  const ttsAbortRef = useRef<AbortController | null>(null);
+  const sessionRef = useRef(0); // bumping invalidates in-flight onended chains
+  const playbackRef = useRef<PlaybackState | null>(null);
+  const rateRef = useRef(1);
+  const verseAudioUrls = useRef<Map<number, string>>(new Map());
+  const verseFetches = useRef<Map<number, Promise<string>>>(new Map());
+  const verseElements = useRef<Map<number, HTMLDivElement>>(new Map());
+  const lastUserScrollRef = useRef(0);
+
+  // Mirror volatile state into refs so audio event handlers never go stale
+  useEffect(() => {
+    playbackRef.current = playback;
+    rateRef.current = playbackRate;
+  }, [playback, playbackRate]);
 
   const prevChapter = chapterNum > 1 ? chapterNum - 1 : null;
   const nextChapter = chapterNum < totalChapters ? chapterNum + 1 : null;
@@ -92,16 +146,203 @@ export default function ChapterReader({
     setExplanationError(null);
   }, []);
 
-  // Abort any in-flight explanation request on unmount
-  useEffect(() => {
-    return () => explanationAbortRef.current?.abort();
+  // ---------- Audio engine ----------
+
+  const getVerseAudioUrl = useCallback(
+    (verseNum: number): Promise<string> => {
+      const cached = verseAudioUrls.current.get(verseNum);
+      if (cached) return Promise.resolve(cached);
+
+      let pending = verseFetches.current.get(verseNum);
+      if (!pending) {
+        pending = (async () => {
+          const verse = verses.find(v => v.verse === verseNum);
+          if (!verse) throw new Error(`Verse ${verseNum} not found`);
+          if (!ttsAbortRef.current) ttsAbortRef.current = new AbortController();
+
+          const response = await fetch('/api/tts', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            signal: ttsAbortRef.current.signal,
+            body: JSON.stringify({
+              text: prepareHebrewForTTS(verse.text),
+              languageCode: isHebrew ? 'he-IL' : 'el-GR',
+              voiceName: isHebrew ? 'he-IL-Wavenet-A' : 'el-GR-Wavenet-A',
+            }),
+          });
+          if (!response.ok) {
+            const errorData = await response.json().catch(() => ({}));
+            throw new Error(errorData.error || 'Failed to generate speech');
+          }
+          const buffer = await response.arrayBuffer();
+          const url = URL.createObjectURL(new Blob([buffer], { type: 'audio/mpeg' }));
+          verseAudioUrls.current.set(verseNum, url);
+          return url;
+        })();
+        verseFetches.current.set(verseNum, pending);
+        // A failed fetch must not poison the map — allow retries
+        pending.catch(() => verseFetches.current.delete(verseNum));
+      }
+      return pending;
+    },
+    [verses, isHebrew]
+  );
+
+  const stopPlayback = useCallback(() => {
+    sessionRef.current += 1;
+    const audio = audioElRef.current;
+    if (audio) {
+      audio.onended = null;
+      audio.pause();
+    }
+    setPlayback(null);
   }, []);
 
-  // Keyboard: Escape closes the panel, arrows move between chapters
+  const playFromVerse = useCallback(
+    async (verseNum: number, mode: 'chapter' | 'single') => {
+      const session = ++sessionRef.current;
+      setError(null);
+      setPlayback({ mode, verse: verseNum, paused: false, fetching: true });
+
+      try {
+        const url = await getVerseAudioUrl(verseNum);
+        if (session !== sessionRef.current) return; // superseded
+        const audio = audioElRef.current;
+        if (!audio) return;
+
+        audio.onended = () => {
+          if (session !== sessionRef.current) return;
+          const idx = verses.findIndex(v => v.verse === verseNum);
+          const next = verses[idx + 1];
+          if (mode === 'chapter' && next) {
+            playFromVerse(next.verse, 'chapter');
+          } else {
+            stopPlayback();
+          }
+        };
+        audio.src = url;
+        audio.playbackRate = rateRef.current;
+        await audio.play();
+        if (session !== sessionRef.current) return;
+        setPlayback({ mode, verse: verseNum, paused: false, fetching: false });
+
+        // Prefetch the next verse while this one plays
+        if (mode === 'chapter') {
+          const idx = verses.findIndex(v => v.verse === verseNum);
+          const next = verses[idx + 1];
+          if (next) getVerseAudioUrl(next.verse).catch(() => {});
+        }
+      } catch (err: any) {
+        if (session !== sessionRef.current || err?.name === 'AbortError') return;
+        console.error('TTS Error:', err);
+        setError(err.message || 'Failed to generate speech');
+        stopPlayback();
+      }
+    },
+    [verses, getVerseAudioUrl, stopPlayback]
+  );
+
+  const togglePause = useCallback(() => {
+    const audio = audioElRef.current;
+    const current = playbackRef.current;
+    if (!audio || !current || current.fetching) return;
+    if (current.paused) {
+      audio.play().catch(() => {});
+      setPlayback({ ...current, paused: false });
+    } else {
+      audio.pause();
+      setPlayback({ ...current, paused: true });
+    }
+  }, []);
+
+  const skipVerse = useCallback(
+    (delta: number) => {
+      const current = playbackRef.current;
+      if (!current) return;
+      const idx = verses.findIndex(v => v.verse === current.verse);
+      const target = verses[idx + delta];
+      if (target) playFromVerse(target.verse, current.mode);
+    },
+    [verses, playFromVerse]
+  );
+
+  const cyclePlaybackRate = useCallback(() => {
+    setPlaybackRate(prev => {
+      const next = PLAYBACK_RATES[(PLAYBACK_RATES.indexOf(prev) + 1) % PLAYBACK_RATES.length];
+      if (audioElRef.current) audioElRef.current.playbackRate = next;
+      return next;
+    });
+  }, []);
+
+  const handleVerseButton = (verseNum: number) => {
+    const current = playbackRef.current;
+    if (current?.verse === verseNum) {
+      togglePause();
+    } else if (current?.mode === 'chapter') {
+      playFromVerse(verseNum, 'chapter'); // jump within chapter playback
+    } else {
+      playFromVerse(verseNum, 'single');
+    }
+  };
+
+  // Keep the active verse in view during chapter playback, but never fight
+  // the user's own scrolling (suppressed for 5s after a manual scroll).
+  // Some environments silently drop smooth scrolling, so verify movement
+  // and fall back to an instant jump.
+  useEffect(() => {
+    if (!playback || playback.mode !== 'chapter') return;
+    if (Date.now() - lastUserScrollRef.current < 5000) return;
+    const el = verseElements.current.get(playback.verse);
+    if (!el) return;
+
+    const rect = el.getBoundingClientRect();
+    const target = Math.max(0, window.scrollY + rect.top - (window.innerHeight - rect.height) / 2);
+    const startY = window.scrollY;
+    if (Math.abs(target - startY) < 40) return; // already in view
+
+    window.scrollTo({ top: target, behavior: 'smooth' });
+    const fallback = window.setTimeout(() => {
+      const userScrolledMeanwhile = Date.now() - lastUserScrollRef.current < 400;
+      if (!userScrolledMeanwhile && Math.abs(window.scrollY - startY) < 5) {
+        window.scrollTo({ top: target });
+      }
+    }, 400);
+    return () => window.clearTimeout(fallback);
+  }, [playback?.verse, playback?.mode]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    const markScroll = () => { lastUserScrollRef.current = Date.now(); };
+    window.addEventListener('wheel', markScroll, { passive: true });
+    window.addEventListener('touchmove', markScroll, { passive: true });
+    return () => {
+      window.removeEventListener('wheel', markScroll);
+      window.removeEventListener('touchmove', markScroll);
+    };
+  }, []);
+
+  // Cleanup on unmount: kill playback, abort fetches, release object URLs
+  useEffect(() => {
+    const urls = verseAudioUrls.current;
+    const audio = audioElRef.current;
+    return () => {
+      sessionRef.current += 1;
+      audio?.pause();
+      ttsAbortRef.current?.abort();
+      explanationAbortRef.current?.abort();
+      urls.forEach(url => URL.revokeObjectURL(url));
+      urls.clear();
+    };
+  }, []);
+
+  // Keyboard: Escape closes the panel, arrows move between chapters,
+  // space toggles pause during playback
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         closeWord();
+      } else if (e.key === ' ' && playbackRef.current) {
+        e.preventDefault();
+        togglePause();
       } else if (e.key === 'ArrowLeft' && prevChapter) {
         router.push(`/bible/${bookId}/${prevChapter}`);
       } else if (e.key === 'ArrowRight' && nextChapter) {
@@ -110,135 +351,9 @@ export default function ChapterReader({
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [closeWord, router, bookId, prevChapter, nextChapter]);
+  }, [closeWord, togglePause, router, bookId, prevChapter, nextChapter]);
 
-  // Auto-play when audioUrl changes
-  useEffect(() => {
-    if (audioUrl && shouldAutoPlay && audioRef.current) {
-      audioRef.current.load();
-      audioRef.current.playbackRate = playbackRate;
-      audioRef.current.play().catch(err => {
-        console.error('Auto-play failed:', err);
-      });
-      setShouldAutoPlay(false);
-    }
-  }, [audioUrl, shouldAutoPlay, playbackRate]);
-
-  // Revoke each object URL only after it has been replaced (or on unmount) —
-  // keyed on audioUrl alone so it can't fire mid-playback
-  useEffect(() => {
-    return () => {
-      if (audioUrl) URL.revokeObjectURL(audioUrl);
-    };
-  }, [audioUrl]);
-
-  // Get full chapter text as SSML with pauses between verses,
-  // chunked to stay under the 5000-byte TTS limit
-  const getChapterSSMLChunks = () => {
-    const MAX_SSML_BYTES = 4500; // Leave buffer for SSML tags
-    const chunks: string[] = [];
-    let currentVerses: string[] = [];
-    let currentBytes = 30; // Account for <speak></speak> tags
-
-    for (const verse of chapterData.verses) {
-      const cleanedText = prepareHebrewForTTS(verse.text);
-      const verseBytes = Buffer.byteLength(cleanedText, 'utf8') + 22;
-
-      if (currentBytes + verseBytes > MAX_SSML_BYTES && currentVerses.length > 0) {
-        chunks.push(`<speak>${currentVerses.join('<break time="1s"/>')}</speak>`);
-        currentVerses = [cleanedText];
-        currentBytes = 30 + Buffer.byteLength(cleanedText, 'utf8');
-      } else {
-        currentVerses.push(cleanedText);
-        currentBytes += verseBytes;
-      }
-    }
-
-    if (currentVerses.length > 0) {
-      chunks.push(`<speak>${currentVerses.join('<break time="1s"/>')}</speak>`);
-    }
-
-    return chunks;
-  };
-
-  const languageCode = isHebrew ? 'he-IL' : 'el-GR';
-  const voiceName = isHebrew ? 'he-IL-Wavenet-A' : 'el-GR-Wavenet-A';
-
-  const fetchTTS = async (body: Record<string, string>): Promise<ArrayBuffer> => {
-    const response = await fetch('/api/tts', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ languageCode, voiceName, ...body }),
-    });
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.error || 'Failed to generate speech');
-    }
-    return response.arrayBuffer();
-  };
-
-  // Generate speech for entire chapter (chunks fetched in parallel)
-  const handleGenerateSpeech = async () => {
-    if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current.currentTime = 0;
-    }
-    setAudioUrl(null);
-    setIsGenerating(true);
-    setSelectedVerse(null);
-    setError(null);
-    setShouldAutoPlay(true);
-
-    try {
-      const ssmlChunks = getChapterSSMLChunks();
-      const audioBuffers = await Promise.all(ssmlChunks.map(ssml => fetchTTS({ ssml })));
-
-      const totalLength = audioBuffers.reduce((sum, buf) => sum + buf.byteLength, 0);
-      const combined = new Uint8Array(totalLength);
-      let offset = 0;
-      for (const buffer of audioBuffers) {
-        combined.set(new Uint8Array(buffer), offset);
-        offset += buffer.byteLength;
-      }
-
-      const audioBlob = new Blob([combined], { type: 'audio/mpeg' });
-      setAudioUrl(URL.createObjectURL(audioBlob));
-    } catch (err: any) {
-      setError(err.message || 'Failed to generate speech');
-      console.error('TTS Error:', err);
-      setShouldAutoPlay(false);
-    } finally {
-      setIsGenerating(false);
-    }
-  };
-
-  // Generate speech for a single verse
-  const handleGenerateVerseSpeech = async (verseNum: number) => {
-    if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current.currentTime = 0;
-    }
-    setAudioUrl(null);
-    setIsGenerating(true);
-    setError(null);
-    setSelectedVerse(verseNum);
-    setShouldAutoPlay(true);
-
-    try {
-      const verse = chapterData.verses.find(v => v.verse === verseNum);
-      if (!verse) throw new Error('Verse not found');
-
-      const buffer = await fetchTTS({ text: prepareHebrewForTTS(verse.text) });
-      const audioBlob = new Blob([buffer], { type: 'audio/mpeg' });
-      setAudioUrl(URL.createObjectURL(audioBlob));
-    } catch (err: any) {
-      setError(err.message || 'Failed to generate speech');
-      console.error('TTS Error:', err);
-      setShouldAutoPlay(false);
-    } finally {
-      setIsGenerating(false);
-    }
-  };
+  // ---------- Word explanations ----------
 
   // Fetch word explanation as a text stream, rendering as tokens arrive.
   // A new selection aborts the in-flight request so responses can't interleave.
@@ -301,6 +416,8 @@ export default function ChapterReader({
 
   const scriptFont = isHebrew ? 'font-hebrew' : 'font-serif';
   const panelOpen = clickedWord !== null;
+  const chapterMode = playback?.mode === 'chapter';
+  const activeVerseIndex = playback ? verses.findIndex(v => v.verse === playback.verse) : -1;
 
   const panel = clickedWord && (
     <WordExplanationSidebar
@@ -315,6 +432,9 @@ export default function ChapterReader({
 
   return (
     <div className="lg:flex">
+      {/* Hidden element that plays every verse in turn */}
+      <audio ref={audioElRef} className="hidden" />
+
       {/* Reading column — re-centers smoothly as the panel opens/closes */}
       <main className="min-w-0 flex-1 transition-all duration-500">
         <div className="mx-auto max-w-3xl px-5 py-10 sm:px-8">
@@ -343,14 +463,16 @@ export default function ChapterReader({
 
           {/* Listen controls */}
           <div className="mb-12 flex flex-col items-center gap-3">
-            <button
-              onClick={handleGenerateSpeech}
-              disabled={isGenerating}
-              className="inline-flex items-center gap-2.5 rounded-full border border-amber-300/80 bg-white px-5 py-2.5 text-sm font-medium text-amber-900 shadow-sm transition-all hover:border-amber-400 hover:bg-amber-50 hover:shadow disabled:cursor-not-allowed disabled:opacity-50"
-            >
-              {isGenerating && selectedVerse === null ? <Spinner /> : <SpeakerIcon />}
-              {isGenerating && selectedVerse === null ? 'Preparing audio…' : 'Listen to this chapter'}
-            </button>
+            {!chapterMode && (
+              <button
+                onClick={() => verses.length > 0 && playFromVerse(verses[0].verse, 'chapter')}
+                disabled={playback?.fetching}
+                className="inline-flex items-center gap-2.5 rounded-full border border-amber-300/80 bg-white px-5 py-2.5 text-sm font-medium text-amber-900 shadow-sm transition-all hover:border-amber-400 hover:bg-amber-50 hover:shadow disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                <SpeakerIcon />
+                Listen to this chapter
+              </button>
+            )}
             <p className="text-xs text-stone-400">
               Tap any word to explore its meaning · hover a verse to play it aloud
             </p>
@@ -362,39 +484,35 @@ export default function ChapterReader({
             </div>
           )}
 
-          {audioUrl && (
-            <div className="mb-10">
-              <audio
-                ref={audioRef}
-                controls
-                className="w-full"
-                onEnded={() => setAudioUrl(null)}
-              >
-                <source src={audioUrl} type="audio/mpeg" />
-              </audio>
-            </div>
-          )}
-
           {/* Verses */}
           <div className="space-y-2">
-            {chapterData.verses.map((verse) => (
+            {verses.map((verse) => {
+              const isPlayingVerse = playback?.verse === verse.verse;
+              return (
               <div
                 key={verse.verse}
-                className={`group relative rounded-xl p-4 transition-colors duration-300 sm:p-5 ${
-                  selectedVerse === verse.verse ? 'bg-amber-100/60' : 'hover:bg-amber-50/70'
+                id={`v${verse.verse}`}
+                ref={el => { if (el) verseElements.current.set(verse.verse, el); }}
+                className={`group relative scroll-mt-24 rounded-xl p-4 transition-colors duration-300 target:bg-amber-100/70 sm:p-5 ${
+                  isPlayingVerse ? 'bg-amber-100/60' : 'hover:bg-amber-50/70'
                 }`}
               >
                 {/* Per-verse audio button */}
                 <button
-                  onClick={() => handleGenerateVerseSpeech(verse.verse)}
-                  disabled={isGenerating}
-                  className={`absolute top-4 flex h-7 w-7 items-center justify-center rounded-full text-amber-700 transition-all hover:bg-amber-200/70 disabled:cursor-not-allowed disabled:opacity-40 md:opacity-0 md:group-hover:opacity-100 ${
+                  onClick={() => handleVerseButton(verse.verse)}
+                  className={`absolute top-4 flex h-7 w-7 items-center justify-center rounded-full text-amber-700 transition-all hover:bg-amber-200/70 md:opacity-0 md:group-hover:opacity-100 ${
                     isHebrew ? 'right-3' : 'left-3'
-                  } ${selectedVerse === verse.verse ? 'md:opacity-100' : ''}`}
-                  title="Play this verse"
+                  } ${isPlayingVerse ? 'md:opacity-100' : ''}`}
+                  title={isPlayingVerse ? (playback?.paused ? 'Resume' : 'Pause') : 'Play this verse'}
                   aria-label={`Play verse ${verse.verse}`}
                 >
-                  {selectedVerse === verse.verse && isGenerating ? <Spinner className="h-3.5 w-3.5" /> : <PlayIcon />}
+                  {isPlayingVerse && playback?.fetching ? (
+                    <Spinner className="h-3.5 w-3.5" />
+                  ) : isPlayingVerse && !playback?.paused ? (
+                    <PauseIcon />
+                  ) : (
+                    <PlayIcon />
+                  )}
                 </button>
 
                 {/* Verse text with interlinear glosses */}
@@ -448,8 +566,57 @@ export default function ChapterReader({
                   </p>
                 )}
               </div>
-            ))}
+              );
+            })}
           </div>
+
+          {/* Floating playback controls during chapter listening */}
+          {chapterMode && playback && (
+            <div className="sticky bottom-5 z-30 mt-6 flex justify-center">
+              <div className="flex items-center gap-1 rounded-full border border-amber-200 bg-white/95 px-3 py-2 shadow-lg backdrop-blur">
+                <button
+                  onClick={() => skipVerse(-1)}
+                  disabled={activeVerseIndex <= 0}
+                  className="flex h-8 w-8 items-center justify-center rounded-full text-stone-600 transition-colors hover:bg-amber-50 hover:text-amber-800 disabled:opacity-30"
+                  aria-label="Previous verse"
+                >
+                  <SkipIcon back />
+                </button>
+                <button
+                  onClick={togglePause}
+                  className="flex h-9 w-9 items-center justify-center rounded-full bg-amber-600 text-white transition-colors hover:bg-amber-700"
+                  aria-label={playback.paused ? 'Resume' : 'Pause'}
+                >
+                  {playback.fetching ? <Spinner /> : playback.paused ? <PlayIcon /> : <PauseIcon />}
+                </button>
+                <button
+                  onClick={() => skipVerse(1)}
+                  disabled={activeVerseIndex >= verses.length - 1}
+                  className="flex h-8 w-8 items-center justify-center rounded-full text-stone-600 transition-colors hover:bg-amber-50 hover:text-amber-800 disabled:opacity-30"
+                  aria-label="Next verse"
+                >
+                  <SkipIcon />
+                </button>
+                <span className="mx-2 min-w-[4.5rem] text-center text-xs tabular-nums text-stone-500">
+                  verse {playback.verse} / {verses[verses.length - 1]?.verse}
+                </span>
+                <button
+                  onClick={cyclePlaybackRate}
+                  className="rounded-full px-2 py-1 text-xs font-semibold text-stone-600 transition-colors hover:bg-amber-50 hover:text-amber-800"
+                  aria-label="Playback speed"
+                >
+                  {playbackRate}×
+                </button>
+                <button
+                  onClick={stopPlayback}
+                  className="flex h-8 w-8 items-center justify-center rounded-full text-stone-500 transition-colors hover:bg-red-50 hover:text-red-600"
+                  aria-label="Stop"
+                >
+                  <StopIcon />
+                </button>
+              </div>
+            </div>
+          )}
 
           {/* Chapter navigation */}
           <nav className="mt-14 flex items-center justify-between border-t border-stone-200/80 pt-8 text-sm">
@@ -480,7 +647,7 @@ export default function ChapterReader({
           </nav>
 
           <p className="mt-6 text-center text-xs text-stone-400">
-            {chapterData.verses.length} verses · {chapterData.verses.reduce((sum, v) => sum + (v.words?.length || 0), 0)} words
+            {verses.length} verses · {verses.reduce((sum, v) => sum + (v.words?.length || 0), 0)} words
           </p>
         </div>
       </main>
