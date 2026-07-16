@@ -10705,9 +10705,9 @@
               "transliteration": "ha.Keh"
             },
             {
-              "word": "בְכַפְּךָ֜",
-              "translation": "",
-              "transliteration": ""
+              "word": "בְ/כַפְּ/ךָ֜",
+              "translation": "with hand your",
+              "transliteration": "ve.kha.pe.Kha"
             },
             {
               "word": "וּ/רְקַ֤ע",
@@ -17731,8 +17731,8 @@
             },
             {
               "word": "אֶחָ֖ד",
-              "translation": "",
-              "transliteration": ""
+              "translation": "one",
+              "transliteration": "'e.Chad"
             },
             {
               "word": "לְ/אַרְבַּעְתָּ֑/ם",
@@ -44518,9 +44518,9 @@
               "transliteration": "ma.te.no.tei.Khem"
             },
             {
-              "word": "בְּֽהַעֲבִיר֩",
-              "translation": "",
-              "transliteration": ""
+              "word": "בְּֽ/הַעֲבִיר֩",
+              "translation": "when make pass",
+              "transliteration": "be.ha.'a.Vir"
             },
             {
               "word": "בְּנֵי/כֶ֨ם",
@@ -46138,13 +46138,13 @@
             },
             {
               "word": "דֶּ֣רֶךְ",
-              "translation": "",
-              "transliteration": ""
+              "translation": "direction",
+              "transliteration": "De.rekh"
             },
             {
-              "word": "תֵּימָ֔נָה",
-              "translation": "",
-              "transliteration": ""
+              "word": "תֵּימָ֔נָ/ה",
+              "translation": "south -ward",
+              "transliteration": "tei.Ma.nah"
             },
             {
               "word": "וְ/הַטֵּ֖ף",
@@ -46158,11 +46158,11 @@
             },
             {
               "word": "דָּר֑וֹם",
-              "translation": "",
-              "transliteration": ""
+              "translation": "south",
+              "transliteration": "da.Rom"
             },
             {
-              "word": "וְ/הִנָּבֵ֖א",
+              "word": "וְ/הִנָּבֵ֛א",
               "translation": "and prophesy",
               "transliteration": "ve.hi.na.Ve'"
             },
@@ -46173,18 +46173,18 @@
             },
             {
               "word": "יַ֥עַר",
-              "translation": "",
-              "transliteration": ""
+              "translation": "forest of",
+              "transliteration": "Ya.'ar"
             },
             {
-              "word": "הַשָּׂדֶ֖ה",
-              "translation": "",
-              "transliteration": ""
+              "word": "הַ/שָּׂדֶ֖ה",
+              "translation": "the field",
+              "transliteration": "ha.sa.Deh"
             },
             {
-              "word": "נֶֽגֶב׃",
-              "translation": "",
-              "transliteration": ""
+              "word": "נֶֽגֶב",
+              "translation": "south",
+              "transliteration": "Ne.gev"
             }
           ]
         },
@@ -46227,39 +46227,39 @@
           ],
           "wordTranslations": [
             {
-              "word": "וְ/אָמַרְתָּ֞",
+              "word": "וְ/אָֽמַרְתָּ֙",
               "translation": "and you will say",
               "transliteration": "ve.'a.mar.Ta"
             },
             {
-              "word": "לְיַ֣עַר",
-              "translation": "",
-              "transliteration": ""
+              "word": "לְ/יַ֣עַר",
+              "translation": "to  forest of",
+              "transliteration": "le.Ya.'ar"
             },
             {
-              "word": "הַנֶּ֔גֶב",
-              "translation": "",
-              "transliteration": ""
+              "word": "הַ/נֶּ֔גֶב",
+              "translation": "the south",
+              "transliteration": "ha.Ne.gev"
             },
             {
               "word": "שְׁמַ֖ע",
-              "translation": "",
-              "transliteration": ""
+              "translation": "hear",
+              "transliteration": "she.Ma'"
             },
             {
-              "word": "דְּבַר־",
-              "translation": "",
-              "transliteration": ""
+              "word": "דְּבַר",
+              "translation": "word of",
+              "transliteration": "de.var-"
             },
             {
-              "word": "יְהוָ֔ה",
+              "word": "יְהוָ֑ה",
               "translation": "Yahweh",
               "transliteration": "Yah.weh"
             },
             {
-              "word": "כֹּ֚ה",
+              "word": "כֹּֽה",
               "translation": "thus",
-              "transliteration": "koh"
+              "transliteration": "koh-"
             },
             {
               "word": "אָמַ֣ר",
@@ -46268,13 +46268,13 @@
             },
             {
               "word": "אֲדֹנָ֣י",
-              "translation": "",
-              "transliteration": ""
+              "translation": "Lord",
+              "transliteration": "'a.do.Nai"
             },
             {
               "word": "יְהוִ֡ה",
-              "translation": "",
-              "transliteration": ""
+              "translation": "Yahweh",
+              "transliteration": "Yah.weh"
             },
             {
               "word": "הִנְ/נִ֣י",
@@ -46282,9 +46282,9 @@
               "transliteration": "hi.Ni"
             },
             {
-              "word": "מַֽצִּית־",
-              "translation": "",
-              "transliteration": ""
+              "word": "מַֽצִּית",
+              "translation": "about to kindle",
+              "transliteration": "ma.tzit-"
             },
             {
               "word": "בְּךָ֣ ׀",
@@ -46293,98 +46293,98 @@
             },
             {
               "word": "אֵ֡שׁ",
-              "translation": "",
-              "transliteration": ""
+              "translation": "a fire",
+              "transliteration": "'esh"
             },
             {
-              "word": "וְאָכְלָ֣ה",
-              "translation": "",
-              "transliteration": ""
+              "word": "וְ/אָכְלָ֣ה",
+              "translation": "and it will consume",
+              "transliteration": "ve.'a.khe.Lah"
             },
             {
-              "word": "בְךָ֣",
-              "translation": "",
-              "transliteration": ""
+              "word": "בְּ/ךָ֣",
+              "translation": "in you",
+              "transliteration": "be.Kha"
             },
             {
-              "word": "כָל־",
-              "translation": "",
-              "transliteration": ""
+              "word": "כָל",
+              "translation": "every",
+              "transliteration": "khol-"
             },
             {
-              "word": "עֵֽץ־",
-              "translation": "",
-              "transliteration": ""
+              "word": "עֵֽץ",
+              "translation": "tree",
+              "transliteration": "'etz-"
             },
             {
               "word": "לַח֩",
-              "translation": "",
-              "transliteration": ""
+              "translation": "moist",
+              "transliteration": "lach"
             },
             {
-              "word": "וְכָל־",
-              "translation": "",
-              "transliteration": ""
+              "word": "וְ/כָל",
+              "translation": "and every",
+              "transliteration": "ve.khol"
             },
             {
               "word": "עֵ֨ץ",
-              "translation": "",
-              "transliteration": ""
+              "translation": "tree",
+              "transliteration": "'etz"
             },
             {
               "word": "יָבֵ֤שׁ",
-              "translation": "",
-              "transliteration": ""
+              "translation": "dry",
+              "transliteration": "ya.Vesh"
             },
             {
-              "word": "לֹֽא־",
-              "translation": "",
-              "transliteration": ""
+              "word": "לֹֽא",
+              "translation": "not",
+              "transliteration": "lo'-"
             },
             {
               "word": "תִכְבֶּה֙",
-              "translation": "",
-              "transliteration": ""
+              "translation": "it will be extinguished",
+              "transliteration": "tikh.Beh"
             },
             {
               "word": "לַהֶ֣בֶת",
-              "translation": "",
-              "transliteration": ""
+              "translation": "flame of",
+              "transliteration": "la.He.vet"
             },
             {
               "word": "שַׁלְהֶ֔בֶת",
-              "translation": "",
-              "transliteration": ""
+              "translation": "flame",
+              "transliteration": "shal.He.vet"
             },
             {
-              "word": "וְנִצְרְבוּ־",
-              "translation": "",
-              "transliteration": ""
+              "word": "וְ/נִצְרְבוּ",
+              "translation": "and they will be scorched",
+              "transliteration": "ve.nitz.re.vu-"
             },
             {
-              "word": "בָ֥הּ",
-              "translation": "",
-              "transliteration": ""
+              "word": "בָ֥/הּ",
+              "translation": "by it",
+              "transliteration": "vah"
             },
             {
-              "word": "כָּל־",
-              "translation": "",
-              "transliteration": ""
+              "word": "כָּל",
+              "translation": "all",
+              "transliteration": "kol-"
             },
             {
               "word": "פָּנִ֖ים",
-              "translation": "",
-              "transliteration": ""
+              "translation": "faces",
+              "transliteration": "pa.Nim"
             },
             {
-              "word": "מִנֶּ֥גֶב",
-              "translation": "",
-              "transliteration": ""
+              "word": "מִ/נֶּ֥גֶב",
+              "translation": "from  south",
+              "transliteration": "mi.Ne.gev"
             },
             {
-              "word": "צָפֽוֹנָה׃",
-              "translation": "",
-              "transliteration": ""
+              "word": "צָפֽוֹנָ/ה",
+              "translation": "north towards",
+              "transliteration": "tza.Fo.nah"
             }
           ]
         },
@@ -46404,9 +46404,9 @@
           ],
           "wordTranslations": [
             {
-              "word": "וְרָאוּ֙",
-              "translation": "",
-              "transliteration": ""
+              "word": "וְ/רָאוּ֙",
+              "translation": "and they will see",
+              "transliteration": "ve.ra.'U"
             },
             {
               "word": "כָּל",
@@ -46414,39 +46414,39 @@
               "transliteration": "kol-"
             },
             {
-              "word": "בָּשָׂ֖ר",
+              "word": "בָּשָׂ֔ר",
               "translation": "flesh",
               "transliteration": "ba.Sar"
             },
             {
               "word": "כִּ֛י",
-              "translation": "",
-              "transliteration": ""
+              "translation": "that",
+              "transliteration": "ki"
             },
             {
               "word": "אֲנִ֥י",
-              "translation": "",
-              "transliteration": ""
+              "translation": "I",
+              "transliteration": "'a.Ni"
             },
             {
               "word": "יְהוָ֖ה",
-              "translation": "",
-              "transliteration": ""
+              "translation": "Yahweh",
+              "transliteration": "Yah.weh"
             },
             {
-              "word": "בִּֽעַרְתִּ֑יהָ",
-              "translation": "",
-              "transliteration": ""
+              "word": "בִּֽעַרְתִּ֑י/הָ",
+              "translation": "I have kindled it",
+              "transliteration": "bi.'ar.Ti.ha"
             },
             {
               "word": "לֹ֖א",
-              "translation": "",
-              "transliteration": ""
+              "translation": "not",
+              "transliteration": "lo'"
             },
             {
-              "word": "תִּכְבֶּֽה׃",
-              "translation": "",
-              "transliteration": ""
+              "word": "תִּכְבֶּֽה",
+              "translation": "it will be extinguished",
+              "transliteration": "tikh.Beh"
             }
           ]
         },
@@ -46468,59 +46468,59 @@
           ],
           "wordTranslations": [
             {
-              "word": "וָאֹמַ֕ר",
-              "translation": "",
-              "transliteration": ""
+              "word": "וָ/אֹמַ֕ר",
+              "translation": "and I said",
+              "transliteration": "va.'o.Mar"
             },
             {
               "word": "אֲהָ֖הּ",
-              "translation": "",
-              "transliteration": ""
+              "translation": "alas!",
+              "transliteration": "'a.Hah"
             },
             {
               "word": "אֲדֹנָ֣י",
-              "translation": "",
-              "transliteration": ""
+              "translation": "O Lord",
+              "transliteration": "'a.do.Nai"
             },
             {
-              "word": "יְהוָ֔ה",
+              "word": "יְהוִ֑ה",
               "translation": "Yahweh",
               "transliteration": "Yah.weh"
             },
             {
               "word": "הֵ֚מָּה",
-              "translation": "",
-              "transliteration": ""
+              "translation": "they",
+              "transliteration": "He.mah"
             },
             {
               "word": "אֹמְרִ֣ים",
-              "translation": "",
-              "transliteration": ""
+              "translation": "saying",
+              "transliteration": "'o.me.Rim"
             },
             {
-              "word": "לִ֔י",
-              "translation": "",
-              "transliteration": ""
+              "word": "לִ֔/י",
+              "translation": "of me",
+              "transliteration": "Li"
             },
             {
-              "word": "הֲלֹ֛א",
-              "translation": "",
-              "transliteration": ""
+              "word": "הֲ/לֹ֛א",
+              "translation": "¿ not",
+              "transliteration": "ha.Lo'"
             },
             {
               "word": "מְמַשֵּׁ֥ל",
-              "translation": "",
-              "transliteration": ""
+              "translation": "making a parable",
+              "transliteration": "me.ma.Shel"
             },
             {
               "word": "מְשָׁלִ֖ים",
-              "translation": "",
-              "transliteration": ""
+              "translation": "parables",
+              "transliteration": "me.sha.Lim"
             },
             {
-              "word": "הֽוּא׃",
-              "translation": "",
-              "transliteration": ""
+              "word": "הֽוּא",
+              "translation": "he",
+              "transliteration": "Hu'"
             }
           ]
         },
@@ -46536,29 +46536,29 @@
           ],
           "wordTranslations": [
             {
-              "word": "וַיְהִ֥י",
-              "translation": "",
-              "transliteration": ""
+              "word": "וַ/יְהִ֥י",
+              "translation": "and it came",
+              "transliteration": "vay.Hi"
             },
             {
-              "word": "דְבַר־",
-              "translation": "",
-              "transliteration": ""
+              "word": "דְבַר",
+              "translation": "word of",
+              "transliteration": "de.var-"
             },
             {
               "word": "יְהוָ֖ה",
-              "translation": "",
-              "transliteration": ""
+              "translation": "Yahweh",
+              "transliteration": "Yah.weh"
             },
             {
-              "word": "אֵלַ֥י",
-              "translation": "",
-              "transliteration": ""
+              "word": "אֵלַ֥/י",
+              "translation": "to me",
+              "transliteration": "'e.Lai"
             },
             {
-              "word": "לֵאמֹֽר׃",
-              "translation": "",
-              "transliteration": ""
+              "word": "לֵ/אמֹֽר",
+              "translation": "saying",
+              "transliteration": "le.Mor"
             }
           ]
         },
@@ -46582,69 +46582,69 @@
           ],
           "wordTranslations": [
             {
-              "word": "בֶּן־",
-              "translation": "",
-              "transliteration": ""
+              "word": "בֶּן",
+              "translation": "O son of",
+              "transliteration": "ben-"
             },
             {
               "word": "אָדָ֗ם",
-              "translation": "",
-              "transliteration": ""
+              "translation": "humankind",
+              "transliteration": "'a.Dam"
             },
             {
               "word": "שִׂ֤ים",
-              "translation": "",
-              "transliteration": ""
+              "translation": "set",
+              "transliteration": "sim"
             },
             {
-              "word": "פָּנֶ֙יךָ֙",
-              "translation": "",
-              "transliteration": ""
+              "word": "פָּנֶ֙י/ךָ֙",
+              "translation": "face your",
+              "transliteration": "pa.Nei.kha"
             },
             {
               "word": "אֶל",
-              "translation": "because of",
+              "translation": "against",
               "transliteration": "'el-"
             },
             {
               "word": "יְר֣וּשָׁלִַ֔ם",
-              "translation": "",
-              "transliteration": ""
+              "translation": "Jerusalem",
+              "transliteration": "ye.Ru.sha.Lim"
             },
             {
-              "word": "וְהַטֵּ֖ף",
-              "translation": "",
-              "transliteration": ""
+              "word": "וְ/הַטֵּ֖ף",
+              "translation": "and prophesy",
+              "transliteration": "ve.ha.Tef"
             },
             {
-              "word": "אֶל־",
-              "translation": "",
-              "transliteration": ""
+              "word": "אֶל",
+              "translation": "against",
+              "transliteration": "'el-"
             },
             {
               "word": "מִקְדָּשִׁ֑ים",
-              "translation": "",
-              "transliteration": ""
+              "translation": "sanctuaries",
+              "transliteration": "mik.da.Shim"
             },
             {
-              "word": "וְהִנָּבֵ֖א",
-              "translation": "",
-              "transliteration": ""
+              "word": "וְ/הִנָּבֵ֖א",
+              "translation": "and prophesy",
+              "transliteration": "ve.hi.na.Ve'"
             },
             {
-              "word": "אֶל־",
-              "translation": "",
-              "transliteration": ""
+              "word": "אֶל",
+              "translation": "against",
+              "transliteration": "'el-"
             },
             {
               "word": "אַדְמַ֥ת",
-              "translation": "",
-              "transliteration": ""
+              "translation": "land of",
+              "transliteration": "'ad.Mat"
             },
             {
-              "word": "יִשְׂרָאֵֽל׃",
-              "translation": "",
-              "transliteration": ""
+              "word": "יִשְׂרָאֵֽל",
+              "translation": "Israel",
+              "transliteration": "Yis.ra.'El"
             }
           ]
         },
@@ -46670,79 +46670,79 @@
           ],
           "wordTranslations": [
             {
-              "word": "וְאָמַרְתָּ֞",
-              "translation": "",
-              "transliteration": ""
+              "word": "וְ/אָמַרְתָּ֞",
+              "translation": "and you will say",
+              "transliteration": "ve.'a.mar.Ta"
             },
             {
-              "word": "לְאַדְמַ֣ת",
-              "translation": "",
-              "transliteration": ""
+              "word": "לְ/אַדְמַ֣ת",
+              "translation": "to  land of",
+              "transliteration": "le.'ad.Mat"
             },
             {
               "word": "יִשְׂרָאֵ֗ל",
-              "translation": "",
-              "transliteration": ""
+              "translation": "Israel",
+              "transliteration": "Yis.ra.'El"
             },
             {
               "word": "כֹּ֚ה",
-              "translation": "",
-              "transliteration": ""
+              "translation": "thus",
+              "transliteration": "koh"
             },
             {
               "word": "אָמַ֣ר",
-              "translation": "",
-              "transliteration": ""
+              "translation": "he says",
+              "transliteration": "'a.Mar"
             },
             {
-              "word": "יְהוָ֖ה",
+              "word": "יְהוָ֔ה",
               "translation": "Yahweh",
               "transliteration": "Yah.weh"
             },
             {
-              "word": "הִנְנִ֣י",
-              "translation": "",
-              "transliteration": ""
+              "word": "הִנְ/נִ֣י",
+              "translation": "here I",
+              "transliteration": "hi.Ni"
             },
             {
-              "word": "אֵלַ֥/י",
-              "translation": "to me",
-              "transliteration": "'e.Lai"
+              "word": "אֵלַ֔יִ/ךְ",
+              "translation": "against you",
+              "transliteration": "'e.La.yikh"
             },
             {
-              "word": "וְהוֹצֵאתִ֥י",
-              "translation": "",
-              "transliteration": ""
+              "word": "וְ/הוֹצֵאתִ֥י",
+              "translation": "and I will bring out",
+              "transliteration": "ve.ho.tze.Ti"
             },
             {
-              "word": "חַרְבִּ֖י",
-              "translation": "",
-              "transliteration": ""
+              "word": "חַרְבִּ֖/י",
+              "translation": "sword my",
+              "transliteration": "char.Bi"
             },
             {
-              "word": "מִתַּעְרָ֑הּ",
-              "translation": "",
-              "transliteration": ""
+              "word": "מִ/תַּעְרָ֑/הּ",
+              "translation": "from sheath its",
+              "transliteration": "mi.ta'.Rah"
             },
             {
-              "word": "וְהִכְרַתִּ֥י",
-              "translation": "",
-              "transliteration": ""
+              "word": "וְ/הִכְרַתִּ֥י",
+              "translation": "and I will cut off",
+              "transliteration": "ve.hikh.ra.Ti"
             },
             {
-              "word": "מִמֵּ֖ךְ",
-              "translation": "",
-              "transliteration": ""
+              "word": "מִמֵּ֖/ךְ",
+              "translation": "from you",
+              "transliteration": "mi.Mekh"
             },
             {
               "word": "צַדִּ֥יק",
-              "translation": "",
-              "transliteration": ""
+              "translation": "righteous",
+              "transliteration": "tza.Dik"
             },
             {
-              "word": "וְרָשָֽׁע׃",
-              "translation": "",
-              "transliteration": ""
+              "word": "וְ/רָשָֽׁע",
+              "translation": "and  wicked",
+              "transliteration": "ve.ra.Sha'"
             }
           ]
         },
@@ -46769,78 +46769,78 @@
           "wordTranslations": [
             {
               "word": "יַ֛עַן",
-              "translation": "",
-              "transliteration": ""
+              "translation": "because",
+              "transliteration": "Ya.'an"
             },
             {
-              "word": "אֲשֶׁר־",
-              "translation": "",
-              "transliteration": ""
+              "word": "אֲשֶׁר",
+              "translation": "that",
+              "transliteration": "'a.Sher-"
             },
             {
               "word": "הִכְרַ֥תִּי",
-              "translation": "",
-              "transliteration": ""
+              "translation": "I have cut off",
+              "transliteration": "hikh.Ra.ti"
             },
             {
-              "word": "מִמֵּ֖ךְ",
-              "translation": "",
-              "transliteration": ""
+              "word": "מִמֵּ֖/ךְ",
+              "translation": "from you",
+              "transliteration": "mi.Mekh"
             },
             {
               "word": "צַדִּ֣יק",
-              "translation": "",
-              "transliteration": ""
+              "translation": "righteous",
+              "transliteration": "tza.Dik"
             },
             {
-              "word": "וְרָשָׁ֑ע",
-              "translation": "",
-              "transliteration": ""
+              "word": "וְ/רָשָׁ֑ע",
+              "translation": "and  wicked",
+              "transliteration": "ve.ra.Sha'"
             },
             {
-              "word": "לָ֠כֵן",
-              "translation": "",
-              "transliteration": ""
+              "word": "לָ֠/כֵן",
+              "translation": "therefore",
+              "transliteration": "La.khen"
             },
             {
               "word": "תֵּצֵ֨א",
-              "translation": "",
-              "transliteration": ""
+              "translation": "it will go forth",
+              "transliteration": "te.Tze'"
             },
             {
-              "word": "חֶ֥רֶב",
-              "translation": "a sword",
-              "transliteration": "Che.rev"
+              "word": "חַרְבִּ֧/י",
+              "translation": "sword my",
+              "transliteration": "char.Bi"
             },
             {
-              "word": "מִתַּעְרָ֛הּ",
-              "translation": "",
-              "transliteration": ""
+              "word": "מִ/תַּעְרָ֛/הּ",
+              "translation": "from sheath its",
+              "transliteration": "mi.ta'.Rah"
             },
             {
-              "word": "אֶל־",
-              "translation": "",
-              "transliteration": ""
+              "word": "אֶל",
+              "translation": "against",
+              "transliteration": "'el-"
             },
             {
-              "word": "כָּל־",
-              "translation": "",
-              "transliteration": ""
+              "word": "כָּל",
+              "translation": "all",
+              "transliteration": "kol-"
             },
             {
               "word": "בָּשָׂ֖ר",
-              "translation": "",
-              "transliteration": ""
+              "translation": "flesh",
+              "transliteration": "ba.Sar"
             },
             {
-              "word": "מִנֶּ֥גֶב",
-              "translation": "",
-              "transliteration": ""
+              "word": "מִ/נֶּ֥גֶב",
+              "translation": "from  south",
+              "transliteration": "mi.Ne.gev"
             },
             {
-              "word": "צָפֽוֹן׃",
-              "translation": "",
-              "transliteration": ""
+              "word": "צָפֽוֹן",
+              "translation": "north",
+              "transliteration": "tza.Fon"
             }
           ]
         },
@@ -46863,64 +46863,64 @@
           ],
           "wordTranslations": [
             {
-              "word": "וְיָֽדְעוּ֙",
-              "translation": "",
-              "transliteration": ""
+              "word": "וְ/יָֽדְעוּ֙",
+              "translation": "and they will know",
+              "transliteration": "ve.ya.de.'U"
             },
             {
               "word": "כָּל",
-              "translation": "every",
+              "translation": "all",
               "transliteration": "kol-"
             },
             {
               "word": "בָּשָׂ֔ר",
-              "translation": "",
-              "transliteration": ""
+              "translation": "flesh",
+              "transliteration": "ba.Sar"
             },
             {
               "word": "כִּ֚י",
-              "translation": "",
-              "transliteration": ""
+              "translation": "that",
+              "transliteration": "ki"
             },
             {
               "word": "אֲנִ֣י",
-              "translation": "",
-              "transliteration": ""
+              "translation": "I",
+              "transliteration": "'a.Ni"
             },
             {
               "word": "יְהוָ֔ה",
-              "translation": "",
-              "transliteration": ""
+              "translation": "Yahweh",
+              "transliteration": "Yah.weh"
             },
             {
               "word": "הוֹצֵ֥אתִי",
-              "translation": "",
-              "transliteration": ""
+              "translation": "I have brought out",
+              "transliteration": "ho.Tze.ti"
             },
             {
-              "word": "חַרְבִּ֖י",
-              "translation": "",
-              "transliteration": ""
+              "word": "חַרְבִּ֖/י",
+              "translation": "sword my",
+              "transliteration": "char.Bi"
             },
             {
-              "word": "מִתַּעְרָ֑הּ",
-              "translation": "",
-              "transliteration": ""
+              "word": "מִ/תַּעְרָ֑/הּ",
+              "translation": "from sheath its",
+              "transliteration": "mi.ta'.Rah"
             },
             {
               "word": "לֹ֥א",
-              "translation": "",
-              "transliteration": ""
+              "translation": "not",
+              "transliteration": "lo'"
             },
             {
               "word": "תָשׁ֖וּב",
-              "translation": "",
-              "transliteration": ""
+              "translation": "it will go back",
+              "transliteration": "ta.Shuv"
             },
             {
-              "word": "עֽוֹד׃",
-              "translation": "",
-              "transliteration": ""
+              "word": "עֽוֹד",
+              "translation": "again",
+              "transliteration": "od"
             }
           ]
         },
@@ -46940,49 +46940,49 @@
           ],
           "wordTranslations": [
             {
-              "word": "אֹתָ֛/הּ",
-              "translation": "it",
-              "transliteration": "'o.Tah"
+              "word": "וְ/אַתָּ֥ה",
+              "translation": "and you",
+              "transliteration": "ve.'a.Tah"
             },
             {
-              "word": "בֶן־",
-              "translation": "",
-              "transliteration": ""
+              "word": "בֶן",
+              "translation": "O son of",
+              "transliteration": "ven-"
             },
             {
               "word": "אָדָ֖ם",
-              "translation": "",
-              "transliteration": ""
+              "translation": "humankind",
+              "transliteration": "'a.Dam"
             },
             {
               "word": "הֵֽאָנַ֑ח",
-              "translation": "",
-              "transliteration": ""
+              "translation": "groan",
+              "transliteration": "he.'a.Nach"
             },
             {
-              "word": "בְּשִׁבְר֤וֹן",
-              "translation": "",
-              "transliteration": ""
+              "word": "בְּ/שִׁבְר֤וֹן",
+              "translation": "with breaking of",
+              "transliteration": "be.shiv.Ron"
             },
             {
               "word": "מָתְנַ֙יִם֙",
-              "translation": "",
-              "transliteration": ""
+              "translation": "loins",
+              "transliteration": "ma.te.Na.yim"
             },
             {
-              "word": "וּבִמְרִיר֔וּת",
-              "translation": "",
-              "transliteration": ""
+              "word": "וּ/בִ/מְרִיר֔וּת",
+              "translation": "and with bitterness",
+              "transliteration": "u.vim.ri.Rut"
             },
             {
               "word": "תֵּֽאָנַ֖ח",
-              "translation": "",
-              "transliteration": ""
+              "translation": "you will groan",
+              "transliteration": "te.'a.Nach"
             },
             {
-              "word": "לְעֵינֵיהֶֽם׃",
-              "translation": "",
-              "transliteration": ""
+              "word": "לְ/עֵינֵי/הֶֽם",
+              "translation": "to eyes their",
+              "transliteration": "le.'ei.nei.Hem"
             }
           ]
         },
@@ -47025,164 +47025,164 @@
           ],
           "wordTranslations": [
             {
-              "word": "וְהָיָה֙",
-              "translation": "",
-              "transliteration": ""
+              "word": "וְ/הָיָה֙",
+              "translation": "and it will be",
+              "transliteration": "ve.ha.Yah"
             },
             {
-              "word": "כִּי",
-              "translation": "for",
+              "word": "כִּֽי",
+              "translation": "that",
               "transliteration": "ki-"
             },
             {
               "word": "יֹאמְר֣וּ",
-              "translation": "",
-              "transliteration": ""
+              "translation": "they will say",
+              "transliteration": "yo.me.Ru"
             },
             {
-              "word": "אֵלֶ֔יךָ",
-              "translation": "",
-              "transliteration": ""
+              "word": "אֵלֶ֔י/ךָ",
+              "translation": "to you",
+              "transliteration": "'e.Lei.kha"
             },
             {
-              "word": "עַל־",
-              "translation": "",
-              "transliteration": ""
+              "word": "עַל",
+              "translation": "concerning",
+              "transliteration": "'al-"
             },
             {
               "word": "מָ֖ה",
-              "translation": "",
-              "transliteration": ""
+              "translation": "what?",
+              "transliteration": "mah"
             },
             {
               "word": "אַתָּ֣ה",
-              "translation": "",
-              "transliteration": ""
+              "translation": "you",
+              "transliteration": "'a.Tah"
             },
             {
               "word": "נֶאֱנָ֑ח",
-              "translation": "",
-              "transliteration": ""
+              "translation": "groaning",
+              "transliteration": "ne.'e.Nach"
             },
             {
-              "word": "וְאָמַרְתָּ֡",
-              "translation": "",
-              "transliteration": ""
+              "word": "וְ/אָמַרְתָּ֡",
+              "translation": "and you will say",
+              "transliteration": "ve.'a.mar.Ta"
             },
             {
               "word": "אֶל",
-              "translation": "to",
+              "translation": "because of",
               "transliteration": "'el-"
             },
             {
               "word": "שְׁמוּעָ֣ה",
-              "translation": "",
-              "transliteration": ""
+              "translation": "a report",
+              "transliteration": "she.mu.'Ah"
             },
             {
-              "word": "כִֽי־",
-              "translation": "",
-              "transliteration": ""
+              "word": "כִֽי",
+              "translation": "that",
+              "transliteration": "khi-"
             },
             {
               "word": "בָאָ֡ה",
-              "translation": "",
-              "transliteration": ""
+              "translation": "coming",
+              "transliteration": "va.'Ah"
             },
             {
-              "word": "וְנָמֵ֣ס",
-              "translation": "",
-              "transliteration": ""
+              "word": "וְ/נָמֵ֣ס",
+              "translation": "and it will melt",
+              "transliteration": "ve.na.Mes"
             },
             {
-              "word": "כָּל־",
-              "translation": "",
-              "transliteration": ""
+              "word": "כָּל",
+              "translation": "every",
+              "transliteration": "kol-"
             },
             {
               "word": "לֵב֩",
-              "translation": "",
-              "transliteration": ""
+              "translation": "heart",
+              "transliteration": "lev"
             },
             {
-              "word": "וְרָפ֨וּ",
-              "translation": "",
-              "transliteration": ""
+              "word": "וְ/רָפ֨וּ",
+              "translation": "and they will hang limp",
+              "transliteration": "ve.ra.Fu"
             },
             {
-              "word": "כָל־",
-              "translation": "",
-              "transliteration": ""
+              "word": "כָל",
+              "translation": "every",
+              "transliteration": "khol-"
             },
             {
               "word": "יָדַ֜יִם",
-              "translation": "",
-              "transliteration": ""
+              "translation": "pair of hands",
+              "transliteration": "ya.Da.yim"
             },
             {
-              "word": "וְכִהֲתָ֣ה",
-              "translation": "",
-              "transliteration": ""
+              "word": "וְ/כִהֲתָ֣ה",
+              "translation": "and it will grow faint",
+              "transliteration": "ve.khi.ha.Tah"
             },
             {
-              "word": "כָל־",
-              "translation": "",
-              "transliteration": ""
+              "word": "כָל",
+              "translation": "every",
+              "transliteration": "khol-"
             },
             {
               "word": "ר֗וּחַ",
-              "translation": "",
-              "transliteration": ""
+              "translation": "spirit",
+              "transliteration": "Ru.ach"
             },
             {
-              "word": "וְכָל־",
-              "translation": "",
-              "transliteration": ""
+              "word": "וְ/כָל",
+              "translation": "and all",
+              "transliteration": "ve.khol"
             },
             {
               "word": "בִּרְכַּ֙יִם֙",
-              "translation": "",
-              "transliteration": ""
+              "translation": "knees",
+              "transliteration": "bir.Ka.yim"
             },
             {
               "word": "תֵּלַ֣כְנָה",
-              "translation": "",
-              "transliteration": ""
+              "translation": "they will go",
+              "transliteration": "te.Lakh.nah"
             },
             {
               "word": "מַּ֔יִם",
-              "translation": "",
-              "transliteration": ""
+              "translation": "water",
+              "transliteration": "Ma.yim"
             },
             {
               "word": "הִנֵּ֤ה",
-              "translation": "",
-              "transliteration": ""
+              "translation": "there!",
+              "transliteration": "hi.Neh"
             },
             {
               "word": "בָאָה֙",
-              "translation": "",
-              "transliteration": ""
+              "translation": "coming",
+              "transliteration": "va.'Ah"
             },
             {
-              "word": "הָיתָ֣ה",
-              "translation": "it has come",
-              "transliteration": "hai.Tah"
+              "word": "וְ/נִֽהְיָ֔תָה",
+              "translation": "and it will happen",
+              "transliteration": "ve.nih.Ya.tah"
             },
             {
               "word": "נְאֻ֖ם",
-              "translation": "",
-              "transliteration": ""
+              "translation": "utterance of",
+              "transliteration": "ne.'Um"
             },
             {
               "word": "אֲדֹנָ֥י",
-              "translation": "",
-              "transliteration": ""
+              "translation": "Lord",
+              "transliteration": "'a.do.Nai"
             },
             {
-              "word": "יְהוִֽה׃",
-              "translation": "",
-              "transliteration": ""
+              "word": "יְהוִֽה",
+              "translation": "Yahweh",
+              "transliteration": "Yah.weh"
             }
           ]
         },
@@ -47198,29 +47198,29 @@
           ],
           "wordTranslations": [
             {
-              "word": "וַיְהִ֥י",
-              "translation": "",
-              "transliteration": ""
+              "word": "וַ/יְהִ֥י",
+              "translation": "and it came",
+              "transliteration": "vay.Hi"
             },
             {
-              "word": "דְבַר־",
-              "translation": "",
-              "transliteration": ""
+              "word": "דְבַר",
+              "translation": "word of",
+              "transliteration": "de.var-"
             },
             {
-              "word": "יְהוִֽה",
+              "word": "יְהוָ֖ה",
               "translation": "Yahweh",
               "transliteration": "Yah.weh"
             },
             {
-              "word": "אֵלַ֥י",
-              "translation": "",
-              "transliteration": ""
+              "word": "אֵלַ֥/י",
+              "translation": "to me",
+              "transliteration": "'e.Lai"
             },
             {
-              "word": "לֵאמֹֽר׃",
-              "translation": "",
-              "transliteration": ""
+              "word": "לֵ/אמֹֽר",
+              "translation": "saying",
+              "transliteration": "le.Mor"
             }
           ]
         },
@@ -47244,69 +47244,69 @@
           ],
           "wordTranslations": [
             {
-              "word": "בֶן",
+              "word": "בֶּן",
               "translation": "O son of",
-              "transliteration": "ven-"
+              "transliteration": "ben-"
             },
             {
-              "word": "אָדָ֔ם",
+              "word": "אָדָ֕ם",
               "translation": "humankind",
               "transliteration": "'a.Dam"
             },
             {
-              "word": "הִנָּבֵ֕א",
+              "word": "הִנָּבֵא֙",
               "translation": "prophesy",
               "transliteration": "hi.na.Ve'"
             },
             {
-              "word": "וְאָ֣מַרְתָּ֔",
-              "translation": "",
-              "transliteration": ""
+              "word": "וְ/אָ֣מַרְתָּ֔",
+              "translation": "and you will say",
+              "transliteration": "ve.'A.mar.ta"
             },
             {
               "word": "כֹּ֖ה",
-              "translation": "",
-              "transliteration": ""
+              "translation": "thus",
+              "transliteration": "koh"
             },
             {
               "word": "אָמַ֣ר",
-              "translation": "",
-              "transliteration": ""
+              "translation": "he says",
+              "transliteration": "'a.Mar"
             },
             {
               "word": "אֲדֹנָ֑י",
-              "translation": "",
-              "transliteration": ""
+              "translation": "Lord",
+              "transliteration": "'a.do.Nai"
             },
             {
               "word": "אֱמֹ֕ר",
-              "translation": "",
-              "transliteration": ""
+              "translation": "say",
+              "transliteration": "'e.Mor"
             },
             {
-              "word": "חֶ֤רֶב",
+              "word": "חֶ֥רֶב",
               "translation": "a sword",
               "transliteration": "Che.rev"
             },
             {
-              "word": "חֶ֣רֶב",
-              "translation": "a sword of",
+              "word": "חֶ֛רֶב",
+              "translation": "a sword",
               "transliteration": "Che.rev"
             },
             {
               "word": "הוּחַ֖דָּה",
-              "translation": "",
-              "transliteration": ""
+              "translation": "it has been sharpened",
+              "transliteration": "hu.Cha.dah"
             },
             {
-              "word": "וְגַם־",
-              "translation": "",
-              "transliteration": ""
+              "word": "וְ/גַם",
+              "translation": "and also",
+              "transliteration": "ve.gam-"
             },
             {
-              "word": "מְרוּטָֽה׃",
-              "translation": "",
-              "transliteration": ""
+              "word": "מְרוּטָֽה",
+              "translation": "polished",
+              "transliteration": "me.ru.Tah"
             }
           ]
         },
@@ -47333,84 +47333,84 @@
           ],
           "wordTranslations": [
             {
-              "word": "לְמַ֣עַן",
+              "word": "לְמַ֨עַן",
               "translation": "so as",
               "transliteration": "le.Ma.'an"
             },
             {
               "word": "טְבֹ֤חַ",
-              "translation": "",
-              "transliteration": ""
+              "translation": "to slaughter",
+              "transliteration": "te.Vo.ach"
             },
             {
               "word": "טֶ֙בַח֙",
-              "translation": "",
-              "transliteration": ""
+              "translation": "a slaughter",
+              "transliteration": "te.vach"
             },
             {
               "word": "הוּחַ֔דָּה",
-              "translation": "",
-              "transliteration": ""
+              "translation": "it has been sharpened",
+              "transliteration": "hu.Cha.dah"
             },
             {
-              "word": "לְמַעַן־",
-              "translation": "",
-              "transliteration": ""
+              "word": "לְמַעַן",
+              "translation": "so as",
+              "transliteration": "le.ma.'an-"
             },
             {
-              "word": "הֱיֵה־",
-              "translation": "",
-              "transliteration": ""
+              "word": "הֱיֵה",
+              "translation": "be",
+              "transliteration": "he.yeh-"
             },
             {
-              "word": "לָ֥הּ",
-              "translation": "",
-              "transliteration": ""
+              "word": "לָ֥/הּ",
+              "translation": "for it",
+              "transliteration": "lah"
             },
             {
               "word": "בָּ֖רָק",
-              "translation": "",
-              "transliteration": ""
+              "translation": "lightning",
+              "transliteration": "Ba.rok"
             },
             {
               "word": "מֹרָ֑טָּה",
-              "translation": "",
-              "transliteration": ""
+              "translation": "it has been polished",
+              "transliteration": "mo.Ra.tah"
             },
             {
               "word": "א֣וֹ",
-              "translation": "",
-              "transliteration": ""
+              "translation": "or",
+              "transliteration": "'o"
             },
             {
               "word": "נָשִׂ֔ישׂ",
-              "translation": "",
-              "transliteration": ""
+              "translation": "we will rejoice",
+              "transliteration": "na.Sis"
             },
             {
               "word": "שֵׁ֥בֶט",
-              "translation": "",
-              "transliteration": ""
+              "translation": "scepter of",
+              "transliteration": "She.vet"
             },
             {
-              "word": "בְּנִ֖י",
-              "translation": "",
-              "transliteration": ""
+              "word": "בְּנִ֖/י",
+              "translation": "son my",
+              "transliteration": "be.Ni"
             },
             {
               "word": "מֹאֶ֥סֶת",
-              "translation": "",
-              "transliteration": ""
+              "translation": "rejecting",
+              "transliteration": "mo.'E.set"
             },
             {
               "word": "כָּל",
-              "translation": "all",
+              "translation": "every",
               "transliteration": "kol-"
             },
             {
-              "word": "עֵֽץ׃",
-              "translation": "",
-              "transliteration": ""
+              "word": "עֵֽץ",
+              "translation": "tree",
+              "transliteration": "'Etz"
             }
           ]
         },
@@ -47435,74 +47435,74 @@
           ],
           "wordTranslations": [
             {
-              "word": "וַיִּתֵּ֥ן",
-              "translation": "",
-              "transliteration": ""
+              "word": "וַ/יִּתֵּ֥ן",
+              "translation": "and someone gave",
+              "transliteration": "vai.yi.Ten"
             },
             {
-              "word": "אֹתָ֛הּ",
-              "translation": "",
-              "transliteration": ""
+              "word": "אֹתָ֛/הּ",
+              "translation": "it",
+              "transliteration": "'o.Tah"
             },
             {
-              "word": "לְמָרְטָ֖ה",
-              "translation": "",
-              "transliteration": ""
+              "word": "לְ/מָרְטָ֖ה",
+              "translation": "to polish",
+              "transliteration": "le.ma.re.Tah"
             },
             {
-              "word": "לִתְפֹּ֣שׂ",
-              "translation": "",
-              "transliteration": ""
+              "word": "לִ/תְפֹּ֣שׂ",
+              "translation": "to grasp",
+              "transliteration": "lit.Pos"
             },
             {
-              "word": "בַּכָּ֑ף",
-              "translation": "",
-              "transliteration": ""
+              "word": "בַּ/כָּ֑ף",
+              "translation": "in the palm",
+              "transliteration": "ba.Kaf"
             },
             {
-              "word": "הִֽיא־",
-              "translation": "",
-              "transliteration": ""
+              "word": "הִֽיא",
+              "translation": "it",
+              "transliteration": "hi'-"
             },
             {
               "word": "הוּחַ֤דָּה",
-              "translation": "",
-              "transliteration": ""
+              "translation": "it has been sharpened",
+              "transliteration": "hu.Cha.dah"
             },
             {
               "word": "חֶ֙רֶב֙",
-              "translation": "",
-              "transliteration": ""
+              "translation": "a sword",
+              "transliteration": "che.rev"
             },
             {
-              "word": "וְהִ֣יא",
-              "translation": "",
-              "transliteration": ""
+              "word": "וְ/הִ֣יא",
+              "translation": "and it",
+              "transliteration": "ve.Hi'"
             },
             {
               "word": "מֹרָ֔טָּה",
-              "translation": "",
-              "transliteration": ""
+              "translation": "it has been polished",
+              "transliteration": "mo.Ra.tah"
             },
             {
-              "word": "לָתֵ֥ת",
-              "translation": "",
-              "transliteration": ""
+              "word": "לָ/תֵ֥ת",
+              "translation": "to put",
+              "transliteration": "la.Tet"
             },
             {
-              "word": "אוֹתָ֖הּ",
-              "translation": "",
-              "transliteration": ""
+              "word": "אוֹתָ֖/הּ",
+              "translation": "it",
+              "transliteration": "'o.Tah"
             },
             {
-              "word": "בְּיַד־",
-              "translation": "",
-              "transliteration": ""
+              "word": "בְּ/יַד",
+              "translation": "in  hand of",
+              "transliteration": "be.yad-"
             },
             {
-              "word": "הוֹרֵֽג׃",
-              "translation": "",
-              "transliteration": ""
+              "word": "הוֹרֵֽג",
+              "translation": "slays",
+              "transliteration": "ho.Reg"
             }
           ]
         },
@@ -47536,68 +47536,68 @@
           "wordTranslations": [
             {
               "word": "זְעַ֤ק",
-              "translation": "",
-              "transliteration": ""
+              "translation": "cry out",
+              "transliteration": "ze.'Ak"
             },
             {
-              "word": "וְהֵילֵל֙",
-              "translation": "",
-              "transliteration": ""
+              "word": "וְ/הֵילֵל֙",
+              "translation": "and wail",
+              "transliteration": "ve.hei.Lel"
             },
             {
-              "word": "בֶּן־",
-              "translation": "",
-              "transliteration": ""
+              "word": "בֶּן",
+              "translation": "O son of",
+              "transliteration": "ben-"
             },
             {
               "word": "אָדָ֔ם",
-              "translation": "",
-              "transliteration": ""
+              "translation": "humankind",
+              "transliteration": "'a.Dam"
             },
             {
-              "word": "כִּי־",
-              "translation": "",
-              "transliteration": ""
+              "word": "כִּי",
+              "translation": "for",
+              "transliteration": "ki-"
             },
             {
               "word": "הִיא֙",
-              "translation": "",
-              "transliteration": ""
+              "translation": "it",
+              "transliteration": "hi'"
             },
             {
               "word": "הָיתָ֣ה",
-              "translation": "",
-              "transliteration": ""
+              "translation": "it has come",
+              "transliteration": "hai.Tah"
             },
             {
-              "word": "בְעַמִּ֔י",
-              "translation": "",
-              "transliteration": ""
+              "word": "בְ/עַמִּ֔/י",
+              "translation": "on people my",
+              "transliteration": "ve.'a.Mi"
             },
             {
               "word": "הִ֖יא",
-              "translation": "",
-              "transliteration": ""
+              "translation": "it",
+              "transliteration": "hi'"
             },
             {
-              "word": "בְּכָל־",
-              "translation": "",
-              "transliteration": ""
+              "word": "בְּ/כָל",
+              "translation": "on all",
+              "transliteration": "be.khol"
             },
             {
               "word": "נְשִׂיאֵ֣י",
-              "translation": "",
-              "transliteration": ""
+              "translation": "princes of",
+              "transliteration": "ne.si.'Ei"
             },
             {
               "word": "יִשְׂרָאֵ֑ל",
-              "translation": "",
-              "transliteration": ""
+              "translation": "Israel",
+              "transliteration": "Yis.ra.'El"
             },
             {
               "word": "מְגוּרֵ֤י",
-              "translation": "",
-              "transliteration": ""
+              "translation": "thrown",
+              "transliteration": "me.gu.Rei"
             },
             {
               "word": "אֶל",
@@ -47606,43 +47606,43 @@
             },
             {
               "word": "חֶ֙רֶב֙",
-              "translation": "",
-              "transliteration": ""
+              "translation": "sword",
+              "transliteration": "che.rev"
             },
             {
               "word": "הָי֣וּ",
-              "translation": "",
-              "transliteration": ""
+              "translation": "they have been",
+              "transliteration": "ha.Yu"
             },
             {
-              "word": "אֶת־",
-              "translation": "",
-              "transliteration": ""
+              "word": "אֶת",
+              "translation": "with",
+              "transliteration": "'et-"
             },
             {
-              "word": "עַמִּ֔י",
-              "translation": "",
-              "transliteration": ""
+              "word": "עַמִּ֔/י",
+              "translation": "people my",
+              "transliteration": "'a.Mi"
             },
             {
-              "word": "לָכֵ֖ן",
-              "translation": "",
-              "transliteration": ""
+              "word": "לָ/כֵ֖ן",
+              "translation": "therefore",
+              "transliteration": "la.Khen"
             },
             {
               "word": "סְפֹ֥ק",
-              "translation": "",
-              "transliteration": ""
+              "translation": "slap",
+              "transliteration": "se.Fok"
             },
             {
-              "word": "אֶל־",
-              "translation": "",
-              "transliteration": ""
+              "word": "אֶל",
+              "translation": "<to>",
+              "transliteration": "'el-"
             },
             {
-              "word": "יָרֵֽךְ׃",
-              "translation": "",
-              "transliteration": ""
+              "word": "יָרֵֽךְ",
+              "translation": "a thigh",
+              "transliteration": "ya.Rekh"
             }
           ]
         },
@@ -47666,61 +47666,61 @@
           "wordTranslations": [
             {
               "word": "כִּ֣י",
-              "translation": "",
-              "transliteration": ""
+              "translation": "for",
+              "transliteration": "ki"
             },
             {
               "word": "בֹ֔חַן",
-              "translation": "",
-              "transliteration": ""
+              "translation": "it has been tested",
+              "transliteration": "Vo.chan"
             },
             {
-              "word": "וּמָ֕ה",
-              "translation": "",
-              "transliteration": ""
+              "word": "וּ/מָ֕ה",
+              "translation": "and what?",
+              "transliteration": "u.Mah"
             },
             {
-              "word": "אִם־",
-              "translation": "",
-              "transliteration": ""
+              "word": "אִם",
+              "translation": "if",
+              "transliteration": "'im-"
             },
             {
-              "word": "גַּם־",
-              "translation": "",
-              "transliteration": ""
+              "word": "גַּם",
+              "translation": "also",
+              "transliteration": "gam-"
             },
             {
               "word": "שֵׁ֥בֶט",
-              "translation": "",
-              "transliteration": ""
+              "translation": "a scepter",
+              "transliteration": "She.vet"
             },
             {
               "word": "מֹאֶ֖סֶת",
-              "translation": "",
-              "transliteration": ""
+              "translation": "rejecting",
+              "transliteration": "mo.'E.set"
             },
             {
               "word": "לֹ֣א",
-              "translation": "",
-              "transliteration": ""
+              "translation": "not",
+              "transliteration": "lo'"
             },
             {
               "word": "יִֽהְיֶ֑ה",
-              "translation": "",
-              "transliteration": ""
+              "translation": "it will be",
+              "transliteration": "yih.Yeh"
             },
             {
               "word": "נְאֻ֖ם",
-              "translation": "",
-              "transliteration": ""
+              "translation": "utterance of",
+              "transliteration": "ne.'Um"
             },
             {
               "word": "אֲדֹנָ֥י",
-              "translation": "",
-              "transliteration": ""
+              "translation": "Lord",
+              "transliteration": "'a.do.Nai"
             },
             {
-              "word": "יְהוָ֖ה",
+              "word": "יְהוִֽה",
               "translation": "Yahweh",
               "transliteration": "Yah.weh"
             }
@@ -47752,7 +47752,7 @@
           ],
           "wordTranslations": [
             {
-              "word": "וְ/אַתָּ֨ה",
+              "word": "וְ/אַתָּ֣ה",
               "translation": "and you",
               "transliteration": "ve.'a.Tah"
             },
@@ -47762,89 +47762,89 @@
               "transliteration": "ven-"
             },
             {
-              "word": "אָדָ֜ם",
+              "word": "אָדָ֔ם",
               "translation": "humankind",
               "transliteration": "'a.Dam"
             },
             {
               "word": "הִנָּבֵ֕א",
-              "translation": "",
-              "transliteration": ""
+              "translation": "prophesy",
+              "transliteration": "hi.na.Ve'"
             },
             {
-              "word": "וְהַ֖ךְ",
-              "translation": "",
-              "transliteration": ""
+              "word": "וְ/הַ֖ךְ",
+              "translation": "and strike",
+              "transliteration": "ve.Hakh"
             },
             {
               "word": "כַּ֣ף",
-              "translation": "",
-              "transliteration": ""
+              "translation": "palm",
+              "transliteration": "kaf"
             },
             {
-              "word": "אֶל־",
-              "translation": "",
-              "transliteration": ""
+              "word": "אֶל",
+              "translation": "to",
+              "transliteration": "'el-"
             },
             {
               "word": "כָּ֑ף",
-              "translation": "",
-              "transliteration": ""
+              "translation": "palm",
+              "transliteration": "Kaf"
             },
             {
-              "word": "וְתִכָּפֵ֞ל",
-              "translation": "",
-              "transliteration": ""
+              "word": "וְ/תִכָּפֵ֞ל",
+              "translation": "so it may be doubled",
+              "transliteration": "ve.ti.ka.Fel"
             },
             {
-              "word": "חֶ֣רֶב",
-              "translation": "sword of",
+              "word": "חֶ֤רֶב",
+              "translation": "a sword",
               "transliteration": "Che.rev"
             },
             {
               "word": "שְׁלִישִׁ֙תָה֙",
-              "translation": "",
-              "transliteration": ""
+              "translation": "a third",
+              "transliteration": "she.li.Shi.tah"
             },
             {
               "word": "חֶ֣רֶב",
-              "translation": "",
-              "transliteration": ""
+              "translation": "a sword of",
+              "transliteration": "Che.rev"
             },
             {
               "word": "חֲלָלִ֔ים",
-              "translation": "",
-              "transliteration": ""
+              "translation": "slain",
+              "transliteration": "cha.la.Lim"
             },
             {
               "word": "הִ֗יא",
-              "translation": "",
-              "transliteration": ""
+              "translation": "it",
+              "transliteration": "Hi'"
             },
             {
               "word": "חֶ֚רֶב",
-              "translation": "",
-              "transliteration": ""
+              "translation": "a sword of",
+              "transliteration": "Che.rev"
             },
             {
               "word": "חָלָ֣ל",
-              "translation": "",
-              "transliteration": ""
+              "translation": "slain",
+              "transliteration": "cha.Lal"
             },
             {
-              "word": "הַגָּד֔וֹל",
-              "translation": "",
-              "transliteration": ""
+              "word": "הַ/גָּד֔וֹל",
+              "translation": "great",
+              "transliteration": "ha.ga.Dol"
             },
             {
-              "word": "הַחֹדֶ֖רֶת",
-              "translation": "",
-              "transliteration": ""
+              "word": "הַ/חֹדֶ֖רֶת",
+              "translation": "which surrounds",
+              "transliteration": "ha.cho.De.ret"
             },
             {
-              "word": "לָהֶֽם׃",
-              "translation": "",
-              "transliteration": ""
+              "word": "לָ/הֶֽם",
+              "translation": "them",
+              "transliteration": "la.Hem"
             }
           ]
         },
@@ -47871,84 +47871,84 @@
           ],
           "wordTranslations": [
             {
-              "word": "לְמַ֣עַן ׀",
-              "translation": "",
-              "transliteration": ""
+              "word": "לְמַ֣עַן",
+              "translation": "so as",
+              "transliteration": "le.Ma.'an"
             },
             {
-              "word": "לָמ֣וּג",
-              "translation": "",
-              "transliteration": ""
+              "word": "לָ/מ֣וּג",
+              "translation": "to melt",
+              "transliteration": "la.Mug"
             },
             {
               "word": "לֵ֗ב",
-              "translation": "",
-              "transliteration": ""
+              "translation": "a heart",
+              "transliteration": "Lev"
             },
             {
-              "word": "וְהַרְבֵּה֙",
-              "translation": "",
-              "transliteration": ""
+              "word": "וְ/הַרְבֵּה֙",
+              "translation": "and  many",
+              "transliteration": "ve.har.Beh"
             },
             {
-              "word": "הַמִּכְשֹׁלִ֔ים",
-              "translation": "",
-              "transliteration": ""
+              "word": "הַ/מִּכְשֹׁלִ֔ים",
+              "translation": "the stumblings",
+              "transliteration": "ha.mikh.sho.Lim"
             },
             {
               "word": "עַ֚ל",
-              "translation": "",
-              "transliteration": ""
+              "translation": "at",
+              "transliteration": "'al"
             },
             {
-              "word": "כָּל־",
-              "translation": "",
-              "transliteration": ""
+              "word": "כָּל",
+              "translation": "all",
+              "transliteration": "kol-"
             },
             {
-              "word": "שַׁ֣עֲרֵיהֶ֔ם",
-              "translation": "",
-              "transliteration": ""
+              "word": "שַׁ֣עֲרֵי/הֶ֔ם",
+              "translation": "gates their",
+              "transliteration": "sha.'a.rei.Hem"
             },
             {
               "word": "נָתַ֖תִּי",
-              "translation": "",
-              "transliteration": ""
+              "translation": "I have set",
+              "transliteration": "na.Ta.ti"
             },
             {
-              "word": "אִבְחַת־",
-              "translation": "",
-              "transliteration": ""
+              "word": "אִבְחַת",
+              "translation": "a slaughter of",
+              "transliteration": "'iv.chat-"
             },
             {
-              "word": "חֶ֔רֶב",
+              "word": "חָ֑רֶב",
               "translation": "a sword",
-              "transliteration": "Che.rev"
+              "transliteration": "Cha.rev"
             },
             {
               "word": "אָ֛ח",
-              "translation": "",
-              "transliteration": ""
+              "translation": "alas!",
+              "transliteration": "'ach"
             },
             {
               "word": "עֲשׂוּיָ֥ה",
-              "translation": "",
-              "transliteration": ""
+              "translation": "made",
+              "transliteration": "'a.su.Yah"
             },
             {
-              "word": "לְבָרָ֖ק",
-              "translation": "",
-              "transliteration": ""
+              "word": "לְ/בָרָ֖ק",
+              "translation": "for lightning",
+              "transliteration": "le.va.Rak"
             },
             {
               "word": "מְעֻטָּ֥ה",
-              "translation": "",
-              "transliteration": ""
+              "translation": "wrapped",
+              "transliteration": "me.'u.Tah"
             },
             {
-              "word": "לְטָֽבַח׃",
-              "translation": "",
-              "transliteration": ""
+              "word": "לְ/טָֽבַח",
+              "translation": "for slaughtering",
+              "transliteration": "le.Ta.vach"
             }
           ]
         },
@@ -47967,38 +47967,38 @@
           "wordTranslations": [
             {
               "word": "הִתְאַחֲדִ֥י",
-              "translation": "",
-              "transliteration": ""
+              "translation": "be sharp",
+              "transliteration": "hit.'a.cha.Di"
             },
             {
               "word": "הֵימִ֖נִי",
-              "translation": "",
-              "transliteration": ""
+              "translation": "go to  right",
+              "transliteration": "hei.Mi.ni"
             },
             {
               "word": "הָשִׂ֣ימִי",
-              "translation": "",
-              "transliteration": ""
+              "translation": "cause to set",
+              "transliteration": "ha.Si.mi"
             },
             {
               "word": "הַשְׂמִ֑ילִי",
-              "translation": "",
-              "transliteration": ""
+              "translation": "go to  left",
+              "transliteration": "has.Mi.li"
             },
             {
               "word": "אָ֖נָה",
-              "translation": "",
-              "transliteration": ""
+              "translation": "where?",
+              "transliteration": "'A.nah"
             },
             {
-              "word": "פָּנַ֥יִךְ",
-              "translation": "",
-              "transliteration": ""
+              "word": "פָּנַ֥יִ/ךְ",
+              "translation": "face your",
+              "transliteration": "pa.Na.yikh"
             },
             {
-              "word": "מֻעָדֽוֹת׃",
-              "translation": "",
-              "transliteration": ""
+              "word": "מֻעָדֽוֹת",
+              "translation": "set",
+              "transliteration": "mu.'a.Dot"
             }
           ]
         },
@@ -48020,59 +48020,59 @@
           ],
           "wordTranslations": [
             {
-              "word": "וְגַם־",
-              "translation": "",
-              "transliteration": ""
+              "word": "וְ/גַם",
+              "translation": "and also",
+              "transliteration": "ve.gam-"
             },
             {
               "word": "אֲנִ֗י",
-              "translation": "",
-              "transliteration": ""
+              "translation": "I",
+              "transliteration": "'a.Ni"
             },
             {
               "word": "אַכֶּ֤ה",
-              "translation": "",
-              "transliteration": ""
+              "translation": "I will strike",
+              "transliteration": "'a.Keh"
             },
             {
-              "word": "כַפִּי֙",
-              "translation": "",
-              "transliteration": ""
+              "word": "כַפִּ/י֙",
+              "translation": "palm my",
+              "transliteration": "kha.Pi"
             },
             {
-              "word": "אֶל־",
-              "translation": "",
-              "transliteration": ""
+              "word": "אֶל",
+              "translation": "to",
+              "transliteration": "'el-"
             },
             {
-              "word": "כַּפִּ֔י",
-              "translation": "",
-              "transliteration": ""
+              "word": "כַּפִּ֔/י",
+              "translation": "palm my",
+              "transliteration": "ka.Pi"
             },
             {
-              "word": "וַהֲנִחֹתִ֖י",
-              "translation": "",
-              "transliteration": ""
+              "word": "וַ/הֲנִחֹתִ֖י",
+              "translation": "and I will give rest to",
+              "transliteration": "va.ha.ni.cho.Ti"
             },
             {
-              "word": "חֲמָתִ֑י",
-              "translation": "",
-              "transliteration": ""
+              "word": "חֲמָתִ֑/י",
+              "translation": "rage my",
+              "transliteration": "cha.ma.Ti"
             },
             {
               "word": "אֲנִ֥י",
-              "translation": "",
-              "transliteration": ""
+              "translation": "I",
+              "transliteration": "'a.Ni"
             },
             {
               "word": "יְהוָ֖ה",
-              "translation": "",
-              "transliteration": ""
+              "translation": "Yahweh",
+              "transliteration": "Yah.weh"
             },
             {
-              "word": "דִּבַּֽרְתִּי׃",
-              "translation": "",
-              "transliteration": ""
+              "word": "דִּבַּֽרְתִּי",
+              "translation": "I have spoken",
+              "transliteration": "di.Bar.ti"
             }
           ]
         },
@@ -48088,29 +48088,29 @@
           ],
           "wordTranslations": [
             {
-              "word": "וַיְהִ֥י",
-              "translation": "",
-              "transliteration": ""
+              "word": "וַ/יְהִ֥י",
+              "translation": "and it came",
+              "transliteration": "vay.Hi"
             },
             {
-              "word": "דְבַר־",
-              "translation": "",
-              "transliteration": ""
+              "word": "דְבַר",
+              "translation": "word of",
+              "transliteration": "de.var-"
             },
             {
               "word": "יְהוָ֖ה",
-              "translation": "",
-              "transliteration": ""
+              "translation": "Yahweh",
+              "transliteration": "Yah.weh"
             },
             {
-              "word": "אֵלַ֥י",
-              "translation": "",
-              "transliteration": ""
+              "word": "אֵלַ֥/י",
+              "translation": "to me",
+              "transliteration": "'e.Lai"
             },
             {
-              "word": "לֵאמֹֽר׃",
-              "translation": "",
-              "transliteration": ""
+              "word": "לֵ/אמֹֽר",
+              "translation": "saying",
+              "transliteration": "le.Mor"
             }
           ]
         },
@@ -48142,24 +48142,24 @@
           ],
           "wordTranslations": [
             {
-              "word": "וְאַתָּ֨ה",
-              "translation": "",
-              "transliteration": ""
+              "word": "וְ/אַתָּ֨ה",
+              "translation": "and you",
+              "transliteration": "ve.'a.Tah"
             },
             {
-              "word": "בֶן־",
-              "translation": "",
-              "transliteration": ""
+              "word": "בֶן",
+              "translation": "O son of",
+              "transliteration": "ven-"
             },
             {
               "word": "אָדָ֜ם",
-              "translation": "",
-              "transliteration": ""
+              "translation": "humankind",
+              "transliteration": "'a.Dam"
             },
             {
-              "word": "שִׂים־",
-              "translation": "",
-              "transliteration": ""
+              "word": "שִׂים",
+              "translation": "make",
+              "transliteration": "sim-"
             },
             {
               "word": "לְךָ֣ ׀",
@@ -48168,83 +48168,83 @@
             },
             {
               "word": "שְׁנַ֣יִם",
-              "translation": "",
-              "transliteration": ""
+              "translation": "two",
+              "transliteration": "she.Na.yim"
             },
             {
               "word": "דְּרָכִ֗ים",
-              "translation": "",
-              "transliteration": ""
+              "translation": "roads",
+              "transliteration": "de.ra.Khim"
             },
             {
-              "word": "לָבוֹא֙",
-              "translation": "",
-              "transliteration": ""
+              "word": "לָ/בוֹא֙",
+              "translation": "to come",
+              "transliteration": "la.Vo'"
             },
             {
               "word": "חֶ֣רֶב",
-              "translation": "",
-              "transliteration": ""
+              "translation": "sword of",
+              "transliteration": "Che.rev"
             },
             {
-              "word": "מֶֽלֶךְ־",
-              "translation": "",
-              "transliteration": ""
+              "word": "מֶֽלֶךְ",
+              "translation": "king of",
+              "transliteration": "Me.lekh-"
             },
             {
               "word": "בָּבֶ֔ל",
-              "translation": "",
-              "transliteration": ""
+              "translation": "Babylon",
+              "transliteration": "ba.Vel"
             },
             {
-              "word": "מֵאֶ֥רֶץ",
-              "translation": "",
-              "transliteration": ""
+              "word": "מֵ/אֶ֥רֶץ",
+              "translation": "from a land",
+              "transliteration": "me.'E.retz"
             },
             {
               "word": "אֶחָ֖ד",
-              "translation": "",
-              "transliteration": ""
+              "translation": "one",
+              "transliteration": "'e.Chad"
             },
             {
               "word": "יֵצְא֣וּ",
-              "translation": "",
-              "transliteration": ""
+              "translation": "they will go out",
+              "transliteration": "ye.tze.'U"
             },
             {
-              "word": "שְׁנֵיהֶ֑ם",
-              "translation": "",
-              "transliteration": ""
+              "word": "שְׁנֵי/הֶ֑ם",
+              "translation": "both of them",
+              "transliteration": "she.nei.Hem"
             },
             {
-              "word": "וְיָ֣ד",
-              "translation": "",
-              "transliteration": ""
+              "word": "וְ/יָ֣ד",
+              "translation": "and a monument",
+              "transliteration": "ve.Yad"
             },
             {
               "word": "בָּרֵ֔א",
-              "translation": "",
-              "transliteration": ""
+              "translation": "make",
+              "transliteration": "ba.Re'"
             },
             {
-              "word": "בְּרֹ֥אשׁ",
-              "translation": "",
-              "transliteration": ""
+              "word": "בְּ/רֹ֥אשׁ",
+              "translation": "at  beginning of",
+              "transliteration": "be.Rosh"
             },
             {
-              "word": "דֶּֽרֶךְ־",
-              "translation": "",
-              "transliteration": ""
+              "word": "דֶּֽרֶךְ",
+              "translation": "road of",
+              "transliteration": "de.rekh-"
             },
             {
               "word": "עִ֖יר",
-              "translation": "",
-              "transliteration": ""
+              "translation": "a city",
+              "transliteration": "'ir"
             },
             {
-              "word": "בָּרֵֽא׃",
-              "translation": "",
-              "transliteration": ""
+              "word": "בָּרֵֽא",
+              "translation": "make",
+              "transliteration": "ba.Re'"
             }
           ]
         },
@@ -48268,63 +48268,63 @@
           "wordTranslations": [
             {
               "word": "דֶּ֣רֶךְ",
-              "translation": "",
-              "transliteration": ""
+              "translation": "a road",
+              "transliteration": "De.rekh"
             },
             {
               "word": "תָּשִׂ֔ים",
-              "translation": "",
-              "transliteration": ""
+              "translation": "you will make",
+              "transliteration": "ta.Sim"
             },
             {
-              "word": "לָב֣וֹא",
-              "translation": "",
-              "transliteration": ""
+              "word": "לָ/ב֣וֹא",
+              "translation": "to come",
+              "transliteration": "la.Vo'"
             },
             {
               "word": "חֶ֔רֶב",
-              "translation": "",
-              "transliteration": ""
+              "translation": "a sword",
+              "transliteration": "Che.rev"
             },
             {
               "word": "אֵ֖ת",
-              "translation": "",
-              "transliteration": ""
+              "translation": "<obj.>",
+              "transliteration": "'et"
             },
             {
               "word": "רַבַּ֣ת",
-              "translation": "",
-              "transliteration": ""
+              "translation": "Rabbah of",
+              "transliteration": "ra.Bat"
             },
             {
-              "word": "בְּנֵֽי־",
-              "translation": "",
-              "transliteration": ""
+              "word": "בְּנֵֽי",
+              "translation": "people of",
+              "transliteration": "be.nei-"
             },
             {
               "word": "עַמּ֑וֹן",
-              "translation": "",
-              "transliteration": ""
+              "translation": "Ammon",
+              "transliteration": "a.Mon"
             },
             {
-              "word": "וְאֶת־",
-              "translation": "",
-              "transliteration": ""
+              "word": "וְ/אֶת",
+              "translation": "and",
+              "transliteration": "ve.'Et"
             },
             {
               "word": "יְהוּדָ֥ה",
-              "translation": "",
-              "transliteration": ""
+              "translation": "Judah",
+              "transliteration": "ye.hu.Dah"
             },
             {
-              "word": "בִירוּשָׁלַ֖͏ִם",
-              "translation": "",
-              "transliteration": ""
+              "word": "בִ/ירוּשָׁלִַ֖ם",
+              "translation": "in Jerusalem",
+              "transliteration": "vi.ru.sha.Lim"
             },
             {
-              "word": "בְּצוּרָֽה׃",
-              "translation": "",
-              "transliteration": ""
+              "word": "בְּצוּרָֽה",
+              "translation": "fortified",
+              "transliteration": "be.tzu.Rah"
             }
           ]
         },
@@ -48353,94 +48353,94 @@
           ],
           "wordTranslations": [
             {
-              "word": "כִּֽי־",
-              "translation": "",
-              "transliteration": ""
+              "word": "כִּֽי",
+              "translation": "for",
+              "transliteration": "ki-"
             },
             {
               "word": "עָמַ֨ד",
-              "translation": "",
-              "transliteration": ""
+              "translation": "he has stopped",
+              "transliteration": "'a.Mad"
             },
             {
-              "word": "מֶלֶךְ־",
-              "translation": "",
-              "transliteration": ""
+              "word": "מֶלֶךְ",
+              "translation": "king of",
+              "transliteration": "Me.lekh-"
             },
             {
               "word": "בָּבֶ֜ל",
-              "translation": "",
-              "transliteration": ""
+              "translation": "Babylon",
+              "transliteration": "ba.Vel"
             },
             {
-              "word": "אֶל־",
-              "translation": "",
-              "transliteration": ""
+              "word": "אֶל",
+              "translation": "to",
+              "transliteration": "'el-"
             },
             {
               "word": "אֵ֣ם",
-              "translation": "",
-              "transliteration": ""
+              "translation": "mother of",
+              "transliteration": "'em"
             },
             {
-              "word": "הַדֶּ֗רֶךְ",
-              "translation": "",
-              "transliteration": ""
+              "word": "הַ/דֶּ֗רֶךְ",
+              "translation": "the road",
+              "transliteration": "ha.De.rekh"
             },
             {
-              "word": "בְּרֹ֛אשׁ",
-              "translation": "",
-              "transliteration": ""
+              "word": "בְּ/רֹ֛אשׁ",
+              "translation": "at  beginning of",
+              "transliteration": "be.Rosh"
             },
             {
               "word": "שְׁנֵ֥י",
-              "translation": "",
-              "transliteration": ""
+              "translation": "two",
+              "transliteration": "she.Nei"
             },
             {
-              "word": "הַדְּרָכִ֖ים",
-              "translation": "",
-              "transliteration": ""
+              "word": "הַ/דְּרָכִ֖ים",
+              "translation": "the roads",
+              "transliteration": "ha.de.ra.Khim"
             },
             {
-              "word": "לִקְסָם־",
-              "translation": "",
-              "transliteration": ""
+              "word": "לִ/קְסָם",
+              "translation": "to divine",
+              "transliteration": "lik.som-"
             },
             {
               "word": "קָ֑סֶם",
-              "translation": "",
-              "transliteration": ""
+              "translation": "divination",
+              "transliteration": "Ka.sem"
             },
             {
               "word": "קִלְקַ֤ל",
-              "translation": "",
-              "transliteration": ""
+              "translation": "he has shaken",
+              "transliteration": "kil.Kal"
             },
             {
-              "word": "בַּֽחִצִּים֙",
-              "translation": "",
-              "transliteration": ""
+              "word": "בַּֽ/חִצִּים֙",
+              "translation": "the arrows",
+              "transliteration": "ba.chi.Tzim"
             },
             {
               "word": "שָׁאַ֣ל",
-              "translation": "",
-              "transliteration": ""
+              "translation": "he has enquired",
+              "transliteration": "sha.'Al"
             },
             {
-              "word": "בַּתְּרָפִ֔ים",
-              "translation": "",
-              "transliteration": ""
+              "word": "בַּ/תְּרָפִ֔ים",
+              "translation": "by the teraphim",
+              "transliteration": "ba.te.ra.Fim"
             },
             {
               "word": "רָאָ֖ה",
-              "translation": "",
-              "transliteration": ""
+              "translation": "he has looked",
+              "transliteration": "ra.'Ah"
             },
             {
-              "word": "בַּכָּבֵֽד׃",
-              "translation": "",
-              "transliteration": ""
+              "word": "בַּ/כָּבֵֽד",
+              "translation": "at the liver",
+              "transliteration": "ba.ka.Ved"
             }
           ]
         },
@@ -48471,104 +48471,104 @@
           ],
           "wordTranslations": [
             {
-              "word": "בִּֽימִינ֞וֹ",
-              "translation": "",
-              "transliteration": ""
+              "word": "בִּֽ/ימִינ֞/וֹ",
+              "translation": "in right  his",
+              "transliteration": "bi.mi.No"
             },
             {
-              "word": "הָיָ֔ה",
-              "translation": "it will be",
+              "word": "הָיָ֣ה",
+              "translation": "it was",
               "transliteration": "ha.Yah"
             },
             {
-              "word": "הַקֶּ֣סֶם",
-              "translation": "",
-              "transliteration": ""
+              "word": "הַ/קֶּ֣סֶם",
+              "translation": "the divination",
+              "transliteration": "ha.Ke.sem"
             },
             {
               "word": "יְרוּשָׁלִַ֗ם",
-              "translation": "",
-              "transliteration": ""
+              "translation": "Jerusalem",
+              "transliteration": "ye.ru.sha.Lim"
             },
             {
-              "word": "לָשׂ֤וּם",
-              "translation": "",
-              "transliteration": ""
+              "word": "לָ/שׂ֤וּם",
+              "translation": "to set up",
+              "transliteration": "la.Sum"
             },
             {
               "word": "כָּרִים֙",
-              "translation": "",
-              "transliteration": ""
+              "translation": "battering-rams",
+              "transliteration": "ka.Rim"
             },
             {
-              "word": "לִפְתֹּ֤חַ",
-              "translation": "",
-              "transliteration": ""
+              "word": "לִ/פְתֹּ֤חַ",
+              "translation": "to open",
+              "transliteration": "lif.To.ach"
             },
             {
               "word": "פֶּה֙",
-              "translation": "",
-              "transliteration": ""
+              "translation": "a mouth",
+              "transliteration": "peh"
             },
             {
-              "word": "בְּרֶ֔צַח",
-              "translation": "",
-              "transliteration": ""
+              "word": "בְּ/רֶ֔צַח",
+              "translation": "for shattering",
+              "transliteration": "be.Re.tzach"
             },
             {
-              "word": "לְהָרִ֥ים",
-              "translation": "",
-              "transliteration": ""
+              "word": "לְ/הָרִ֥ים",
+              "translation": "to raise",
+              "transliteration": "le.ha.Rim"
             },
             {
               "word": "ק֖וֹל",
-              "translation": "",
-              "transliteration": ""
+              "translation": "a sound",
+              "transliteration": "Kol"
             },
             {
-              "word": "בִּתְרוּעָ֑ה",
-              "translation": "",
-              "transliteration": ""
+              "word": "בִּ/תְרוּעָ֑ה",
+              "translation": "with a war cry",
+              "transliteration": "bit.ru.'Ah"
             },
             {
-              "word": "לָשׂ֤וּם",
-              "translation": "",
-              "transliteration": ""
+              "word": "לָ/שׂ֤וּם",
+              "translation": "to set up",
+              "transliteration": "la.Sum"
             },
             {
               "word": "כָּרִים֙",
-              "translation": "",
-              "transliteration": ""
+              "translation": "battering-rams",
+              "transliteration": "ka.Rim"
             },
             {
-              "word": "עַל־",
-              "translation": "",
-              "transliteration": ""
+              "word": "עַל",
+              "translation": "on",
+              "transliteration": "'al-"
             },
             {
               "word": "שְׁעָרִ֔ים",
-              "translation": "",
-              "transliteration": ""
+              "translation": "gates",
+              "transliteration": "she.'a.Rim"
             },
             {
-              "word": "לִשְׁפֹּ֥ךְ",
-              "translation": "",
-              "transliteration": ""
+              "word": "לִ/שְׁפֹּ֥ךְ",
+              "translation": "to pour out",
+              "transliteration": "lish.Pokh"
             },
             {
               "word": "סֹלְלָ֖ה",
-              "translation": "",
-              "transliteration": ""
+              "translation": "a mound",
+              "transliteration": "so.le.Lah"
             },
             {
-              "word": "לִבְנ֥וֹת",
-              "translation": "",
-              "transliteration": ""
+              "word": "לִ/בְנ֥וֹת",
+              "translation": "to build",
+              "transliteration": "liv.Not"
             },
             {
-              "word": "דָּיֵֽק׃",
-              "translation": "",
-              "transliteration": ""
+              "word": "דָּיֵֽק",
+              "translation": "a siege-wall",
+              "transliteration": "da.Yek"
             }
           ]
         },
@@ -48590,59 +48590,59 @@
           ],
           "wordTranslations": [
             {
-              "word": "וְהָיָ֨ה",
-              "translation": "",
-              "transliteration": ""
+              "word": "וְ/הָיָ֨ה",
+              "translation": "and it will be",
+              "transliteration": "ve.ha.Yah"
             },
             {
-              "word": "לָהֶ֤ם",
-              "translation": "",
-              "transliteration": ""
+              "word": "לָ/הֶ֤ם",
+              "translation": "to them",
+              "transliteration": "la.Hem"
             },
             {
               "word": "שָׁוְא֙",
-              "translation": "",
-              "transliteration": ""
+              "translation": "falsehood",
+              "transliteration": "shaV'"
             },
             {
-              "word": "בְּעֵ֣ינֵיהֶ֔ם",
-              "translation": "",
-              "transliteration": ""
+              "word": "בְּ/עֵ֣ינֵי/הֶ֔ם",
+              "translation": "in view their",
+              "transliteration": "be.'Ei.nei.Hem"
             },
             {
               "word": "שְׁבֻעֵ֥י",
-              "translation": "",
-              "transliteration": ""
+              "translation": "oaths of",
+              "transliteration": "she.vu.'Ei"
             },
             {
               "word": "שְׁבֻע֖וֹת",
-              "translation": "",
-              "transliteration": ""
+              "translation": "oaths",
+              "transliteration": "she.vu.'ot"
             },
             {
-              "word": "לָהֶ֑ם",
-              "translation": "",
-              "transliteration": ""
+              "word": "לָ/הֶ֑ם",
+              "translation": "to them",
+              "transliteration": "la.Hem"
             },
             {
-              "word": "וְהֽוּא־",
-              "translation": "",
-              "transliteration": ""
+              "word": "וְ/הֽוּא",
+              "translation": "and it",
+              "transliteration": "ve.hu'-"
             },
             {
               "word": "מַזְכִּ֥יר",
-              "translation": "",
-              "transliteration": ""
+              "translation": "bring to remembrance",
+              "transliteration": "maz.Kir"
             },
             {
-              "word": "עָוֺ֖ן",
-              "translation": "",
-              "transliteration": ""
+              "word": "עָוֹ֖ן",
+              "translation": "iniquity",
+              "transliteration": "'a.Von"
             },
             {
-              "word": "לְהִתָּפֵֽשׂ׃",
-              "translation": "",
-              "transliteration": ""
+              "word": "לְ/הִתָּפֵֽשׂ",
+              "translation": "to be seized",
+              "transliteration": "le.hi.ta.Fes"
             }
           ]
         },
@@ -48671,94 +48671,94 @@
           ],
           "wordTranslations": [
             {
-              "word": "לָכֵ֗ן",
-              "translation": "",
-              "transliteration": ""
+              "word": "לָ/כֵ֗ן",
+              "translation": "therefore",
+              "transliteration": "la.Khen"
             },
             {
-              "word": "כֹּֽה־",
-              "translation": "",
-              "transliteration": ""
+              "word": "כֹּֽה",
+              "translation": "thus",
+              "transliteration": "koh-"
             },
             {
               "word": "אָמַר֮",
-              "translation": "",
-              "transliteration": ""
+              "translation": "he says",
+              "transliteration": "'a.Mar"
             },
             {
               "word": "אֲדֹנָ֣י",
-              "translation": "",
-              "transliteration": ""
+              "translation": "Lord",
+              "transliteration": "'a.do.Nai"
             },
             {
               "word": "יְהוִה֒",
-              "translation": "",
-              "transliteration": ""
+              "translation": "Yahweh",
+              "transliteration": "Yah.weh"
             },
             {
               "word": "יַ֗עַן",
-              "translation": "",
-              "transliteration": ""
+              "translation": "because",
+              "transliteration": "Ya.'an"
             },
             {
-              "word": "הַזְכַּרְכֶם֙",
-              "translation": "",
-              "transliteration": ""
+              "word": "הַזְכַּרְ/כֶם֙",
+              "translation": "brought to remembrance you",
+              "transliteration": "haz.kar.Khem"
             },
             {
-              "word": "עֲוֺ֣נְכֶ֔ם",
-              "translation": "",
-              "transliteration": ""
+              "word": "עֲוֹ֣נְ/כֶ֔ם",
+              "translation": "iniquity your",
+              "transliteration": "'a.Vo.ne.Khem"
             },
             {
-              "word": "בְּהִגָּל֣וֹת",
-              "translation": "",
-              "transliteration": ""
+              "word": "בְּ/הִגָּל֣וֹת",
+              "translation": "because were uncovered",
+              "transliteration": "be.hi.ga.Lot"
             },
             {
-              "word": "פִּשְׁעֵיכֶ֗ם",
-              "translation": "",
-              "transliteration": ""
+              "word": "פִּשְׁעֵי/כֶ֗ם",
+              "translation": "transgressions your",
+              "transliteration": "pish.'ei.Khem"
             },
             {
-              "word": "לְהֵֽרָאוֹת֙",
-              "translation": "",
-              "transliteration": ""
+              "word": "לְ/הֵֽרָאוֹת֙",
+              "translation": "to be seen",
+              "transliteration": "le.he.ra.'Ot"
             },
             {
-              "word": "חַטֹּ֣אותֵיכֶ֔ם",
-              "translation": "",
-              "transliteration": ""
+              "word": "חַטֹּ֣אותֵי/כֶ֔ם",
+              "translation": "sins your",
+              "transliteration": "cha.To.tei.Khem"
             },
             {
-              "word": "בְּכֹ֖ל",
-              "translation": "",
-              "transliteration": ""
+              "word": "בְּ/כֹ֖ל",
+              "translation": "in all",
+              "transliteration": "be.Khol"
             },
             {
-              "word": "עֲלִילֽוֹתֵיכֶ֑ם",
-              "translation": "",
-              "transliteration": ""
+              "word": "עֲלִילֽוֹתֵי/כֶ֑ם",
+              "translation": "practices your",
+              "transliteration": "a.li.lo.tei.Khem"
             },
             {
               "word": "יַ֚עַן",
-              "translation": "",
-              "transliteration": ""
+              "translation": "because",
+              "transliteration": "Ya.'an"
             },
             {
-              "word": "הִזָּ֣כֶרְכֶ֔ם",
-              "translation": "",
-              "transliteration": ""
+              "word": "הִזָּ֣כֶרְ/כֶ֔ם",
+              "translation": "have been remembered you",
+              "transliteration": "hi.Za.kher.Khem"
             },
             {
-              "word": "בַּכַּ֖ף",
-              "translation": "",
-              "transliteration": ""
+              "word": "בַּ/כַּ֖ף",
+              "translation": "by the hand",
+              "transliteration": "ba.Kaf"
             },
             {
-              "word": "תִּתָּפֵֽשׂוּ׃",
-              "translation": "",
-              "transliteration": ""
+              "word": "תִּתָּפֵֽשׂוּ",
+              "translation": "you will be seized",
+              "transliteration": "ti.ta.Fe.su"
             }
           ]
         },
@@ -48780,59 +48780,59 @@
           ],
           "wordTranslations": [
             {
-              "word": "וְאַתָּה֙",
-              "translation": "",
-              "transliteration": ""
+              "word": "וְ/אַתָּה֙",
+              "translation": "and you",
+              "transliteration": "ve.'a.Tah"
             },
             {
               "word": "חָלָ֣ל",
-              "translation": "",
-              "transliteration": ""
+              "translation": "O profane",
+              "transliteration": "cha.Lal"
             },
             {
               "word": "רָשָׁ֔ע",
-              "translation": "",
-              "transliteration": ""
+              "translation": "wicked",
+              "transliteration": "ra.Sha'"
             },
             {
               "word": "נְשִׂ֖יא",
-              "translation": "",
-              "transliteration": ""
+              "translation": "prince of",
+              "transliteration": "ne.Si'"
             },
             {
               "word": "יִשְׂרָאֵ֑ל",
-              "translation": "",
-              "transliteration": ""
+              "translation": "Israel",
+              "transliteration": "Yis.ra.'El"
             },
             {
               "word": "אֲשֶׁר",
-              "translation": "where",
+              "translation": "whom",
               "transliteration": "'a.Sher-"
             },
             {
               "word": "בָּ֣א",
-              "translation": "",
-              "transliteration": ""
+              "translation": "it has come",
+              "transliteration": "ba'"
             },
             {
-              "word": "יוֹמ֔וֹ",
-              "translation": "",
-              "transliteration": ""
+              "word": "יוֹמ֔/וֹ",
+              "translation": "day his",
+              "transliteration": "yo.Mo"
             },
             {
-              "word": "בְּעֵ֖ת",
-              "translation": "",
-              "transliteration": ""
+              "word": "בְּ/עֵ֖ת",
+              "translation": "at a time of",
+              "transliteration": "be.'Et"
             },
             {
-              "word": "עֲוֺ֥ן",
-              "translation": "",
-              "transliteration": ""
+              "word": "עֲוֹ֥ן",
+              "translation": "punishment of",
+              "transliteration": "'a.Von"
             },
             {
-              "word": "קֵֽץ׃",
-              "translation": "",
-              "transliteration": ""
+              "word": "קֵֽץ",
+              "translation": "end",
+              "transliteration": "Ketz"
             }
           ]
         },
@@ -48859,78 +48859,78 @@
           "wordTranslations": [
             {
               "word": "כֹּ֤ה",
-              "translation": "",
-              "transliteration": ""
+              "translation": "thus",
+              "transliteration": "koh"
             },
             {
               "word": "אָמַר֙",
-              "translation": "",
-              "transliteration": ""
+              "translation": "he says",
+              "transliteration": "'a.Mar"
             },
             {
               "word": "אֲדֹנָ֣י",
-              "translation": "",
-              "transliteration": ""
+              "translation": "Lord",
+              "transliteration": "'a.do.Nai"
             },
             {
               "word": "יְהוִ֔ה",
-              "translation": "",
-              "transliteration": ""
+              "translation": "Yahweh",
+              "transliteration": "Yah.weh"
             },
             {
               "word": "הָסִיר֙",
-              "translation": "",
-              "transliteration": ""
+              "translation": "to remove",
+              "transliteration": "ha.Sir"
             },
             {
-              "word": "הַמִּצְנֶ֔פֶת",
-              "translation": "",
-              "transliteration": ""
+              "word": "הַ/מִּצְנֶ֔פֶת",
+              "translation": "the turban",
+              "transliteration": "ha.mitz.Ne.fet"
             },
             {
-              "word": "וְהָרִ֖ים",
-              "translation": "",
-              "transliteration": ""
+              "word": "וְ/הָרִ֖ים",
+              "translation": "and to lift off",
+              "transliteration": "ve.ha.Rim"
             },
             {
-              "word": "הָֽעֲטָרָ֑ה",
-              "translation": "",
-              "transliteration": ""
+              "word": "הָֽ/עֲטָרָ֑ה",
+              "translation": "the crown",
+              "transliteration": "ha.'a.ta.Rah"
             },
             {
               "word": "זֹ֣את",
-              "translation": "",
-              "transliteration": ""
+              "translation": "this",
+              "transliteration": "zot"
             },
             {
-              "word": "לֹא־",
-              "translation": "",
-              "transliteration": ""
+              "word": "לֹא",
+              "translation": "not",
+              "transliteration": "lo'-"
             },
             {
               "word": "זֹ֔את",
-              "translation": "",
-              "transliteration": ""
+              "translation": "this",
+              "transliteration": "Zot"
             },
             {
-              "word": "הַשָּׁפָ֣לָה",
-              "translation": "",
-              "transliteration": ""
+              "word": "הַ/שָּׁפָ֣לָה",
+              "translation": "the lowly",
+              "transliteration": "ha.sha.Fa.lah"
             },
             {
               "word": "הַגְבֵּ֔הַ",
-              "translation": "",
-              "transliteration": ""
+              "translation": "exalt",
+              "transliteration": "hag.Be.ha"
             },
             {
-              "word": "וְהַגָּבֹ֖הַ",
-              "translation": "",
-              "transliteration": ""
+              "word": "וְ/הַ/גָּבֹ֖הַ",
+              "translation": "and the exalted",
+              "transliteration": "ve.ha.ga.Vo.ha"
             },
             {
-              "word": "הַשְׁפִּֽיל׃",
-              "translation": "",
-              "transliteration": ""
+              "word": "הַשְׁפִּֽיל",
+              "translation": "to bring low",
+              "transliteration": "hash.Pil"
             }
           ]
         },
@@ -48956,33 +48956,33 @@
           "wordTranslations": [
             {
               "word": "עַוָּ֥ה",
-              "translation": "",
-              "transliteration": ""
+              "translation": "a ruin",
+              "transliteration": "'a.Vah"
             },
             {
               "word": "עַוָּ֖ה",
-              "translation": "",
-              "transliteration": ""
+              "translation": "a ruin",
+              "transliteration": "'a.Vah"
             },
             {
               "word": "עַוָּ֣ה",
-              "translation": "",
-              "transliteration": ""
+              "translation": "a ruin",
+              "transliteration": "'a.Vah"
             },
             {
-              "word": "אֲשִׂימֶ֑נָּה",
-              "translation": "",
-              "transliteration": ""
+              "word": "אֲשִׂימֶ֑/נָּה",
+              "translation": "I will make it",
+              "transliteration": "'a.si.Me.nah"
             },
             {
-              "word": "גַּם־",
-              "translation": "",
-              "transliteration": ""
+              "word": "גַּם",
+              "translation": "also",
+              "transliteration": "gam-"
             },
             {
               "word": "זֹאת֙",
-              "translation": "",
-              "transliteration": ""
+              "translation": "this",
+              "transliteration": "zoT"
             },
             {
               "word": "לֹ֣א",
@@ -48991,38 +48991,38 @@
             },
             {
               "word": "הָיָ֔ה",
-              "translation": "",
-              "transliteration": ""
+              "translation": "it will be",
+              "transliteration": "ha.Yah"
             },
             {
-              "word": "עַד־",
-              "translation": "",
-              "transliteration": ""
+              "word": "עַד",
+              "translation": "until",
+              "transliteration": "'ad-"
             },
             {
               "word": "בֹּ֛א",
-              "translation": "",
-              "transliteration": ""
+              "translation": "comes",
+              "transliteration": "bo'"
             },
             {
-              "word": "אֲשֶׁר־",
-              "translation": "",
-              "transliteration": ""
+              "word": "אֲשֶׁר",
+              "translation": "whom",
+              "transliteration": "'a.Sher-"
             },
             {
-              "word": "ל֥וֹ",
-              "translation": "",
-              "transliteration": ""
+              "word": "ל֥/וֹ",
+              "translation": "to him",
+              "transliteration": "lo"
             },
             {
-              "word": "הַמִּשְׁפָּ֖ט",
-              "translation": "",
-              "transliteration": ""
+              "word": "הַ/מִּשְׁפָּ֖ט",
+              "translation": "the judgment",
+              "transliteration": "ha.mish.Pat"
             },
             {
-              "word": "וּנְתַתִּֽיו׃",
-              "translation": "",
-              "transliteration": ""
+              "word": "וּ/נְתַתִּֽי/ו",
+              "translation": "and I will give it",
+              "transliteration": "u.ne.ta.Tiv"
             }
           ]
         },
@@ -49053,6 +49053,123 @@
             "לְהָכִ֖יל",
             "לְמַ֥עַן",
             "בָּרָֽק׃"
+          ],
+          "wordTranslations": [
+            {
+              "word": "וְ/אַתָּ֣ה",
+              "translation": "and you",
+              "transliteration": "ve.'a.Tah"
+            },
+            {
+              "word": "בֶן",
+              "translation": "O son of",
+              "transliteration": "ven-"
+            },
+            {
+              "word": "אָדָ֗ם",
+              "translation": "humankind",
+              "transliteration": "'a.Dam"
+            },
+            {
+              "word": "הִנָּבֵ֤א",
+              "translation": "prophesy",
+              "transliteration": "hi.na.Ve'"
+            },
+            {
+              "word": "וְ/אָֽמַרְתָּ֙",
+              "translation": "and you will say",
+              "transliteration": "ve.'a.mar.Ta"
+            },
+            {
+              "word": "כֹּ֤ה",
+              "translation": "thus",
+              "transliteration": "koh"
+            },
+            {
+              "word": "אָמַר֙",
+              "translation": "he says",
+              "transliteration": "'a.Mar"
+            },
+            {
+              "word": "אֲדֹנָ֣י",
+              "translation": "Lord",
+              "transliteration": "'a.do.Nai"
+            },
+            {
+              "word": "יְהֹוִ֔ה",
+              "translation": "Yahweh",
+              "transliteration": "Yah.weh"
+            },
+            {
+              "word": "אֶל",
+              "translation": "concerning",
+              "transliteration": "'el-"
+            },
+            {
+              "word": "בְּנֵ֥י",
+              "translation": "people of",
+              "transliteration": "be.Nei"
+            },
+            {
+              "word": "עַמּ֖וֹן",
+              "translation": "Ammon",
+              "transliteration": "a.Mon"
+            },
+            {
+              "word": "וְ/אֶל",
+              "translation": "and concerning",
+              "transliteration": "ve.'el-"
+            },
+            {
+              "word": "חֶרְפָּתָ֑/ם",
+              "translation": "reproach their",
+              "transliteration": "cher.pa.Tam"
+            },
+            {
+              "word": "וְ/אָמַרְתָּ֗",
+              "translation": "and you will say",
+              "transliteration": "ve.'a.mar.Ta"
+            },
+            {
+              "word": "חֶ֣רֶב",
+              "translation": "a sword",
+              "transliteration": "Che.rev"
+            },
+            {
+              "word": "חֶ֤רֶב",
+              "translation": "a sword",
+              "transliteration": "Che.rev"
+            },
+            {
+              "word": "פְּתוּחָה֙",
+              "translation": "drawn",
+              "transliteration": "pe.tu.Chah"
+            },
+            {
+              "word": "לְ/טֶ֣בַח",
+              "translation": "for slaughter",
+              "transliteration": "le.Te.vach"
+            },
+            {
+              "word": "מְרוּטָ֔ה",
+              "translation": "polished",
+              "transliteration": "me.ru.Tah"
+            },
+            {
+              "word": "לְ/הָכִ֖יל",
+              "translation": "to contain",
+              "transliteration": "le.ha.Khil"
+            },
+            {
+              "word": "לְמַ֥עַן",
+              "translation": "on account of",
+              "transliteration": "le.Ma.'an"
+            },
+            {
+              "word": "בָּרָֽק",
+              "translation": "lightning",
+              "transliteration": "ba.Rak"
+            }
           ]
         },
         {
@@ -49077,6 +49194,98 @@
             "בְּעֵ֖ת",
             "עֲוֺ֥ן",
             "קֵֽץ׃"
+          ],
+          "wordTranslations": [
+            {
+              "word": "בַּ/חֲז֥וֹת",
+              "translation": "when see",
+              "transliteration": "ba.cha.Zot"
+            },
+            {
+              "word": "לָ/ךְ֙",
+              "translation": "for you",
+              "transliteration": "loKh"
+            },
+            {
+              "word": "שָׁ֔וְא",
+              "translation": "falsehood",
+              "transliteration": "Shav'"
+            },
+            {
+              "word": "בִּ/קְסָם",
+              "translation": "when divine",
+              "transliteration": "bik.som-"
+            },
+            {
+              "word": "לָ֖/ךְ",
+              "translation": "for you",
+              "transliteration": "lakh"
+            },
+            {
+              "word": "כָּזָ֑ב",
+              "translation": "falsehood",
+              "transliteration": "ka.Zav"
+            },
+            {
+              "word": "לָ/תֵ֣ת",
+              "translation": "to give",
+              "transliteration": "la.Tet"
+            },
+            {
+              "word": "אוֹתָ֗/ךְ",
+              "translation": "you",
+              "transliteration": "'o.Takh"
+            },
+            {
+              "word": "אֶֽל",
+              "translation": "to",
+              "transliteration": "'el-"
+            },
+            {
+              "word": "צַוְּארֵי֙",
+              "translation": "necks of",
+              "transliteration": "tza.ve.Rei"
+            },
+            {
+              "word": "חַֽלְלֵ֣י",
+              "translation": "profaned of",
+              "transliteration": "cha.Lei"
+            },
+            {
+              "word": "רְשָׁעִ֔ים",
+              "translation": "wicked",
+              "transliteration": "re.sha.'Im"
+            },
+            {
+              "word": "אֲשֶׁר",
+              "translation": "whom",
+              "transliteration": "'a.Sher-"
+            },
+            {
+              "word": "בָּ֣א",
+              "translation": "it has come",
+              "transliteration": "ba'"
+            },
+            {
+              "word": "יוֹמָ֔/ם",
+              "translation": "day their",
+              "transliteration": "yo.Mam"
+            },
+            {
+              "word": "בְּ/עֵ֖ת",
+              "translation": "at a time of",
+              "transliteration": "be.'Et"
+            },
+            {
+              "word": "עֲוֹ֥ן",
+              "translation": "punishment of",
+              "transliteration": "'a.Von"
+            },
+            {
+              "word": "קֵֽץ",
+              "translation": "end",
+              "transliteration": "Ketz"
+            }
           ]
         },
         {
@@ -49093,6 +49302,58 @@
             "מְכֻרוֹתַ֖יִךְ",
             "אֶשְׁפֹּ֥ט",
             "אֹתָֽךְ׃"
+          ],
+          "wordTranslations": [
+            {
+              "word": "הָשַׁ֖ב",
+              "translation": "put back",
+              "transliteration": "ha.Shav"
+            },
+            {
+              "word": "אֶל",
+              "translation": "into",
+              "transliteration": "'el-"
+            },
+            {
+              "word": "תַּעְרָ֑/הּ",
+              "translation": "sheath its",
+              "transliteration": "ta'.Rah"
+            },
+            {
+              "word": "בִּ/מְק֧וֹם",
+              "translation": "in  place",
+              "transliteration": "bim.Kom"
+            },
+            {
+              "word": "אֲשֶׁר",
+              "translation": "where",
+              "transliteration": "'a.Sher-"
+            },
+            {
+              "word": "נִבְרֵ֛את",
+              "translation": "you were created",
+              "transliteration": "niv.Ret"
+            },
+            {
+              "word": "בְּ/אֶ֥רֶץ",
+              "translation": "in  land of",
+              "transliteration": "be.'E.retz"
+            },
+            {
+              "word": "מְכֻרוֹתַ֖יִ/ךְ",
+              "translation": "origins your",
+              "transliteration": "me.khu.ro.Ta.yikh"
+            },
+            {
+              "word": "אֶשְׁפֹּ֥ט",
+              "translation": "I will judge",
+              "transliteration": "'esh.Pot"
+            },
+            {
+              "word": "אֹתָֽ/ךְ",
+              "translation": "you",
+              "transliteration": "'o.Takh"
+            }
           ]
         },
         {
@@ -49112,6 +49373,73 @@
             "בֹּֽעֲרִ֔ים",
             "חָרָשֵׁ֖י",
             "מַשְׁחִֽית׃"
+          ],
+          "wordTranslations": [
+            {
+              "word": "וְ/שָׁפַכְתִּ֤י",
+              "translation": "and I will pour out",
+              "transliteration": "ve.sha.fakh.Ti"
+            },
+            {
+              "word": "עָלַ֙יִ/ךְ֙",
+              "translation": "on you",
+              "transliteration": "'a.La.yikh"
+            },
+            {
+              "word": "זַעְמִ֔/י",
+              "translation": "indignation my",
+              "transliteration": "za'.Mi"
+            },
+            {
+              "word": "בְּ/אֵ֥שׁ",
+              "translation": "with  fire of",
+              "transliteration": "be.'Esh"
+            },
+            {
+              "word": "עֶבְרָתִ֖/י",
+              "translation": "wrath my",
+              "transliteration": "'ev.ra.Ti"
+            },
+            {
+              "word": "אָפִ֣יחַ",
+              "translation": "I will blow",
+              "transliteration": "'a.Fi.ach"
+            },
+            {
+              "word": "עָלָ֑יִ/ךְ",
+              "translation": "on you",
+              "transliteration": "'a.La.yikh"
+            },
+            {
+              "word": "וּ/נְתַתִּ֗י/ךְ",
+              "translation": "and I will give you",
+              "transliteration": "u.ne.ta.Tikh"
+            },
+            {
+              "word": "בְּ/יַד֙",
+              "translation": "in  hand of",
+              "transliteration": "be.Yad"
+            },
+            {
+              "word": "אֲנָשִׁ֣ים",
+              "translation": "men",
+              "transliteration": "'a.na.Shim"
+            },
+            {
+              "word": "בֹּֽעֲרִ֔ים",
+              "translation": "brutish",
+              "transliteration": "bo.'a.Rim"
+            },
+            {
+              "word": "חָרָשֵׁ֖י",
+              "translation": "craftsmen of",
+              "transliteration": "cha.ra.Shei"
+            },
+            {
+              "word": "מַשְׁחִֽית",
+              "translation": "destruction",
+              "transliteration": "mash.Chit"
+            }
           ]
         },
         {
@@ -49131,6 +49459,73 @@
             "אֲנִ֥י",
             "יְהוָ֖ה",
             "דִּבַּֽרְתִּי׃"
+          ],
+          "wordTranslations": [
+            {
+              "word": "לָ/אֵ֤שׁ",
+              "translation": "for the fire",
+              "transliteration": "la.'Esh"
+            },
+            {
+              "word": "תִּֽהְיֶה֙",
+              "translation": "you will become",
+              "transliteration": "tih.Yeh"
+            },
+            {
+              "word": "לְ/אָכְלָ֔ה",
+              "translation": "fuel",
+              "transliteration": "le.'okh.Lah"
+            },
+            {
+              "word": "דָּמֵ֥/ךְ",
+              "translation": "blood your",
+              "transliteration": "da.Mekh"
+            },
+            {
+              "word": "יִהְיֶ֖ה",
+              "translation": "it will be",
+              "transliteration": "yih.Yeh"
+            },
+            {
+              "word": "בְּ/ת֣וֹךְ",
+              "translation": "in  midst of",
+              "transliteration": "be.Tokh"
+            },
+            {
+              "word": "הָ/אָ֑רֶץ",
+              "translation": "the land",
+              "transliteration": "ha.'A.retz"
+            },
+            {
+              "word": "לֹ֣א",
+              "translation": "not",
+              "transliteration": "lo'"
+            },
+            {
+              "word": "תִזָּכֵ֔רִי",
+              "translation": "you will be remembered",
+              "transliteration": "ti.za.Khe.ri"
+            },
+            {
+              "word": "כִּ֛י",
+              "translation": "for",
+              "transliteration": "ki"
+            },
+            {
+              "word": "אֲנִ֥י",
+              "translation": "I",
+              "transliteration": "'a.Ni"
+            },
+            {
+              "word": "יְהוָ֖ה",
+              "translation": "Yahweh",
+              "transliteration": "Yah.weh"
+            },
+            {
+              "word": "דִּבַּֽרְתִּי",
+              "translation": "I have spoken",
+              "transliteration": "di.Bar.ti"
+            }
           ]
         }
       ]
@@ -50317,9 +50712,9 @@
               "transliteration": "ve.ze.ri.Tikh"
             },
             {
-              "word": "בָּאֲרָצ֑וֹת",
-              "translation": "",
-              "transliteration": ""
+              "word": "בָּ/אֲרָצ֑וֹת",
+              "translation": "among the lands",
+              "transliteration": "ba.'a.ra.Tzot"
             },
             {
               "word": "וַ/הֲתִמֹּתִ֥י",
@@ -54436,8 +54831,8 @@
             },
             {
               "word": "תְּגָרֵ֖מִי",
-              "translation": "",
-              "transliteration": ""
+              "translation": "you will break",
+              "transliteration": "te.ga.Re.mi"
             },
             {
               "word": "וְ/שָׁדַ֣יִ/ךְ",
@@ -71379,9 +71774,9 @@
               "transliteration": "be.ti.Ti"
             },
             {
-              "word": "חַרְבִּי֙",
-              "translation": "",
-              "transliteration": ""
+              "word": "חַרְבִּ/י֙",
+              "translation": "sword my",
+              "transliteration": "char.Bi"
             },
             {
               "word": "בְּ/יַ֣ד",
@@ -74732,8 +75127,8 @@
             },
             {
               "word": "נְאֻ֖ם",
-              "translation": "",
-              "transliteration": ""
+              "translation": "utterance of",
+              "transliteration": "ne.'Um"
             },
             {
               "word": "אֲדֹנָ֥י",
@@ -75693,8 +76088,8 @@
             },
             {
               "word": "י֥וֹרְדֵי",
-              "translation": "",
-              "transliteration": ""
+              "translation": "go down of",
+              "transliteration": "Yor.dei"
             },
             {
               "word": "בֽוֹר",
@@ -80404,8 +80799,8 @@
             },
             {
               "word": "בִקַּשְׁתֶּ֑ם",
-              "translation": "",
-              "transliteration": ""
+              "translation": "you have sought",
+              "transliteration": "vi.kash.Tem"
             },
             {
               "word": "וּ/בְ/חָזְקָ֛ה",
@@ -84183,9 +84578,9 @@
           ],
           "wordTranslations": [
             {
-              "word": "כְּשִׂמְחָ֨תְךָ֜",
-              "translation": "",
-              "transliteration": ""
+              "word": "כְּ/שִׂמְחָ֨תְ/ךָ֜",
+              "translation": "according to rejoicing your",
+              "transliteration": "ke.sim.Cha.te.kha"
             },
             {
               "word": "לְ/נַחְלַ֧ת",
