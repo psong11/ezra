@@ -1,5 +1,6 @@
 /**
- * Word-explanation prompt construction.
+ * Word-explanation prompt construction. Output structure is enforced by
+ * the schema (see schema.ts); the prompt focuses on scholarly content.
  */
 
 export interface WordExplanationRequest {
@@ -12,29 +13,21 @@ export interface WordExplanationRequest {
 }
 
 export const EXPLANATION_SYSTEM_PROMPT =
-  'You are a modern biblical scholar specializing in linguistic analysis, grammar, and historical context. You provide detailed, structured explanations of words with academic rigor.';
+  'You are a modern, religiously unbiased biblical scholar specializing in linguistic analysis, grammar, and historical context. You provide precise, structured word studies with academic rigor. No fluff.';
 
 export function generateWordExplanationPrompt(request: WordExplanationRequest): string {
-  const { word, language } = request;
+  const { word, language, verse, bookName, chapterNum, verseNum } = request;
 
-  return `You are a religiously unbiased biblical scholar providing detailed linguistic analysis of the ${language} word "${word}". Format your response with clear sections using the following structure:
+  const context =
+    bookName && chapterNum && verseNum
+      ? `${bookName} ${chapterNum}:${verseNum}`
+      : 'the biblical text';
 
-**Word**
-[Show the ${language} word "${word}" in its original script]
-[Provide the transliteration]
+  return `Provide a linguistic word study of the ${language} word "${word}" as it appears in ${context} ("${verse}").
 
-**Grammar**
-[Root, Part of speech, gender, number, case (if Greek)]
-
-**English Translation**
-[Provide the closest English translation(s) of the Root, then the ${word}]
-
-**Other Occurrences**
-[Cite this word's first occurrence in the Bible with just the relevant snippet containing the word in the original ${language} script, followed by as many (max 3) other relevant appearances that show diverse nuances of the word. For each occurrence, provide:
-1. The reference (book chapter:verse)
-2. The snippet in original ${language} containing the word - IMPORTANT: Wrap the target word "${word}" in **bold** markdown like this: **${word}**
-3. The English translation of that snippet on a new line - also bold the English translation of the target word
-Format each occurrence as: Reference: ${language} snippet → English translation]
-
-NO FLUFF.FOLLOW INSTRUCTIONS CAREFULLY. Remember: the word being analyzed is "${word}" in ${language}.`;
+Requirements:
+- Analyze exactly this word: "${word}".
+- grammar: give the root in its original script with transliteration; include gender/number only when applicable, and case only for Greek.
+- rootMeanings / wordMeanings: closest English translations, most common first.
+- occurrences: cite this word's FIRST occurrence in the Bible, then up to 3 other appearances that show diverse nuances. Use full English book names with real chapter and verse numbers. Each snippet must be in the original ${language} script and actually contain the word; wrap the target word in **double asterisks** in both the snippet and its English translation.`;
 }

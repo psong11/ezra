@@ -1,11 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { streamText } from 'ai';
+import { streamText, Output } from 'ai';
 import { openai } from '@ai-sdk/openai';
 import {
   generateWordExplanationPrompt,
   EXPLANATION_SYSTEM_PROMPT,
 } from '@/lib/explanation/prompt';
+import { wordStudySchema } from '@/lib/explanation/schema';
 import {
   explanationCacheKey,
   getCachedExplanation,
@@ -23,7 +24,7 @@ const WordExplanationRequestSchema = z.object({
   verseNum: z.number().optional(),
 });
 
-function textResponse(body: BodyInit, cache: string): Response {
+function jsonTextResponse(body: BodyInit, cache: string): Response {
   return new Response(body, {
     status: 200,
     headers: {
@@ -35,9 +36,9 @@ function textResponse(body: BodyInit, cache: string): Response {
 
 /**
  * POST /api/word-explanation
- * Returns the explanation as a plain-text stream (raw markdown-ish text;
- * the client formats it). Cache hits return the full text immediately;
- * misses stream from the model and persist on completion.
+ * Streams a WordStudy as JSON text (consumed by useObject on the client).
+ * Cache hits return the full JSON immediately; misses stream from the
+ * model and persist after schema validation.
  */
 export async function POST(request: NextRequest) {
   let validatedData: z.infer<typeof WordExplanationRequestSchema>;
@@ -55,7 +56,7 @@ export async function POST(request: NextRequest) {
 
   const cached = await getCachedExplanation(key);
   if (cached) {
-    return textResponse(cached.text, `HIT-${cached.source}`);
+    return jsonTextResponse(cached.text, `HIT-${cached.source}`);
   }
 
   if (!process.env.OPENAI_API_KEY) {
@@ -71,10 +72,11 @@ export async function POST(request: NextRequest) {
   try {
     const result = streamText({
       model: openai(MODEL),
+      output: Output.object({ schema: wordStudySchema }),
       instructions: EXPLANATION_SYSTEM_PROMPT,
       prompt: generateWordExplanationPrompt(validatedData),
       temperature: 0.3,
-      maxOutputTokens: 700,
+      maxOutputTokens: 900,
       abortSignal: request.signal,
     });
 
@@ -89,9 +91,17 @@ export async function POST(request: NextRequest) {
             controller.enqueue(encoder.encode(chunk));
           }
           // Persist before closing so the serverless function is still
-          // alive for the write; skip aborted/empty generations
-          if (fullText.trim().length > 0) {
-            await setCachedExplanation(key, fullText);
+          // alive for the write — and only if the output actually
+          // validates against the schema (never cache malformed studies)
+          try {
+            const parsed = wordStudySchema.safeParse(JSON.parse(fullText));
+            if (parsed.success) {
+              await setCachedExplanation(key, JSON.stringify(parsed.data));
+            } else {
+              console.error('Word study failed schema validation; not caching:', parsed.error.message);
+            }
+          } catch {
+            console.error('Word study was not valid JSON; not caching');
           }
           controller.close();
         } catch (err) {
@@ -100,7 +110,7 @@ export async function POST(request: NextRequest) {
       },
     });
 
-    return textResponse(stream, 'MISS');
+    return jsonTextResponse(stream, 'MISS');
   } catch (error: any) {
     console.error('Word explanation API error:', error);
     return NextResponse.json(

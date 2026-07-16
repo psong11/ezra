@@ -15,9 +15,10 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useObject } from '@ai-sdk/react';
 import { BibleChapter } from '@/types/bible';
 import { prepareHebrewForTTS } from '@/lib/hebrewText';
-import { formatExplanation } from '@/lib/explanation/format';
+import { wordStudySchema, PartialWordStudy } from '@/lib/explanation/schema';
 import WordExplanationSidebar from '@/components/bible/WordExplanationSidebar';
 
 interface Props {
@@ -115,12 +116,22 @@ export default function ChapterReader({
   const [playback, setPlayback] = useState<PlaybackState | null>(null);
   const [playbackRate, setPlaybackRate] = useState(1);
   const [clickedWord, setClickedWord] = useState<{ verse: number; wordIndex: number; word: string } | null>(null);
-  const [wordExplanation, setWordExplanation] = useState<string | null>(null);
-  const [isLoadingExplanation, setIsLoadingExplanation] = useState(false);
-  const [explanationError, setExplanationError] = useState<string | null>(null);
+  // Verse targeted via #vN in the URL (occurrence links) — highlighted briefly.
+  // CSS :target doesn't update on client-side navigations, so track it in state.
+  const [anchorVerse, setAnchorVerse] = useState<number | null>(null);
+
+  // Streams the typed word study; `object` fills in field-by-field as JSON arrives
+  const {
+    object: study,
+    submit: submitStudy,
+    isLoading: studyLoading,
+    error: studyError,
+    stop: stopStudy,
+    clear: clearStudy,
+  } = useObject({ api: '/api/word-explanation', schema: wordStudySchema });
+  const stopStudyRef = useRef(stopStudy);
 
   const audioElRef = useRef<HTMLAudioElement>(null);
-  const explanationAbortRef = useRef<AbortController | null>(null);
   const ttsAbortRef = useRef<AbortController | null>(null);
   const sessionRef = useRef(0); // bumping invalidates in-flight onended chains
   const playbackRef = useRef<PlaybackState | null>(null);
@@ -135,16 +146,54 @@ export default function ChapterReader({
     playbackRef.current = playback;
     rateRef.current = playbackRate;
   }, [playback, playbackRate]);
+  useEffect(() => {
+    stopStudyRef.current = stopStudy;
+  }, [stopStudy]);
 
   const prevChapter = chapterNum > 1 ? chapterNum - 1 : null;
   const nextChapter = chapterNum < totalChapters ? chapterNum + 1 : null;
 
   const closeWord = useCallback(() => {
-    explanationAbortRef.current?.abort();
+    stopStudyRef.current();
     setClickedWord(null);
-    setWordExplanation(null);
-    setExplanationError(null);
   }, []);
+
+  // Cancel any streaming study on unmount
+  useEffect(() => {
+    return () => stopStudyRef.current();
+  }, []);
+
+  // Highlight the #vN-anchored verse for a few seconds and scroll to it.
+  // Occurrence links use scroll={false}, so this effect is the only scroll
+  // owner: jump early, then verify after the panel-collapse animation and
+  // hydration have settled, re-jumping only if the verse drifted. Keyed on
+  // the chapter (not mount) because the App Router can reuse the component
+  // instance across chapter navigations.
+  useEffect(() => {
+    const timers: number[] = [];
+    const applyHash = () => {
+      const m = window.location.hash.match(/^#v(\d+)$/);
+      if (!m) return;
+      const verseNum = parseInt(m[1]);
+      setAnchorVerse(verseNum);
+      const centerOffset = () => {
+        const r = verseElements.current.get(verseNum)?.getBoundingClientRect();
+        return r ? Math.abs(r.top + r.height / 2 - window.innerHeight / 2) : 0;
+      };
+      const jump = () => verseElements.current.get(verseNum)?.scrollIntoView({ block: 'center' });
+      timers.push(window.setTimeout(jump, 150));
+      [800, 1600].forEach(delay =>
+        timers.push(window.setTimeout(() => { if (centerOffset() > 200) jump(); }, delay))
+      );
+      timers.push(window.setTimeout(() => setAnchorVerse(null), 6000));
+    };
+    applyHash();
+    window.addEventListener('hashchange', applyHash);
+    return () => {
+      window.removeEventListener('hashchange', applyHash);
+      timers.forEach(t => window.clearTimeout(t));
+    };
+  }, [bookId, chapterNum]);
 
   // ---------- Audio engine ----------
 
@@ -328,7 +377,6 @@ export default function ChapterReader({
       sessionRef.current += 1;
       audio?.pause();
       ttsAbortRef.current?.abort();
-      explanationAbortRef.current?.abort();
       urls.forEach(url => URL.revokeObjectURL(url));
       urls.clear();
     };
@@ -355,63 +403,19 @@ export default function ChapterReader({
 
   // ---------- Word explanations ----------
 
-  // Fetch word explanation as a text stream, rendering as tokens arrive.
-  // A new selection aborts the in-flight request so responses can't interleave.
-  const fetchWordExplanation = async (word: string, verseNum: number, verseText: string) => {
-    explanationAbortRef.current?.abort();
-    const abort = new AbortController();
-    explanationAbortRef.current = abort;
-
-    setIsLoadingExplanation(true);
-    setExplanationError(null);
-    setWordExplanation(null);
-
-    try {
-      const response = await fetch('/api/word-explanation', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        signal: abort.signal,
-        body: JSON.stringify({
-          word,
-          language: isHebrew ? 'Hebrew' : 'Greek',
-          verse: verseText,
-          bookName,
-          chapterNum,
-          verseNum,
-        }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Failed to get explanation');
-      }
-      if (!response.body) throw new Error('No response body');
-
-      const reader = response.body.getReader();
-      const decoder = new TextDecoder();
-      let accumulated = '';
-
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        accumulated += decoder.decode(value, { stream: true });
-        if (abort.signal.aborted) return;
-        setIsLoadingExplanation(false);
-        setWordExplanation(formatExplanation(accumulated));
-      }
-      accumulated += decoder.decode();
-      if (!abort.signal.aborted && accumulated.trim()) {
-        setWordExplanation(formatExplanation(accumulated));
-      }
-    } catch (err: any) {
-      if (err.name === 'AbortError') return; // superseded by a newer selection
-      setExplanationError(err.message || 'Failed to load explanation');
-      console.error('Word explanation error:', err);
-    } finally {
-      if (explanationAbortRef.current === abort) {
-        setIsLoadingExplanation(false);
-      }
-    }
+  // Kick off a streamed word study; stop any in-flight one first so
+  // responses can't interleave.
+  const openWordStudy = (word: string, verseNum: number, verseText: string) => {
+    stopStudy();
+    clearStudy();
+    submitStudy({
+      word,
+      language: isHebrew ? 'Hebrew' : 'Greek',
+      verse: verseText,
+      bookName,
+      chapterNum,
+      verseNum,
+    });
   };
 
   const scriptFont = isHebrew ? 'font-hebrew' : 'font-serif';
@@ -423,9 +427,9 @@ export default function ChapterReader({
     <WordExplanationSidebar
       word={clickedWord.word}
       isHebrew={isHebrew}
-      explanation={wordExplanation}
-      isLoading={isLoadingExplanation}
-      error={explanationError}
+      study={study as PartialWordStudy | undefined}
+      isLoading={studyLoading}
+      error={studyError ? studyError.message || 'Failed to load explanation' : null}
       onClose={closeWord}
     />
   );
@@ -493,8 +497,8 @@ export default function ChapterReader({
                 key={verse.verse}
                 id={`v${verse.verse}`}
                 ref={el => { if (el) verseElements.current.set(verse.verse, el); }}
-                className={`group relative scroll-mt-24 rounded-xl p-4 transition-colors duration-300 target:bg-amber-100/70 sm:p-5 ${
-                  isPlayingVerse ? 'bg-amber-100/60' : 'hover:bg-amber-50/70'
+                className={`group relative scroll-mt-24 rounded-xl p-4 transition-colors duration-700 sm:p-5 ${
+                  isPlayingVerse || anchorVerse === verse.verse ? 'bg-amber-100/60' : 'hover:bg-amber-50/70'
                 }`}
               >
                 {/* Per-verse audio button */}
@@ -544,7 +548,7 @@ export default function ChapterReader({
                             closeWord();
                           } else {
                             setClickedWord({ verse: verse.verse, wordIndex, word: wordText });
-                            fetchWordExplanation(wordText, verse.verse, verse.text);
+                            openWordStudy(wordText, verse.verse, verse.text);
                           }
                         }}
                       >

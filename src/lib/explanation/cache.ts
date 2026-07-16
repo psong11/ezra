@@ -13,6 +13,8 @@
 
 import { createHash } from 'crypto';
 
+// v2: entries are schema-validated WordStudy JSON (v1 was markdown text)
+const KEY_VERSION = 'v2';
 const BLOB_PREFIX = 'word-explanations';
 const FS_CACHE_DIR = '.explanation-cache';
 const MAX_MEMORY_ENTRIES = 500;
@@ -22,7 +24,7 @@ const memory = new Map<string, string>();
 export type CacheSource = 'memory' | 'blob' | 'fs' | null;
 
 export function explanationCacheKey(word: string, language: string, verse: string): string {
-  const raw = `${language}:${word}:${verse}`.normalize('NFC').toLowerCase();
+  const raw = `${KEY_VERSION}:${language}:${word}:${verse}`.normalize('NFC').toLowerCase();
   return createHash('sha256').update(raw).digest('hex');
 }
 

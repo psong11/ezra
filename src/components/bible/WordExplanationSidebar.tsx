@@ -1,26 +1,73 @@
 /**
- * Word Explanation Panel
+ * Word Study Panel
+ * Renders a (possibly still-streaming) typed WordStudy: grammar rows,
+ * meaning chips, and occurrence cards whose references link to their
+ * chapters when they resolve to real books/chapters.
  * Pure content component — the parent decides where it lives
  * (desktop side column or mobile bottom sheet).
  */
 
+import Link from 'next/link';
+import { Occurrence, PartialWordStudy } from '@/lib/explanation/schema';
+import { formatSnippet } from '@/lib/explanation/format';
+import { resolveReference } from '@/lib/explanation/refs';
+
 interface WordExplanationSidebarProps {
   word: string;
   isHebrew: boolean;
-  explanation: string | null;
+  study: PartialWordStudy | undefined;
   isLoading: boolean;
   error: string | null;
   onClose: () => void;
 }
 
+function SectionHeading({ children }: { children: React.ReactNode }) {
+  return (
+    <h4 className="mb-2 mt-7 text-[11px] font-semibold uppercase tracking-[0.14em] text-amber-700 first:mt-0">
+      {children}
+    </h4>
+  );
+}
+
+function GrammarRow({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <div className="flex items-baseline gap-3 py-1">
+      <dt className="w-24 flex-shrink-0 text-[11px] uppercase tracking-wide text-stone-400">{label}</dt>
+      <dd className="text-[15px] text-stone-700">{children}</dd>
+    </div>
+  );
+}
+
+function MeaningChips({ meanings }: { meanings: (string | undefined)[] }) {
+  return (
+    <div className="flex flex-wrap gap-1.5">
+      {meanings.filter(Boolean).map((m, i) => (
+        <span
+          key={i}
+          className="rounded-full border border-amber-200 bg-amber-50 px-2.5 py-0.5 text-sm text-amber-900"
+        >
+          {m}
+        </span>
+      ))}
+    </div>
+  );
+}
+
 export default function WordExplanationSidebar({
   word,
   isHebrew,
-  explanation,
+  study,
   isLoading,
   error,
   onClose,
 }: WordExplanationSidebarProps) {
+  const scriptFont = isHebrew ? 'font-hebrew' : 'font-serif';
+  const showSkeleton = isLoading && !study;
+  const grammar = study?.grammar;
+  const occurrences = (study?.occurrences ?? []).filter(
+    (o): o is Partial<Occurrence> => Boolean(o)
+  );
+
   return (
     <div className="flex min-h-full flex-col">
       {/* Header */}
@@ -32,10 +79,13 @@ export default function WordExplanationSidebar({
           <p
             dir={isHebrew ? 'rtl' : 'ltr'}
             lang={isHebrew ? 'he' : 'el'}
-            className={`${isHebrew ? 'font-hebrew' : 'font-serif'} mt-1 truncate text-3xl text-stone-900`}
+            className={`${scriptFont} mt-1 truncate text-3xl text-stone-900`}
           >
             {word}
           </p>
+          {study?.transliteration && (
+            <p className="mt-0.5 text-sm italic text-stone-400">{study.transliteration}</p>
+          )}
         </div>
         <button
           onClick={onClose}
@@ -54,7 +104,7 @@ export default function WordExplanationSidebar({
 
       {/* Content */}
       <div className="flex-1 px-6 py-5">
-        {isLoading && (
+        {showSkeleton && (
           <div className="animate-pulse space-y-6" aria-label="Loading explanation">
             {[0, 1, 2].map(section => (
               <div key={section} className="space-y-2.5">
@@ -74,12 +124,93 @@ export default function WordExplanationSidebar({
           </div>
         )}
 
-        {explanation && !isLoading && !error && (
-          <div
-            className="explanation"
-            dir="ltr"
-            dangerouslySetInnerHTML={{ __html: explanation }}
-          />
+        {study && !error && (
+          <div>
+            {grammar && (
+              <>
+                <SectionHeading>Grammar</SectionHeading>
+                <dl>
+                  {grammar.root && (
+                    <GrammarRow label="Root">
+                      <span dir={isHebrew ? 'rtl' : 'ltr'} lang={isHebrew ? 'he' : 'el'} className={`${scriptFont} text-lg`}>
+                        {grammar.root}
+                      </span>
+                      {grammar.rootTransliteration && (
+                        <span className="ml-2 italic text-stone-400">{grammar.rootTransliteration}</span>
+                      )}
+                    </GrammarRow>
+                  )}
+                  {grammar.partOfSpeech && <GrammarRow label="Part of speech">{grammar.partOfSpeech}</GrammarRow>}
+                  {grammar.gender && <GrammarRow label="Gender">{grammar.gender}</GrammarRow>}
+                  {grammar.number && <GrammarRow label="Number">{grammar.number}</GrammarRow>}
+                  {grammar.grammaticalCase && <GrammarRow label="Case">{grammar.grammaticalCase}</GrammarRow>}
+                </dl>
+              </>
+            )}
+
+            {(study.rootMeanings?.length || study.wordMeanings?.length) ? (
+              <>
+                <SectionHeading>Meaning</SectionHeading>
+                <div className="space-y-3">
+                  {study.wordMeanings?.length ? (
+                    <div>
+                      <p className="mb-1.5 text-[11px] uppercase tracking-wide text-stone-400">This form</p>
+                      <MeaningChips meanings={study.wordMeanings} />
+                    </div>
+                  ) : null}
+                  {study.rootMeanings?.length ? (
+                    <div>
+                      <p className="mb-1.5 text-[11px] uppercase tracking-wide text-stone-400">Root</p>
+                      <MeaningChips meanings={study.rootMeanings} />
+                    </div>
+                  ) : null}
+                </div>
+              </>
+            ) : null}
+
+            {occurrences.length > 0 && (
+              <>
+                <SectionHeading>Occurrences</SectionHeading>
+                <div className="space-y-3">
+                  {occurrences.map((occ, i) => {
+                    const resolved = resolveReference(occ.book, occ.chapter, occ.verse);
+                    const label =
+                      resolved?.label ??
+                      (occ.book ? `${occ.book} ${occ.chapter ?? ''}${occ.verse ? `:${occ.verse}` : ''}` : '…');
+                    return (
+                      <div key={i} className="rounded-xl border border-stone-200/80 bg-white/60 p-3.5">
+                        {resolved ? (
+                          <Link
+                            href={`/bible/${resolved.bookId}/${resolved.chapter}${resolved.verse ? `#v${resolved.verse}` : ''}`}
+                            scroll={false}
+                            className="text-xs font-semibold text-amber-700 hover:underline"
+                          >
+                            {label} <span aria-hidden>→</span>
+                          </Link>
+                        ) : (
+                          <span className="text-xs font-semibold text-stone-500">{label}</span>
+                        )}
+                        {occ.snippet && (
+                          <p
+                            dir={isHebrew ? 'rtl' : 'ltr'}
+                            lang={isHebrew ? 'he' : 'el'}
+                            className={`${scriptFont} mt-2 text-xl leading-relaxed text-stone-800 [&_strong]:font-bold [&_strong]:text-amber-800`}
+                            dangerouslySetInnerHTML={{ __html: formatSnippet(occ.snippet) }}
+                          />
+                        )}
+                        {occ.translation && (
+                          <p
+                            className="mt-1.5 font-serif text-sm italic leading-relaxed text-stone-500 [&_strong]:font-semibold [&_strong]:text-amber-800"
+                            dangerouslySetInnerHTML={{ __html: formatSnippet(occ.translation) }}
+                          />
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </>
+            )}
+          </div>
         )}
       </div>
     </div>
