@@ -10,6 +10,13 @@ import type { BibleBook } from '@/types/bible';
 
 function BookCard({ book }: { book: BibleBook }) {
   const isHebrew = book.testament === 'tanakh';
+  const titleSize = isHebrew
+    ? 'text-2xl'
+    : book.name.length > 16
+      ? 'text-base'
+      : book.name.length > 10
+        ? 'text-lg'
+        : 'text-xl';
   return (
     <Link
       href={`/bible/${book.id}`}
@@ -18,7 +25,7 @@ function BookCard({ book }: { book: BibleBook }) {
       <p
         dir={isHebrew ? 'rtl' : 'ltr'}
         lang={isHebrew ? 'he' : 'el'}
-        className={`${isHebrew ? 'font-hebrew text-2xl' : 'font-serif text-xl'} leading-snug text-stone-900`}
+        className={`${isHebrew ? 'font-hebrew' : 'font-serif'} ${titleSize} break-words leading-snug text-stone-900`}
       >
         {book.name}
       </p>
@@ -69,7 +76,7 @@ export default function BibleBooksPage() {
             words—copied over and over by hand.
           </p>
           <p className="mx-auto mt-3 max-w-lg text-sm leading-relaxed text-stone-400">
-            Here they are, read aloud with modern APIs, translated with LLMs.
+            Here they are in 2026, read aloud with modern APIs, translated with LLMs.
           </p>
           <p className="mt-6 font-serif text-lg italic text-amber-700">
             What will you preserve today?
