@@ -13,8 +13,9 @@
 
 import { createHash } from 'crypto';
 
-// v3: added morphemes + meaningBridge (v2 was schema-validated JSON without them; v1 was markdown text)
-const KEY_VERSION = 'v3';
+// v4: morphemes now min(1) + prompt requires meaningBridge whenever stem is set (v3 could
+// produce empty morphemes/null bridge on a verb; v2 had no morphemes/bridge; v1 was markdown text)
+const KEY_VERSION = 'v4';
 const BLOB_PREFIX = 'word-explanations';
 const FS_CACHE_DIR = '.explanation-cache';
 const MAX_MEMORY_ENTRIES = 500;

@@ -8,8 +8,23 @@ describe('segmentsReconstructWord', () => {
     ).toBe(true);
   });
 
-  it('rejects segments that drop or alter characters', () => {
-    expect(segmentsReconstructWord('הִתְהַלֵּךְ', [{ text: 'הִתְ' }, { text: 'הלך' }])).toBe(false);
+  it('tolerates a niqqud mark dropped across a segment boundary', () => {
+    // Real model output: dagesh forte (U+05BC) on the root's first letter
+    // went missing when the prefix/root split was drawn — consonants and
+    // every other vowel point are untouched, so this should still color.
+    const word = 'וַיַּחֲזֶק'; // ו-ַ-י-ַ-ּ(dagesh)-ח-ֲ-ז-ֶ-ק
+    const segments = [{ text: 'וַי' }, { text: 'ַחֲזֶק' }]; // dagesh dropped
+    expect(segmentsReconstructWord(word, segments)).toBe(true);
+  });
+
+  it('tolerates Greek accents shifting across NFD-decomposed boundaries', () => {
+    expect(segmentsReconstructWord('ἐλύσατο', [{ text: 'ἐ' }, { text: 'λύσατο' }])).toBe(true);
+  });
+
+  it('rejects segments that drop a consonant', () => {
+    // 'הך' is missing the lamed (ל) present in the real word — a genuine
+    // hallucination, not a vowel-point rounding difference.
+    expect(segmentsReconstructWord('הִתְהַלֵּךְ', [{ text: 'הִתְ' }, { text: 'הך' }])).toBe(false);
   });
 
   it('rejects segments out of order', () => {

@@ -91,6 +91,7 @@ export const wordStudySchema = z.object({
     ),
   morphemes: z
     .array(morphemeSegmentSchema)
+    .min(1)
     .describe(
       'Break the word into its contiguous morpheme segments (at least one — the whole word tagged "root" if it has no separable affix or pattern).'
     ),
