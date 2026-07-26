@@ -27,7 +27,9 @@ export function generateWordExplanationPrompt(request: WordExplanationRequest): 
 
 Requirements:
 - Analyze exactly this word: "${word}".
-- grammar: give the root in its original script with transliteration; include gender/number only when applicable, and case only for Greek.
+- grammar: give the root in its original script with transliteration; include gender/number only when applicable, and case only for Greek. Set stem to the Hebrew binyan or Greek voice+mood+tense if this word is a verb, else null.
 - rootMeanings / wordMeanings: closest English translations, most common first.
-- occurrences: cite this word's FIRST occurrence in the Bible, then up to 3 other appearances that show diverse nuances. Use full English book names with real chapter and verse numbers. Each snippet must be in the original ${language} script and actually contain the word; wrap the target word in **double asterisks** in both the snippet and its English translation.`;
+- occurrences: cite this word's FIRST occurrence in the Bible, then up to 3 other appearances that show diverse nuances. Use full English book names with real chapter and verse numbers. Each snippet must be in the original ${language} script and actually contain the word; wrap the target word in **double asterisks** in both the snippet and its English translation.
+- morphemes: split "${word}" itself into contiguous segments that concatenate back to exactly "${word}" — never split the root's letters apart or reorder anything. A simple noun with no separable pattern can be a single "root" segment covering the whole word.
+- meaningBridge: only when a binyan/stem or voice/tense-aspect meaningfully changes the root's sense (most verbs). Skip it (null) for plain nouns and particles. Keep rootSense, patternNuance, and combinedMeaning to a few words each. Write "note" as a teacher would say it out loud, tied to a concrete image of the word in use — and if you use any grammar jargon in it, end that same sentence by busting the jargon in plain words a total beginner would understand.`;
 }

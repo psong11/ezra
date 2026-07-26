@@ -13,8 +13,8 @@
 
 import { createHash } from 'crypto';
 
-// v2: entries are schema-validated WordStudy JSON (v1 was markdown text)
-const KEY_VERSION = 'v2';
+// v3: added morphemes + meaningBridge (v2 was schema-validated JSON without them; v1 was markdown text)
+const KEY_VERSION = 'v3';
 const BLOB_PREFIX = 'word-explanations';
 const FS_CACHE_DIR = '.explanation-cache';
 const MAX_MEMORY_ENTRIES = 500;

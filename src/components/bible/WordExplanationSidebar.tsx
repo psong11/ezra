@@ -8,9 +8,55 @@
  */
 
 import Link from 'next/link';
-import { Occurrence, PartialWordStudy } from '@/lib/explanation/schema';
+import { MorphemeSegment, Occurrence, PartialWordStudy } from '@/lib/explanation/schema';
 import { formatSnippet } from '@/lib/explanation/format';
 import { resolveReference } from '@/lib/explanation/refs';
+import { segmentsReconstructWord } from '@/lib/explanation/morphemes';
+
+const SEGMENT_STYLES: Record<MorphemeSegment['type'], string> = {
+  root: 'bg-amber-100 text-amber-900 font-semibold',
+  modifier: 'bg-violet-100 text-violet-900',
+  affix: 'bg-sky-100 text-sky-900',
+};
+
+const SEGMENT_DOTS: Record<MorphemeSegment['type'], string> = {
+  root: 'bg-amber-600',
+  modifier: 'bg-violet-500',
+  affix: 'bg-sky-500',
+};
+
+interface LegendEntry {
+  key: string;
+  type: MorphemeSegment['type'];
+  label: string;
+}
+
+function buildLegend(
+  morphemes: (Partial<MorphemeSegment> | undefined)[],
+  stem: string | null | undefined
+): LegendEntry[] {
+  const entries: LegendEntry[] = [];
+  const seenModifier = new Set<string>();
+  const seenAffix = new Set<string>();
+
+  for (const seg of morphemes) {
+    if (!seg?.type) continue;
+    if (seg.type === 'root' && !entries.some(e => e.type === 'root')) {
+      entries.push({ key: 'root', type: 'root', label: seg.gloss ? `root — ${seg.gloss}` : 'root' });
+    } else if (seg.type === 'modifier') {
+      const label = stem ?? seg.gloss ?? 'pattern';
+      if (!seenModifier.has(label)) {
+        seenModifier.add(label);
+        entries.push({ key: `modifier-${label}`, type: 'modifier', label: label.toLowerCase() });
+      }
+    } else if (seg.type === 'affix' && seg.gloss && !seenAffix.has(seg.gloss)) {
+      seenAffix.add(seg.gloss);
+      entries.push({ key: `affix-${seg.gloss}`, type: 'affix', label: seg.gloss });
+    }
+  }
+
+  return entries;
+}
 
 interface WordExplanationSidebarProps {
   word: string;
@@ -67,6 +113,10 @@ export default function WordExplanationSidebar({
   const occurrences = (study?.occurrences ?? []).filter(
     (o): o is Partial<Occurrence> => Boolean(o)
   );
+  const morphemes = study?.morphemes ?? [];
+  const canColorWord = segmentsReconstructWord(study?.word, morphemes);
+  const legend = canColorWord ? buildLegend(morphemes, grammar?.stem) : [];
+  const bridge = study?.meaningBridge;
 
   return (
     <div className="flex min-h-full flex-col">
@@ -81,10 +131,30 @@ export default function WordExplanationSidebar({
             lang={isHebrew ? 'he' : 'el'}
             className={`${scriptFont} mt-1 truncate text-3xl text-stone-900`}
           >
-            {word}
+            {canColorWord
+              ? morphemes.map((seg, i) => (
+                  <span
+                    key={i}
+                    title={seg?.gloss}
+                    className={`rounded px-0.5 ${seg?.type ? SEGMENT_STYLES[seg.type] : ''}`}
+                  >
+                    {seg?.text}
+                  </span>
+                ))
+              : word}
           </p>
           {study?.transliteration && (
             <p className="mt-0.5 text-sm italic text-stone-400">{study.transliteration}</p>
+          )}
+          {legend.length > 0 && (
+            <div className="mt-2 flex flex-wrap gap-x-3 gap-y-1">
+              {legend.map(entry => (
+                <span key={entry.key} className="flex items-center gap-1.5 text-xs text-stone-500">
+                  <span className={`h-2 w-2 rounded-sm ${SEGMENT_DOTS[entry.type]}`} />
+                  {entry.label}
+                </span>
+              ))}
+            </div>
           )}
         </div>
         <button
@@ -126,6 +196,31 @@ export default function WordExplanationSidebar({
 
         {study && !error && (
           <div>
+            {bridge && (bridge.combinedMeaning || bridge.note) && (
+              <div className="mb-6 rounded-lg bg-amber-50 p-3.5">
+                {(bridge.rootSense || bridge.patternNuance || bridge.combinedMeaning) && (
+                  <p className="mb-1.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-amber-900">
+                    {bridge.rootSense && <span>&quot;{bridge.rootSense}&quot;</span>}
+                    {bridge.patternNuance && (
+                      <>
+                        <span aria-hidden className="text-amber-500">+</span>
+                        <span>{bridge.patternNuance}</span>
+                      </>
+                    )}
+                    {bridge.combinedMeaning && (
+                      <>
+                        <span aria-hidden className="text-amber-500">→</span>
+                        <span className="font-semibold">&quot;{bridge.combinedMeaning}&quot;</span>
+                      </>
+                    )}
+                  </p>
+                )}
+                {bridge.note && (
+                  <p className="text-sm italic leading-relaxed text-amber-800/80">{bridge.note}</p>
+                )}
+              </div>
+            )}
+
             {grammar && (
               <>
                 <SectionHeading>Grammar</SectionHeading>
@@ -141,6 +236,7 @@ export default function WordExplanationSidebar({
                     </GrammarRow>
                   )}
                   {grammar.partOfSpeech && <GrammarRow label="Part of speech">{grammar.partOfSpeech}</GrammarRow>}
+                  {grammar.stem && <GrammarRow label="Stem">{grammar.stem}</GrammarRow>}
                   {grammar.gender && <GrammarRow label="Gender">{grammar.gender}</GrammarRow>}
                   {grammar.number && <GrammarRow label="Number">{grammar.number}</GrammarRow>}
                   {grammar.grammaticalCase && <GrammarRow label="Case">{grammar.grammaticalCase}</GrammarRow>}

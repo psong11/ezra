@@ -7,6 +7,7 @@ import {
   EXPLANATION_SYSTEM_PROMPT,
 } from '@/lib/explanation/prompt';
 import { wordStudySchema } from '@/lib/explanation/schema';
+import { segmentsReconstructWord } from '@/lib/explanation/morphemes';
 import {
   explanationCacheKey,
   getCachedExplanation,
@@ -76,7 +77,7 @@ export async function POST(request: NextRequest) {
       instructions: EXPLANATION_SYSTEM_PROMPT,
       prompt: generateWordExplanationPrompt(validatedData),
       temperature: 0.3,
-      maxOutputTokens: 900,
+      maxOutputTokens: 1400,
       abortSignal: request.signal,
     });
 
@@ -96,7 +97,14 @@ export async function POST(request: NextRequest) {
           try {
             const parsed = wordStudySchema.safeParse(JSON.parse(fullText));
             if (parsed.success) {
-              await setCachedExplanation(key, JSON.stringify(parsed.data));
+              const study = parsed.data;
+              // Hallucination guard: a bad morpheme split must never persist —
+              // degrade to no breakdown rather than cache visibly wrong spans
+              if (!segmentsReconstructWord(study.word, study.morphemes)) {
+                study.morphemes = [];
+                study.meaningBridge = null;
+              }
+              await setCachedExplanation(key, JSON.stringify(study));
             } else {
               console.error('Word study failed schema validation; not caching:', parsed.error.message);
             }
