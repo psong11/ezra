@@ -13,12 +13,12 @@
 
 import { createHash } from 'crypto';
 
-// v8: model-provided bolds are verified against the root's consonant skeleton
-// (wrong-word bolds like חמל-for-חנן stripped and re-anchored or the citation
-// dropped) and snippets carry 8-12 words of context. v7 introduced field order =
-// display order + short always-bolded snippets; v5-v6 intermediate; v4 allowed
-// floating-mark segments; v3 empty morphemes on verbs; v2 no morphemes; v1 markdown.
-const KEY_VERSION = 'v9';
+// v10: occurrence snippets are rebuilt from the LOCAL corpus (model quotes never
+// cached; verse numbers corrected ±1 for versification drift; unverifiable
+// citations dropped). v9 verified model bolds by consonant skeleton; v7-v8
+// short/bolded snippets + field order = display order; v5-v6 intermediate;
+// v4 allowed floating-mark segments; v3 empty morphemes; v2 no morphemes; v1 markdown.
+const KEY_VERSION = 'v10';
 const BLOB_PREFIX = 'word-explanations';
 const FS_CACHE_DIR = '.explanation-cache';
 const MAX_MEMORY_ENTRIES = 500;

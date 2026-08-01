@@ -31,7 +31,23 @@ interface TightenOptions {
   after?: number;
 }
 
-function findTargetToken(tokens: string[], word?: string, root?: string | null): number {
+/**
+ * Locate the token derived from the studied word/root. Strict tiers first
+ * (exact word skeleton, then full root containment); with
+ * `allowRadicalPair`, falls back to sharing any two CONSECUTIVE radicals
+ * of the root — weak Hebrew roots drop or assimilate a radical in many
+ * inflections (geminate חנן appears as יָחֹן, נתן as יִתֵּן, הלך as
+ * וַיֵּלֶךְ), so strict containment alone would reject legitimate forms.
+ * The pair rule still rejects synonyms from unrelated roots (חמל/חוס
+ * share no consecutive pair with חנן). Use the loose tier only where the
+ * surrounding text is trusted (a model-placed bold, or real corpus text).
+ */
+export function locateTargetToken(
+  tokens: string[],
+  word?: string,
+  root?: string | null,
+  allowRadicalPair = false
+): number {
   const wordSkeleton = word ? consonantSkeleton(word) : '';
   if (wordSkeleton) {
     const byWord = tokens.findIndex(t => consonantSkeleton(t).includes(wordSkeleton));
@@ -39,32 +55,28 @@ function findTargetToken(tokens: string[], word?: string, root?: string | null):
   }
   const rootSkeleton = root ? consonantSkeleton(root) : '';
   if (rootSkeleton.length >= 2) {
-    return tokens.findIndex(t => consonantSkeleton(t).includes(rootSkeleton));
+    const byRoot = tokens.findIndex(t => consonantSkeleton(t).includes(rootSkeleton));
+    if (byRoot !== -1) return byRoot;
+  }
+  if (allowRadicalPair && rootSkeleton.length >= 3) {
+    const radicalPairs: string[] = [];
+    for (let i = 0; i < rootSkeleton.length - 1; i++) {
+      radicalPairs.push(rootSkeleton.slice(i, i + 2));
+    }
+    return tokens.findIndex(token => {
+      const s = consonantSkeleton(token);
+      return radicalPairs.some(pair => s.includes(pair));
+    });
   }
   return -1;
 }
 
-/**
- * Looser check used only to VERIFY a bold the model itself placed (never to
- * auto-anchor): weak Hebrew roots drop or assimilate a radical in many
- * inflections — geminate חנן appears as יָחֹן, נתן as יִתֵּן, הלך as
- * וַיֵּלֶךְ — so strict containment would reject legitimate citations.
- * Sharing any two CONSECUTIVE radicals admits those inflections while
- * still rejecting synonyms from unrelated roots (חמל/חוס share no
- * consecutive pair with חנן).
- */
+function findTargetToken(tokens: string[], word?: string, root?: string | null): number {
+  return locateTargetToken(tokens, word, root);
+}
+
 function boldMatchesTarget(boldTokens: string[], word?: string, root?: string | null): boolean {
-  if (findTargetToken(boldTokens, word, root) !== -1) return true;
-  const rootSkeleton = root ? consonantSkeleton(root) : '';
-  if (rootSkeleton.length < 3) return false;
-  const radicalPairs: string[] = [];
-  for (let i = 0; i < rootSkeleton.length - 1; i++) {
-    radicalPairs.push(rootSkeleton.slice(i, i + 2));
-  }
-  return boldTokens.some(token => {
-    const s = consonantSkeleton(token);
-    return radicalPairs.some(pair => s.includes(pair));
-  });
+  return locateTargetToken(boldTokens, word, root, true) !== -1;
 }
 
 export function tightenOccurrenceText(text: string, options: TightenOptions = {}): string {

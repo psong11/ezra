@@ -8,7 +8,7 @@ import {
 } from '@/lib/explanation/prompt';
 import { wordStudySchema } from '@/lib/explanation/schema';
 import { alignSegmentsToWord } from '@/lib/explanation/morphemes';
-import { tightenOccurrenceText } from '@/lib/explanation/occurrences';
+import { verifyOccurrencesAgainstCorpus } from '@/lib/explanation/verifyOccurrences';
 import {
   explanationCacheKey,
   getCachedExplanation,
@@ -115,22 +115,15 @@ export async function POST(request: NextRequest) {
                 study.morphemes = [];
                 study.meaningBridge = null;
               }
-              // Keep cached citations short and always-highlighted, even
-              // when the model quoted a whole verse or skipped the bold.
-              // A snippet in which neither the model nor the skeleton
-              // matcher can locate the word is an unverifiable citation
-              // (the model quoted a thematically similar verse that does
-              // not actually contain this root) — drop it entirely.
-              study.occurrences = study.occurrences
-                .map(occ => ({
-                  ...occ,
-                  snippet: tightenOccurrenceText(occ.snippet, {
-                    word: study.word,
-                    root: study.grammar.root,
-                  }),
-                  translation: tightenOccurrenceText(occ.translation, { before: 6, after: 6 }),
-                }))
-                .filter(occ => occ.snippet.includes('**'));
+              // Ground every citation in the local corpus: the snippet is
+              // rebuilt from the ACTUAL verse text (model quotes are never
+              // cached), verse numbers are corrected for versification
+              // drift, and citations whose verse doesn't contain the
+              // word/root are dropped entirely.
+              study.occurrences = await verifyOccurrencesAgainstCorpus(study.occurrences, {
+                word,
+                root: study.grammar.root,
+              });
               await setCachedExplanation(key, JSON.stringify(study));
             } else {
               console.error('Word study failed schema validation; not caching:', parsed.error.message);
