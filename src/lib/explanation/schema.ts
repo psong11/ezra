@@ -12,12 +12,12 @@ export const occurrenceSchema = z.object({
   snippet: z
     .string()
     .describe(
-      'Short snippet in the original language containing the word. Wrap the target word in **double asterisks**.'
+      'A phrase of roughly 8-12 words from the verse in the original language — a few words of context before AND after the target word, never the whole verse. Must contain the form of the word as it actually appears in that verse, wrapped in **double asterisks** (bold it even when it is a different inflection of the same root — but never bold a mere synonym from a different root).'
     ),
   translation: z
     .string()
     .describe(
-      'English translation of the snippet. Wrap the translation of the target word in **double asterisks**.'
+      'English translation of just that short phrase, with the rendering of the target word wrapped in **double asterisks**.'
     ),
 });
 
@@ -25,12 +25,12 @@ export const morphemeSegmentSchema = z.object({
   text: z
     .string()
     .describe(
-      'Exact contiguous substring of the word in its original script. Concatenating every segment in order must reproduce the full word exactly, with nothing added, removed, or reordered.'
+      'Exact contiguous substring of the word in its original script, containing at least one consonant/letter — never vowel points or accents alone; marks stay attached to the consonant they follow. Concatenating every segment in order must reproduce the full word with nothing added, removed, or reordered.'
     ),
   type: z
     .enum(['root', 'modifier', 'affix'])
     .describe(
-      'root = the lexical core carrying the base meaning. modifier = the piece that changes meaning or function — a Hebrew binyan/stem pattern, a Greek voice/tense-aspect marker, a possessive or personal-ending suffix. affix = a simple additive particle that does not change the core sense, e.g. a conjunction ("and"), relative ("that"), or a Greek augment.'
+      'root = the lexical core (Hebrew shoresh with its vowels; Greek verb stem). modifier = inflectional or derivational morphology that shapes meaning or function — Hebrew binyan markers (הִ, הִתְ, נִ), subject prefixes/endings of conjugation (יִ "he", תִי "I"), possessive suffixes (וֹ "his"), Greek tense/voice suffixes and personal endings (σα, θη, μεν). affix = an attached particle that is semantically a separate little word — conjunction ו "and", article ה "the", prepositions בְ/לְ/כְ/מִ, relative שֶׁ, or the Greek augment ἐ.'
     ),
   gloss: z
     .string()
@@ -47,7 +47,7 @@ export const meaningBridgeSchema = z.object({
   combinedMeaning: z
     .string()
     .describe(
-      'The resulting combined meaning of root + pattern, as plain text with no quotation marks of your own, e.g. walked about'
+      "The word's actual idiomatic meaning in context — how a good translation renders it, e.g. walked about, he seized — never a wooden mechanical composition like caused to be strong. Plain text, no quotation marks of your own."
     ),
   note: z
     .string()
@@ -56,39 +56,13 @@ export const meaningBridgeSchema = z.object({
     ),
 });
 
+// Field order below = panel display order. Structured outputs stream JSON
+// properties in schema declaration order, so this is what makes the panel
+// fill top-to-bottom as tokens arrive — the token-heavy occurrences array
+// must stay LAST or everything above it pops in at the end.
 export const wordStudySchema = z.object({
   word: z.string().describe('The word in its original script'),
   transliteration: z.string().describe('Latin-alphabet transliteration of the word'),
-  // Note: OpenAI strict structured outputs require every field to be present,
-  // so "not applicable" is expressed as null rather than an absent key
-  grammar: z.object({
-    root: z.string().describe('The root in its original script'),
-    rootTransliteration: z.string().describe('Latin-alphabet transliteration of the root'),
-    partOfSpeech: z.string().describe('e.g. Noun, Verb, Preposition'),
-    gender: z.string().nullable().describe('Masculine/Feminine/Neuter, or null if not applicable'),
-    number: z.string().nullable().describe('Singular/Plural/Dual, or null if not applicable'),
-    grammaticalCase: z
-      .string()
-      .nullable()
-      .describe('Nominative/Genitive/Dative/Accusative/Vocative — Greek only, null for Hebrew'),
-    stem: z
-      .string()
-      .nullable()
-      .describe(
-        'For Hebrew verbs, the binyan (Qal/Niphal/Piel/Pual/Hifil/Hofal/Hitpael). For Greek verbs, voice + mood + tense (e.g. "Aorist active indicative"). Null if the word is not a verb.'
-      ),
-  }),
-  rootMeanings: z
-    .array(z.string())
-    .describe('Closest English translations of the root, most common first'),
-  wordMeanings: z
-    .array(z.string())
-    .describe('Closest English translations of this exact inflected form'),
-  occurrences: z
-    .array(occurrenceSchema)
-    .describe(
-      "This word's first occurrence in the Bible, then up to 3 other appearances showing diverse nuances"
-    ),
   morphemes: z
     .array(morphemeSegmentSchema)
     .min(1)
@@ -99,6 +73,36 @@ export const wordStudySchema = z.object({
     .nullable()
     .describe(
       'Null when the word is a simple noun/particle where a root+pattern breakdown would not add insight. Present whenever a binyan, voice, or tense-aspect meaningfully shapes the word\'s sense.'
+    ),
+  // Note: OpenAI strict structured outputs require every field to be present,
+  // so "not applicable" is expressed as null rather than an absent key
+  grammar: z.object({
+    root: z.string().describe('The root in its original script'),
+    rootTransliteration: z.string().describe('Latin-alphabet transliteration of the root'),
+    partOfSpeech: z.string().describe('e.g. Noun, Verb, Preposition'),
+    stem: z
+      .string()
+      .nullable()
+      .describe(
+        'For Hebrew verbs, the binyan (Qal/Niphal/Piel/Pual/Hifil/Hofal/Hitpael). For Greek verbs, voice + mood + tense (e.g. "Aorist active indicative"). Null if the word is not a verb.'
+      ),
+    gender: z.string().nullable().describe('Masculine/Feminine/Neuter, or null if not applicable'),
+    number: z.string().nullable().describe('Singular/Plural/Dual, or null if not applicable'),
+    grammaticalCase: z
+      .string()
+      .nullable()
+      .describe('Nominative/Genitive/Dative/Accusative/Vocative — Greek only, null for Hebrew'),
+  }),
+  wordMeanings: z
+    .array(z.string())
+    .describe('Closest English translations of this exact inflected form'),
+  rootMeanings: z
+    .array(z.string())
+    .describe('Closest English translations of the root, most common first'),
+  occurrences: z
+    .array(occurrenceSchema)
+    .describe(
+      "This word's first occurrence in the Bible, then up to 3 other appearances showing diverse nuances"
     ),
 });
 

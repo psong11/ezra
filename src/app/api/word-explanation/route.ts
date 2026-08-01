@@ -7,7 +7,8 @@ import {
   EXPLANATION_SYSTEM_PROMPT,
 } from '@/lib/explanation/prompt';
 import { wordStudySchema } from '@/lib/explanation/schema';
-import { segmentsReconstructWord } from '@/lib/explanation/morphemes';
+import { alignSegmentsToWord } from '@/lib/explanation/morphemes';
+import { tightenOccurrenceText } from '@/lib/explanation/occurrences';
 import {
   explanationCacheKey,
   getCachedExplanation,
@@ -98,12 +99,38 @@ export async function POST(request: NextRequest) {
             const parsed = wordStudySchema.safeParse(JSON.parse(fullText));
             if (parsed.success) {
               const study = parsed.data;
-              // Hallucination guard: a bad morpheme split must never persist —
-              // degrade to no breakdown rather than cache visibly wrong spans
-              if (!segmentsReconstructWord(study.word, study.morphemes)) {
+              // Normalize segments to exact slices of the requested surface
+              // word (not the model's echo of it) so cached entries always
+              // render the reader's own text, cantillation intact. A split
+              // that doesn't align — wrong, missing, or reordered letters —
+              // degrades to no breakdown rather than caching corrupted spans.
+              const aligned = alignSegmentsToWord(word, study.morphemes);
+              if (aligned) {
+                study.morphemes = aligned.map(seg => ({
+                  text: seg.text,
+                  type: seg.type ?? 'affix',
+                  gloss: seg.gloss ?? '',
+                }));
+              } else {
                 study.morphemes = [];
                 study.meaningBridge = null;
               }
+              // Keep cached citations short and always-highlighted, even
+              // when the model quoted a whole verse or skipped the bold.
+              // A snippet in which neither the model nor the skeleton
+              // matcher can locate the word is an unverifiable citation
+              // (the model quoted a thematically similar verse that does
+              // not actually contain this root) — drop it entirely.
+              study.occurrences = study.occurrences
+                .map(occ => ({
+                  ...occ,
+                  snippet: tightenOccurrenceText(occ.snippet, {
+                    word: study.word,
+                    root: study.grammar.root,
+                  }),
+                  translation: tightenOccurrenceText(occ.translation, { before: 6, after: 6 }),
+                }))
+                .filter(occ => occ.snippet.includes('**'));
               await setCachedExplanation(key, JSON.stringify(study));
             } else {
               console.error('Word study failed schema validation; not caching:', parsed.error.message);

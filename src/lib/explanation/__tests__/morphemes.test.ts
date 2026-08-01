@@ -1,47 +1,107 @@
 import { describe, it, expect } from 'vitest';
-import { segmentsReconstructWord } from '../morphemes';
+import { alignSegmentsToWord, consonantSkeleton } from '../morphemes';
 
-describe('segmentsReconstructWord', () => {
-  it('accepts segments that concatenate to the exact word', () => {
-    expect(
-      segmentsReconstructWord('הִתְהַלֵּךְ', [{ text: 'הִתְ' }, { text: 'הַלֵּךְ' }])
-    ).toBe(true);
+describe('consonantSkeleton', () => {
+  it('strips Hebrew niqqud, dagesh, and cantillation', () => {
+    expect(consonantSkeleton('וַיַּ֣חֲזֶק')).toBe('ויחזק');
   });
 
-  it('tolerates a niqqud mark dropped across a segment boundary', () => {
-    // Real model output: dagesh forte (U+05BC) on the root's first letter
-    // went missing when the prefix/root split was drawn — consonants and
-    // every other vowel point are untouched, so this should still color.
-    const word = 'וַיַּחֲזֶק'; // ו-ַ-י-ַ-ּ(dagesh)-ח-ֲ-ז-ֶ-ק
-    const segments = [{ text: 'וַי' }, { text: 'ַחֲזֶק' }]; // dagesh dropped
-    expect(segmentsReconstructWord(word, segments)).toBe(true);
+  it('strips Greek accents and breathings via NFD', () => {
+    expect(consonantSkeleton('ἐλύσατο')).toBe('ελυσατο');
+  });
+});
+
+describe('alignSegmentsToWord', () => {
+  it('slices the original word so display keeps marks the model dropped', () => {
+    // Real production case: the model dropped the dagesh and cantillation
+    // from its segment copies. Aligned output must restore them, because
+    // the text is sliced from the surface word, not taken from the model.
+    const word = 'וַיַּ֣חֲזֶק';
+    const aligned = alignSegmentsToWord(word, [
+      { text: 'ו', type: 'affix', gloss: 'and' },
+      { text: 'י', type: 'modifier', gloss: 'he' },
+      { text: 'חֲזֶק', type: 'root', gloss: 'seize' },
+    ]);
+    expect(aligned).not.toBeNull();
+    expect(aligned!.map(s => s.text).join('')).toBe(word);
   });
 
-  it('tolerates Greek accents shifting across NFD-decomposed boundaries', () => {
-    expect(segmentsReconstructWord('ἐλύσατο', [{ text: 'ἐ' }, { text: 'λύσατο' }])).toBe(true);
+  it('folds a bare-vowel segment into the previous visible segment', () => {
+    // Real production case: a floating patach emitted as its own segment.
+    // It has no consonant to live under, so it gets no span — its gloss
+    // merges into the segment whose cluster physically holds the mark.
+    const word = 'וַיַּ֣חֲזֶק';
+    const aligned = alignSegmentsToWord(word, [
+      { text: 'ו', type: 'affix', gloss: 'and' },
+      { text: 'ַ', type: 'affix', gloss: 'past-tense marker' },
+      { text: 'י', type: 'affix', gloss: 'he' },
+      { text: 'חֲזֶק', type: 'root', gloss: 'seize' },
+    ]);
+    expect(aligned).not.toBeNull();
+    expect(aligned!.length).toBe(3);
+    expect(aligned![0].gloss).toBe('and · past-tense marker');
+    expect(aligned!.map(s => s.text).join('')).toBe(word);
+  });
+
+  it('aligns a Hitpael split and preserves the surface form', () => {
+    const word = 'הִתְהַלֵּךְ';
+    const aligned = alignSegmentsToWord(word, [
+      { text: 'הִתְ', type: 'modifier', gloss: 'reflexive pattern' },
+      { text: 'הַלֵּךְ', type: 'root', gloss: 'walk' },
+    ]);
+    expect(aligned).not.toBeNull();
+    expect(aligned!.map(s => s.text)).toEqual(['הִתְ', 'הַלֵּךְ']);
+  });
+
+  it('keeps trailing punctuation (sof pasuq) attached to the last slice', () => {
+    const aligned = alignSegmentsToWord('אֹתֽוֹ׃', [{ text: 'אֹתוֹ', type: 'root', gloss: 'him' }]);
+    expect(aligned).not.toBeNull();
+    expect(aligned![0].text).toBe('אֹתֽוֹ׃');
+  });
+
+  it('aligns Greek segments across composed accented letters', () => {
+    const word = 'ἐλύσατο';
+    const aligned = alignSegmentsToWord(word, [
+      { text: 'ἐ', type: 'affix', gloss: 'past marker' },
+      { text: 'λύ', type: 'root', gloss: 'loose' },
+      { text: 'σατο', type: 'modifier', gloss: 'he, for himself' },
+    ]);
+    expect(aligned).not.toBeNull();
+    expect(aligned!.map(s => s.text).join('')).toBe(word);
   });
 
   it('rejects segments that drop a consonant', () => {
-    // 'הך' is missing the lamed (ל) present in the real word — a genuine
-    // hallucination, not a vowel-point rounding difference.
-    expect(segmentsReconstructWord('הִתְהַלֵּךְ', [{ text: 'הִתְ' }, { text: 'הך' }])).toBe(false);
+    expect(
+      alignSegmentsToWord('הִתְהַלֵּךְ', [{ text: 'הִתְ' }, { text: 'הך' }])
+    ).toBeNull();
   });
 
-  it('rejects segments out of order', () => {
-    expect(segmentsReconstructWord('ab', [{ text: 'b' }, { text: 'a' }])).toBe(false);
+  it('rejects segments with a wrong consonant', () => {
+    expect(
+      alignSegmentsToWord('הִתְהַלֵּךְ', [{ text: 'הִתְ' }, { text: 'קַלֵּךְ' }])
+    ).toBeNull();
   });
 
-  it('rejects when a segment is missing text', () => {
-    expect(segmentsReconstructWord('ab', [{ text: 'a' }, {}])).toBe(false);
+  it('rejects reordered segments', () => {
+    expect(alignSegmentsToWord('ab', [{ text: 'b' }, { text: 'a' }])).toBeNull();
   });
 
-  it('rejects empty or undefined inputs', () => {
-    expect(segmentsReconstructWord(undefined, [{ text: 'a' }])).toBe(false);
-    expect(segmentsReconstructWord('a', undefined)).toBe(false);
-    expect(segmentsReconstructWord('a', [])).toBe(false);
+  it('rejects segments that cover too little or too much of the word', () => {
+    expect(alignSegmentsToWord('שָׁלוֹם', [{ text: 'שָׁל' }])).toBeNull();
+    expect(alignSegmentsToWord('שָׁלוֹם', [{ text: 'שָׁלוֹם' }, { text: 'עוֹד' }])).toBeNull();
+  });
+
+  it('rejects empty, missing, or blank inputs', () => {
+    expect(alignSegmentsToWord(undefined, [{ text: 'a' }])).toBeNull();
+    expect(alignSegmentsToWord('a', undefined)).toBeNull();
+    expect(alignSegmentsToWord('a', [])).toBeNull();
+    expect(alignSegmentsToWord('a', [{ text: 'a' }, {}])).toBeNull();
+    expect(alignSegmentsToWord('a', [{ text: '' }])).toBeNull();
   });
 
   it('accepts a single whole-word root segment', () => {
-    expect(segmentsReconstructWord('λόγος', [{ text: 'λόγος' }])).toBe(true);
+    const aligned = alignSegmentsToWord('λόγος', [{ text: 'λόγος', type: 'root', gloss: 'word' }]);
+    expect(aligned).not.toBeNull();
+    expect(aligned![0].text).toBe('λόγος');
   });
 });

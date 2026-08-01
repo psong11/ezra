@@ -11,7 +11,8 @@ import Link from 'next/link';
 import { MorphemeSegment, Occurrence, PartialWordStudy } from '@/lib/explanation/schema';
 import { formatSnippet } from '@/lib/explanation/format';
 import { resolveReference } from '@/lib/explanation/refs';
-import { segmentsReconstructWord } from '@/lib/explanation/morphemes';
+import { AlignedSegment, alignSegmentsToWord } from '@/lib/explanation/morphemes';
+import { tightenOccurrenceText } from '@/lib/explanation/occurrences';
 
 const SEGMENT_STYLES: Record<MorphemeSegment['type'], string> = {
   root: 'bg-amber-100 text-amber-900 font-semibold',
@@ -32,7 +33,7 @@ interface LegendEntry {
 }
 
 function buildLegend(
-  morphemes: (Partial<MorphemeSegment> | undefined)[],
+  morphemes: AlignedSegment[],
   stem: string | null | undefined
 ): LegendEntry[] {
   const entries: LegendEntry[] = [];
@@ -113,9 +114,10 @@ export default function WordExplanationSidebar({
   const occurrences = (study?.occurrences ?? []).filter(
     (o): o is Partial<Occurrence> => Boolean(o)
   );
-  const morphemes = study?.morphemes ?? [];
-  const canColorWord = segmentsReconstructWord(study?.word, morphemes);
-  const legend = canColorWord ? buildLegend(morphemes, grammar?.stem) : [];
+  // Align against the clicked word (the reader's own text), never the
+  // model's echo of it — display is sliced from the real surface form.
+  const aligned = alignSegmentsToWord(word, study?.morphemes);
+  const legend = aligned ? buildLegend(aligned, grammar?.stem) : [];
   const bridge = study?.meaningBridge;
 
   return (
@@ -131,14 +133,14 @@ export default function WordExplanationSidebar({
             lang={isHebrew ? 'he' : 'el'}
             className={`${scriptFont} mt-1 truncate text-3xl text-stone-900`}
           >
-            {canColorWord
-              ? morphemes.map((seg, i) => (
+            {aligned
+              ? aligned.map((seg, i) => (
                   <span
                     key={i}
-                    title={seg?.gloss}
-                    className={`rounded px-0.5 ${seg?.type ? SEGMENT_STYLES[seg.type] : ''}`}
+                    title={seg.gloss}
+                    className={`rounded px-0.5 ${seg.type ? SEGMENT_STYLES[seg.type] : ''}`}
                   >
-                    {seg?.text}
+                    {seg.text}
                   </span>
                 ))
               : word}
@@ -273,6 +275,18 @@ export default function WordExplanationSidebar({
                     const label =
                       resolved?.label ??
                       (occ.book ? `${occ.book} ${occ.chapter ?? ''}${occ.verse ? `:${occ.verse}` : ''}` : '…');
+                    const snippet = occ.snippet
+                      ? tightenOccurrenceText(occ.snippet, {
+                          word: study?.word ?? word,
+                          root: grammar?.root,
+                        })
+                      : undefined;
+                    // A long quote with no locatable target is an unverified
+                    // citation mid-stream — don't dump a wall of text; the
+                    // cached copy drops such occurrences entirely.
+                    const showSnippet =
+                      snippet !== undefined &&
+                      (snippet.includes('**') || snippet.split(/\s+/).length <= 10);
                     return (
                       <div key={i} className="rounded-xl border border-stone-200/80 bg-white/60 p-3.5">
                         {resolved ? (
@@ -286,18 +300,22 @@ export default function WordExplanationSidebar({
                         ) : (
                           <span className="text-xs font-semibold text-stone-500">{label}</span>
                         )}
-                        {occ.snippet && (
+                        {showSnippet && (
                           <p
                             dir={isHebrew ? 'rtl' : 'ltr'}
                             lang={isHebrew ? 'he' : 'el'}
                             className={`${scriptFont} mt-2 text-xl leading-relaxed text-stone-800 [&_strong]:font-bold [&_strong]:text-amber-800`}
-                            dangerouslySetInnerHTML={{ __html: formatSnippet(occ.snippet) }}
+                            dangerouslySetInnerHTML={{ __html: formatSnippet(snippet) }}
                           />
                         )}
                         {occ.translation && (
                           <p
                             className="mt-1.5 font-serif text-sm italic leading-relaxed text-stone-500 [&_strong]:font-semibold [&_strong]:text-amber-800"
-                            dangerouslySetInnerHTML={{ __html: formatSnippet(occ.translation) }}
+                            dangerouslySetInnerHTML={{
+                              __html: formatSnippet(
+                                tightenOccurrenceText(occ.translation, { before: 6, after: 6 })
+                              ),
+                            }}
                           />
                         )}
                       </div>
