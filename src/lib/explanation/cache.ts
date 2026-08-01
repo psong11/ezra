@@ -13,12 +13,13 @@
 
 import { createHash } from 'crypto';
 
+// v11: exact-root-skeleton tokens outrank containment matches (ברא vs בראשית).
 // v10: occurrence snippets are rebuilt from the LOCAL corpus (model quotes never
 // cached; verse numbers corrected ±1 for versification drift; unverifiable
 // citations dropped). v9 verified model bolds by consonant skeleton; v7-v8
 // short/bolded snippets + field order = display order; v5-v6 intermediate;
 // v4 allowed floating-mark segments; v3 empty morphemes; v2 no morphemes; v1 markdown.
-const KEY_VERSION = 'v10';
+const KEY_VERSION = 'v11';
 const BLOB_PREFIX = 'word-explanations';
 const FS_CACHE_DIR = '.explanation-cache';
 const MAX_MEMORY_ENTRIES = 500;

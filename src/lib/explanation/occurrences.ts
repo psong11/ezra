@@ -48,14 +48,20 @@ export function locateTargetToken(
   root?: string | null,
   allowRadicalPair = false
 ): number {
+  const skeletons = tokens.map(t => consonantSkeleton(t));
   const wordSkeleton = word ? consonantSkeleton(word) : '';
   if (wordSkeleton) {
-    const byWord = tokens.findIndex(t => consonantSkeleton(t).includes(wordSkeleton));
+    const byWord = skeletons.findIndex(s => s.includes(wordSkeleton));
     if (byWord !== -1) return byWord;
   }
   const rootSkeleton = root ? consonantSkeleton(root) : '';
   if (rootSkeleton.length >= 2) {
-    const byRoot = tokens.findIndex(t => consonantSkeleton(t).includes(rootSkeleton));
+    // Exact skeleton equality outranks containment: the root ברא is a
+    // consonant-substring of בראשית, so in Genesis 1:1 containment alone
+    // would bold "in the beginning" instead of the bare verb "created".
+    const exact = skeletons.findIndex(s => s === rootSkeleton);
+    if (exact !== -1) return exact;
+    const byRoot = skeletons.findIndex(s => s.includes(rootSkeleton));
     if (byRoot !== -1) return byRoot;
   }
   if (allowRadicalPair && rootSkeleton.length >= 3) {

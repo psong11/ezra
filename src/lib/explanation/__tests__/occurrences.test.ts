@@ -77,6 +77,18 @@ describe('tightenOccurrenceText', () => {
     expect(tightenOccurrenceText(s, { before: 6, after: 6 })).toBe(s);
   });
 
+  it('prefers a token exactly equal to the root over one merely containing it', () => {
+    // Genesis 1:1: the root ברא is a consonant-substring of בְּרֵאשִׁית,
+    // which appears first — exact equality must outrank containment or
+    // "in the beginning" gets bolded instead of the verb "created".
+    const out = tightenOccurrenceText('בְּרֵאשִׁ֖ית בָּרָ֣א אֱלֹהִ֑ים אֵ֥ת הַשָּׁמַ֖יִם', {
+      word: 'וַיִּבְרָא',
+      root: 'ברא',
+    });
+    expect(out).toContain('**בָּרָ֣א**');
+    expect(out).not.toContain('**בְּרֵאשִׁ֖ית**');
+  });
+
   it('matches a root ending in a final form against its medial inflection', () => {
     // Root הלך ends in final kaf; inside הָלְכוּ the kaf is medial — the
     // skeleton must fold final forms or this legitimate citation is missed.
