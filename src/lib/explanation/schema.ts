@@ -74,7 +74,7 @@ export const wordStudySchema = z.object({
     .describe(
       'Null when the word is a simple noun/particle where a root+pattern breakdown would not add insight. Present whenever a binyan, voice, or tense-aspect meaningfully shapes the word\'s sense.'
     ),
-  // Note: OpenAI strict structured outputs require every field to be present,
+  // Note: strict structured-output modes require every field to be present,
   // so "not applicable" is expressed as null rather than an absent key
   grammar: z.object({
     root: z.string().describe('The root in its original script'),

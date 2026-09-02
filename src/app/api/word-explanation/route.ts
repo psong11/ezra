@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { streamText, Output } from 'ai';
-import { openai } from '@ai-sdk/openai';
+import { anthropic } from '@ai-sdk/anthropic';
 import {
   generateWordExplanationPrompt,
   EXPLANATION_SYSTEM_PROMPT,
@@ -15,7 +15,7 @@ import {
   setCachedExplanation,
 } from '@/lib/explanation/cache';
 
-const MODEL = process.env.WORD_EXPLANATION_MODEL ?? 'gpt-4o';
+const MODEL = process.env.WORD_EXPLANATION_MODEL ?? 'claude-sonnet-5';
 
 const WordExplanationRequestSchema = z.object({
   word: z.string().min(1, 'Word is required'),
@@ -61,11 +61,11 @@ export async function POST(request: NextRequest) {
     return jsonTextResponse(cached.text, `HIT-${cached.source}`);
   }
 
-  if (!process.env.OPENAI_API_KEY) {
+  if (!process.env.ANTHROPIC_API_KEY) {
     return NextResponse.json(
       {
-        error: 'OpenAI API key not configured',
-        message: 'Please set OPENAI_API_KEY environment variable',
+        error: 'Anthropic API key not configured',
+        message: 'Please set ANTHROPIC_API_KEY environment variable',
       },
       { status: 503 }
     );
@@ -73,12 +73,18 @@ export async function POST(request: NextRequest) {
 
   try {
     const result = streamText({
-      model: openai(MODEL),
+      model: anthropic(MODEL),
       output: Output.object({ schema: wordStudySchema }),
       instructions: EXPLANATION_SYSTEM_PROMPT,
       prompt: generateWordExplanationPrompt(validatedData),
-      temperature: 0.3,
-      maxOutputTokens: 1400,
+      // Extended thinking is disabled deliberately: with it on, this
+      // schema+prompt spent an entire 1400-token budget on reasoning and
+      // emitted one text token (finishReason "length", empty study). It
+      // also stalls the stream — the panel is designed to fill top-to-
+      // bottom as tokens arrive, which a long silent think would break.
+      // Temperature is not supported on Claude 5 models, so it is omitted.
+      providerOptions: { anthropic: { thinking: { type: 'disabled' } } },
+      maxOutputTokens: 3000,
       abortSignal: request.signal,
     });
 

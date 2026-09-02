@@ -23,7 +23,7 @@
     "import-all-books": "npx tsx scripts/import-all-books.ts"
   },
   "dependencies": {
-    "@ai-sdk/openai": "^4.0.15",
+    "@ai-sdk/anthropic": "^4.0.49",
     "@ai-sdk/react": "^4.0.32",
     "@google-cloud/text-to-speech": "^5.8.1",
     "@types/xml2js": "^0.4.14",
