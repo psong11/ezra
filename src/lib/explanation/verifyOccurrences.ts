@@ -70,7 +70,7 @@ export async function verifyOccurrencesAgainstCorpus(
       if (!text) continue;
 
       const tokens = text.split(/\s+/).filter(Boolean);
-      const target = locateTargetToken(tokens, word, root, true);
+      const target = locateTargetToken(tokens, word, root);
       if (target === -1) continue;
 
       tokens[target] = `**${tokens[target]}**`;

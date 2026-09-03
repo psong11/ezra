@@ -89,6 +89,28 @@ describe('tightenOccurrenceText', () => {
     expect(out).not.toContain('**בְּרֵאשִׁ֖ית**');
   });
 
+  it('highlights another inflection of a III-he root that drops its final radical', () => {
+    // Studying וַתֵּרֶא (root ראה), Genesis 1:4 has וַיַּרְא — the ה elides
+    // in the apocopated wayyiqtol, so exact-root matching can never find
+    // it. Only verbatim copies used to highlight; this is the same root.
+    const out = tightenOccurrenceText('וַיַּרְא אֱלֹהִים אֶת־הָאוֹר כִּי־טוֹב', {
+      word: 'וַתֵּרֶא',
+      root: 'ראה',
+    });
+    expect(out).toContain('**וַיַּרְא**');
+  });
+
+  it('prefers the least-affixed root form over an unrelated look-alike', () => {
+    // Genesis 16:13 for root ראה: וַתִּקְרָא is root קרא and merely
+    // contains "רא"; רֳאִי is the real ראה form and must win.
+    const out = tightenOccurrenceText('וַתִּקְרָא שֵׁם יְהוָה אַתָּה אֵל רֳאִי', {
+      word: 'וַתֵּרֶא',
+      root: 'ראה',
+    });
+    expect(out).toContain('**רֳאִי**');
+    expect(out).not.toContain('**וַתִּקְרָא**');
+  });
+
   it('matches a root written in dotted notation (ח.י.ה)', () => {
     // Models write roots the traditional way with separators; those must
     // not survive into the skeleton or root lookup silently dies and only

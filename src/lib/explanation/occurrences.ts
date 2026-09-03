@@ -32,21 +32,59 @@ interface TightenOptions {
 }
 
 /**
- * Locate the token derived from the studied word/root. Strict tiers first
- * (exact word skeleton, then full root containment); with
- * `allowRadicalPair`, falls back to sharing any two CONSECUTIVE radicals
- * of the root — weak Hebrew roots drop or assimilate a radical in many
- * inflections (geminate חנן appears as יָחֹן, נתן as יִתֵּן, הלך as
- * וַיֵּלֶךְ), so strict containment alone would reject legitimate forms.
- * The pair rule still rejects synonyms from unrelated roots (חמל/חוס
- * share no consecutive pair with חנן). Use the loose tier only where the
- * surrounding text is trusted (a model-placed bold, or real corpus text).
+ * How many of the root's radicals appear in the token IN ORDER (they need
+ * not be adjacent). Weak Hebrew roots lose a radical under inflection —
+ * III-he ראה becomes וַיַּרְא, I-nun נגע becomes תִּגַּע, geminate חנן
+ * becomes יָחֹן — so a form can legitimately show only two of three.
+ */
+function orderedRadicalScore(tokenSkeleton: string, rootSkeleton: string): number {
+  let count = 0;
+  let pos = 0;
+  for (const radical of rootSkeleton) {
+    const at = tokenSkeleton.indexOf(radical, pos);
+    if (at !== -1) {
+      count += 1;
+      pos = at + 1;
+    }
+  }
+  return count;
+}
+
+/**
+ * Does the token keep two ADJACENT radicals of the root side by side?
+ * Inflection strips radicals from the edges of weak roots but rarely
+ * splits the surviving core apart, so this is the signal that separates a
+ * real relative (וַיַּרְא keeps רא of ראה; תִּגַּע keeps גע of נגע) from a
+ * word that merely happens to reuse two common letters (אַתָּה shares א
+ * and ה with ראה but never adjacently).
+ */
+function sharesAdjacentRadicals(tokenSkeleton: string, rootSkeleton: string): boolean {
+  for (let i = 0; i < rootSkeleton.length - 1; i++) {
+    if (tokenSkeleton.includes(rootSkeleton.slice(i, i + 2))) return true;
+  }
+  return false;
+}
+
+/**
+ * Locate the token derived from the studied word/root, strongest evidence
+ * first: the exact surface form, then the bare root, then the root as a
+ * substring, and finally the root FAMILY — a form sharing all but one
+ * radical, in order. That last tier is what surfaces other inflections of
+ * the same root, which is the entire point of an occurrence list; without
+ * it only verbatim copies of the studied form ever highlight.
+ *
+ * A family candidate must keep two adjacent radicals AND carry all but
+ * one radical in order; among those, the best wins, ties going to the
+ * shortest skeleton — the least-affixed, most root-like word. That is
+ * what keeps a study of ראה off וַתִּקְרָא (root קרא, which merely
+ * contains "רא") when a real רֳאִי sits in the verse, and off אַתָּה,
+ * which shares א and ה with ראה but never side by side. Synonyms from
+ * unrelated roots stay rejected — חמל and חוס share one radical with חנן.
  */
 export function locateTargetToken(
   tokens: string[],
   word?: string,
-  root?: string | null,
-  allowRadicalPair = false
+  root?: string | null
 ): number {
   const skeletons = tokens.map(t => consonantSkeleton(t));
   const wordSkeleton = word ? consonantSkeleton(word) : '';
@@ -64,15 +102,22 @@ export function locateTargetToken(
     const byRoot = skeletons.findIndex(s => s.includes(rootSkeleton));
     if (byRoot !== -1) return byRoot;
   }
-  if (allowRadicalPair && rootSkeleton.length >= 3) {
-    const radicalPairs: string[] = [];
-    for (let i = 0; i < rootSkeleton.length - 1; i++) {
-      radicalPairs.push(rootSkeleton.slice(i, i + 2));
-    }
-    return tokens.findIndex(token => {
-      const s = consonantSkeleton(token);
-      return radicalPairs.some(pair => s.includes(pair));
+  if (rootSkeleton.length >= 3) {
+    const required = Math.max(2, rootSkeleton.length - 1);
+    let best = -1;
+    let bestScore = 0;
+    let bestLength = Infinity;
+    skeletons.forEach((skeleton, i) => {
+      if (!sharesAdjacentRadicals(skeleton, rootSkeleton)) return;
+      const score = orderedRadicalScore(skeleton, rootSkeleton);
+      if (score < required) return;
+      if (score > bestScore || (score === bestScore && skeleton.length < bestLength)) {
+        best = i;
+        bestScore = score;
+        bestLength = skeleton.length;
+      }
     });
+    if (best !== -1) return best;
   }
   return -1;
 }
@@ -82,7 +127,7 @@ function findTargetToken(tokens: string[], word?: string, root?: string | null):
 }
 
 function boldMatchesTarget(boldTokens: string[], word?: string, root?: string | null): boolean {
-  return locateTargetToken(boldTokens, word, root, true) !== -1;
+  return locateTargetToken(boldTokens, word, root) !== -1;
 }
 
 export function tightenOccurrenceText(text: string, options: TightenOptions = {}): string {
