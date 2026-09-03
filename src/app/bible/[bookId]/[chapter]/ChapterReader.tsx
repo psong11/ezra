@@ -39,6 +39,7 @@ interface PlaybackState {
 }
 
 const PLAYBACK_RATES = [1, 1.25, 1.5];
+const GLOSS_PREF_KEY = 'ezra:show-glosses';
 
 /** Turn STEP-style gloss notation like "<.obj>" into a readable muted label. */
 function cleanGloss(gloss: string | undefined): string | null {
@@ -116,6 +117,30 @@ export default function ChapterReader({
   const [playback, setPlayback] = useState<PlaybackState | null>(null);
   const [playbackRate, setPlaybackRate] = useState(1);
   const [clickedWord, setClickedWord] = useState<{ verse: number; wordIndex: number; word: string } | null>(null);
+  // Interlinear glosses: on by default, remembered for the browsing
+  // session. Read after mount rather than during render — the server
+  // has no sessionStorage, so seeding state from it directly would
+  // desync hydration.
+  const [showGlosses, setShowGlosses] = useState(true);
+  useEffect(() => {
+    try {
+      if (window.sessionStorage.getItem(GLOSS_PREF_KEY) === 'off') setShowGlosses(false);
+    } catch {
+      // private mode / storage disabled — glosses simply stay visible
+    }
+  }, []);
+
+  const toggleGlosses = useCallback(() => {
+    setShowGlosses(prev => {
+      const next = !prev;
+      try {
+        window.sessionStorage.setItem(GLOSS_PREF_KEY, next ? 'on' : 'off');
+      } catch {
+        // ignore: the toggle still works for this page
+      }
+      return next;
+    });
+  }, []);
   // Verse targeted via #vN in the URL (occurrence links) — highlighted briefly.
   // CSS :target doesn't update on client-side navigations, so track it in state.
   const [anchorVerse, setAnchorVerse] = useState<number | null>(null);
@@ -477,6 +502,26 @@ export default function ChapterReader({
                 Listen to this chapter
               </button>
             )}
+            <button
+              onClick={toggleGlosses}
+              role="switch"
+              aria-checked={showGlosses}
+              className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs text-stone-500 transition-colors hover:bg-amber-50 hover:text-amber-800"
+            >
+              <span
+                aria-hidden
+                className={`relative h-4 w-7 flex-shrink-0 rounded-full transition-colors ${
+                  showGlosses ? 'bg-amber-500/80' : 'bg-stone-300'
+                }`}
+              >
+                <span
+                  className={`absolute top-0.5 h-3 w-3 rounded-full bg-white shadow-sm transition-all ${
+                    showGlosses ? 'left-3.5' : 'left-0.5'
+                  }`}
+                />
+              </span>
+              English under each word
+            </button>
             <p className="text-xs text-stone-400">
               Tap any word to explore its meaning · hover a verse to play it aloud
             </p>
@@ -523,9 +568,9 @@ export default function ChapterReader({
                 <div
                   dir={isHebrew ? 'rtl' : 'ltr'}
                   lang={isHebrew ? 'he' : 'el'}
-                  className={`${scriptFont} flex flex-wrap items-start gap-x-1.5 gap-y-3 pt-1 text-3xl leading-relaxed text-stone-800 ${
-                    isHebrew ? 'pr-8' : 'pl-8'
-                  }`}
+                  className={`${scriptFont} flex flex-wrap items-start gap-x-1.5 pt-1 text-3xl leading-relaxed text-stone-800 ${
+                    showGlosses ? 'gap-y-3' : 'gap-y-1'
+                  } ${isHebrew ? 'pr-8' : 'pl-8'}`}
                 >
                   <sup className={`font-serif text-sm font-semibold text-amber-600/90 ${isHebrew ? 'ml-1' : 'mr-1'}`}>
                     {verse.verse}
@@ -553,7 +598,7 @@ export default function ChapterReader({
                         }}
                       >
                         <span>{wordText}</span>
-                        {gloss && (
+                        {showGlosses && gloss && (
                           <span dir="ltr" className="mt-1 whitespace-nowrap font-sans text-[11px] leading-tight text-stone-400">
                             {gloss}
                           </span>
