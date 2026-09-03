@@ -29,10 +29,18 @@ const COMBINING_MARKS = new RegExp('[\\u0591-\\u05C7\\u0300-\\u036F]', 'g');
 const FINAL_FORMS: Record<string, string> = { ך: 'כ', ם: 'מ', ן: 'נ', ף: 'פ', ץ: 'צ' };
 
 export function consonantSkeleton(s: string): string {
-  return s
-    .normalize('NFD')
-    .replace(COMBINING_MARKS, '')
-    .replace(/[ךםןףץ]/g, ch => FINAL_FORMS[ch]);
+  return (
+    s
+      .normalize('NFD')
+      .replace(COMBINING_MARKS, '')
+      // Drop everything that isn't a letter. Critical for roots: models
+      // write them in the traditional dotted form (ח.י.ה), and those ASCII
+      // periods would otherwise survive and make the root match nothing,
+      // silently disabling root-based lookup. Also clears maqqef, sof
+      // pasuq, and stray punctuation in corpus tokens.
+      .replace(/[^\p{L}]/gu, '')
+      .replace(/[ךםןףץ]/g, ch => FINAL_FORMS[ch])
+  );
 }
 
 export interface AlignedSegment {

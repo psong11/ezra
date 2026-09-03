@@ -77,7 +77,11 @@ export const wordStudySchema = z.object({
   // Note: strict structured-output modes require every field to be present,
   // so "not applicable" is expressed as null rather than an absent key
   grammar: z.object({
-    root: z.string().describe('The root in its original script'),
+    root: z
+      .string()
+      .describe(
+        'The root in its original script, letters only with no separators (חזק, not ח.ז.ק)'
+      ),
     rootTransliteration: z.string().describe('Latin-alphabet transliteration of the root'),
     partOfSpeech: z.string().describe('e.g. Noun, Verb, Preposition'),
     stem: z

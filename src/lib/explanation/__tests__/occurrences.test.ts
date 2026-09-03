@@ -89,6 +89,22 @@ describe('tightenOccurrenceText', () => {
     expect(out).not.toContain('**בְּרֵאשִׁ֖ית**');
   });
 
+  it('matches a root written in dotted notation (ח.י.ה)', () => {
+    // Models write roots the traditional way with separators; those must
+    // not survive into the skeleton or root lookup silently dies and only
+    // exact-word matching remains (the real cause of missing highlights).
+    const out = tightenOccurrenceText('תּוֹצֵא הָאָרֶץ נֶפֶשׁ חַיָּה לְמִינָהּ', {
+      word: 'חַיַּת',
+      root: 'ח.י.ה',
+    });
+    expect(out).toContain('**חַיָּה**');
+  });
+
+  it('matches a hyphen-separated root too', () => {
+    const out = tightenOccurrenceText('וְלֹא אֶחְמֹל עֲלֵיהֶם', { word: 'אֶחְמֹל', root: 'ח-מ-ל' });
+    expect(out).toContain('**אֶחְמֹל**');
+  });
+
   it('matches a root ending in a final form against its medial inflection', () => {
     // Root הלך ends in final kaf; inside הָלְכוּ the kaf is medial — the
     // skeleton must fold final forms or this legitimate citation is missed.
