@@ -32,27 +32,32 @@ interface LegendEntry {
   label: string;
 }
 
-function buildLegend(
-  morphemes: AlignedSegment[],
-  stem: string | null | undefined
-): LegendEntry[] {
+/**
+ * Legend labels come from each segment's OWN gloss — never from
+ * grammar.stem. Two reasons: the legend maps a colour to the piece it
+ * marks, and the binyan describes the whole verb rather than the one
+ * letter (that violet ת is the 2nd-person-plural imperfect prefix, not
+ * "Qal"). It also keeps labels stable while streaming: morphemes arrive
+ * before grammar, so preferring stem made the legend visibly relabel
+ * itself a second after it first appeared. The binyan still shows in the
+ * Grammar section and the meaning bridge.
+ */
+function buildLegend(morphemes: AlignedSegment[]): LegendEntry[] {
   const entries: LegendEntry[] = [];
-  const seenModifier = new Set<string>();
-  const seenAffix = new Set<string>();
+  const seen = new Set<string>();
 
   for (const seg of morphemes) {
     if (!seg?.type) continue;
-    if (seg.type === 'root' && !entries.some(e => e.type === 'root')) {
+    if (seg.type === 'root') {
+      if (seen.has('root')) continue;
+      seen.add('root');
       entries.push({ key: 'root', type: 'root', label: seg.gloss ? `root — ${seg.gloss}` : 'root' });
-    } else if (seg.type === 'modifier') {
-      const label = stem ?? seg.gloss ?? 'pattern';
-      if (!seenModifier.has(label)) {
-        seenModifier.add(label);
-        entries.push({ key: `modifier-${label}`, type: 'modifier', label: label.toLowerCase() });
-      }
-    } else if (seg.type === 'affix' && seg.gloss && !seenAffix.has(seg.gloss)) {
-      seenAffix.add(seg.gloss);
-      entries.push({ key: `affix-${seg.gloss}`, type: 'affix', label: seg.gloss });
+    } else {
+      const label = seg.gloss ?? (seg.type === 'modifier' ? 'pattern' : 'affix');
+      const key = `${seg.type}-${label}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      entries.push({ key, type: seg.type, label });
     }
   }
 
@@ -117,7 +122,7 @@ export default function WordExplanationSidebar({
   // Align against the clicked word (the reader's own text), never the
   // model's echo of it — display is sliced from the real surface form.
   const aligned = alignSegmentsToWord(word, study?.morphemes);
-  const legend = aligned ? buildLegend(aligned, grammar?.stem) : [];
+  const legend = aligned ? buildLegend(aligned) : [];
   const bridge = study?.meaningBridge;
 
   return (
