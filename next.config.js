@@ -8,6 +8,9 @@ const nextConfig = {
     // silently find no verses in production.
     outputFileTracingIncludes: {
       '/api/word-explanation': ['./src/data/bible/**/*'],
+      // Same story for per-verse audio: it looks the verse up by reference
+      // instead of receiving its text, so it needs the corpus at runtime.
+      '/api/tts/verse/[bookId]/[chapter]/[verse]': ['./src/data/bible/**/*'],
     },
   },
 }

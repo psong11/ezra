@@ -17,7 +17,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useObject } from '@ai-sdk/react';
 import { BibleChapter } from '@/types/bible';
-import { prepareHebrewForTTS } from '@/lib/hebrewText';
 import { wordStudySchema, PartialWordStudy } from '@/lib/explanation/schema';
 import WordExplanationSidebar from '@/components/bible/WordExplanationSidebar';
 
@@ -40,6 +39,10 @@ interface PlaybackState {
 
 const PLAYBACK_RATES = [1, 1.25, 1.5];
 const GLOSS_PREF_KEY = 'ezra:show-glosses';
+// A verse whose audio fails is retried before giving up: the failures seen
+// in production (edge rate limiting, a cold upstream) clear on their own.
+const TTS_MAX_ATTEMPTS = 3;
+const TTS_RETRY_DELAYS_MS = [400, 1600];
 
 /** Turn STEP-style gloss notation like "<.obj>" into a readable muted label. */
 function cleanGloss(gloss: string | undefined): string | null {
@@ -234,24 +237,44 @@ export default function ChapterReader({
           if (!verse) throw new Error(`Verse ${verseNum} not found`);
           if (!ttsAbortRef.current) ttsAbortRef.current = new AbortController();
 
-          const response = await fetch('/api/tts', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            signal: ttsAbortRef.current.signal,
-            body: JSON.stringify({
-              text: prepareHebrewForTTS(verse.text),
-              languageCode: isHebrew ? 'he-IL' : 'el-GR',
-              voiceName: isHebrew ? 'he-IL-Wavenet-A' : 'el-GR-Wavenet-A',
-            }),
-          });
-          if (!response.ok) {
-            const errorData = await response.json().catch(() => ({}));
-            throw new Error(errorData.error || 'Failed to generate speech');
+          // Addressed by reference, not by text, so the response is
+          // immutable and both the browser cache and the CDN can keep it.
+          const url = `/api/tts/verse/${bookId}/${chapterNum}/${verseNum}`;
+          let lastError: Error | null = null;
+
+          // One blip used to end the chapter: a single failed verse threw,
+          // playback stopped, and nothing retried. Edge rate limiting and
+          // cold upstream errors are both transient, so back off and retry.
+          for (let attempt = 0; attempt < TTS_MAX_ATTEMPTS; attempt++) {
+            if (attempt > 0) {
+              await new Promise(r => setTimeout(r, TTS_RETRY_DELAYS_MS[attempt - 1]));
+              if (ttsAbortRef.current?.signal.aborted) break;
+            }
+            let response: Response;
+            try {
+              response = await fetch(url, { signal: ttsAbortRef.current.signal });
+            } catch (err: any) {
+              if (err?.name === 'AbortError') throw err;
+              lastError = err instanceof Error ? err : new Error(String(err));
+              continue;
+            }
+            if (response.ok) {
+              const buffer = await response.arrayBuffer();
+              const objectUrl = URL.createObjectURL(new Blob([buffer], { type: 'audio/mpeg' }));
+              verseAudioUrls.current.set(verseNum, objectUrl);
+              return objectUrl;
+            }
+            // A 403 here is usually Vercel's bot checkpoint answering with
+            // an HTML page, so don't assume the body parses as JSON.
+            const errorData = await response.json().catch(() => ({} as { error?: string }));
+            lastError = new Error(
+              errorData.error || `Audio for verse ${verseNum} failed (HTTP ${response.status})`
+            );
+            if (response.status >= 400 && response.status < 500 && response.status !== 403 && response.status !== 429) {
+              break; // a genuine bad request won't get better by asking again
+            }
           }
-          const buffer = await response.arrayBuffer();
-          const url = URL.createObjectURL(new Blob([buffer], { type: 'audio/mpeg' }));
-          verseAudioUrls.current.set(verseNum, url);
-          return url;
+          throw lastError ?? new Error('Failed to generate speech');
         })();
         verseFetches.current.set(verseNum, pending);
         // A failed fetch must not poison the map — allow retries
@@ -259,7 +282,7 @@ export default function ChapterReader({
       }
       return pending;
     },
-    [verses, isHebrew]
+    [verses, bookId, chapterNum]
   );
 
   const stopPlayback = useCallback(() => {
@@ -309,7 +332,11 @@ export default function ChapterReader({
       } catch (err: any) {
         if (session !== sessionRef.current || err?.name === 'AbortError') return;
         console.error('TTS Error:', err);
-        setError(err.message || 'Failed to generate speech');
+        // Name the verse it stalled on, so resuming from the right place is
+        // obvious rather than a guess.
+        setError(
+          `${err.message || 'Failed to generate speech'} — playback stopped at verse ${verseNum}. Press its play button to pick up again.`
+        );
         stopPlayback();
       }
     },
@@ -527,9 +554,22 @@ export default function ChapterReader({
             </p>
           </div>
 
+          {/* Pinned to the viewport, not the top of the page: chapter
+              playback scrolls the reader down to the active verse, so a
+              banner up here was invisible exactly when it mattered and a
+              failed verse looked like playback silently quitting. */}
           {error && (
-            <div className="mb-8 rounded-lg border border-red-200 bg-red-50 p-4">
-              <p className="text-sm text-red-700">{error}</p>
+            <div className="fixed inset-x-0 bottom-6 z-40 flex justify-center px-4">
+              <div className="flex items-center gap-3 rounded-full border border-red-200 bg-red-50/95 py-2 pl-4 pr-2 shadow-lg backdrop-blur">
+                <p className="text-sm text-red-700">{error}</p>
+                <button
+                  onClick={() => setError(null)}
+                  className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full text-red-500 transition-colors hover:bg-red-100 hover:text-red-700"
+                  aria-label="Dismiss"
+                >
+                  &times;
+                </button>
+              </div>
             </div>
           )}
 

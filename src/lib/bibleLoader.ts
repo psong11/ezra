@@ -110,3 +110,11 @@ export function getChapterVerses(book: BibleBookData, chapter: number) {
   if (!chapterData) throw new Error(`Chapter ${chapter} not found`);
   return chapterData.verses;
 }
+
+/**
+ * Which script a book is written in — drives TTS voice selection so a
+ * caller only has to name the book, not know its language.
+ */
+export function getBookLanguage(bookId: string): 'hebrew' | 'greek' | null {
+  return BOOK_PATHS[bookId]?.folder ?? null;
+}
