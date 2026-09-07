@@ -49,3 +49,4 @@ public/tts-cache/
 dev-server.log
 credentials.json
 .explanation-cache/
+.tts-cache/

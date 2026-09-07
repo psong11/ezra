@@ -10,7 +10,7 @@ const nextConfig = {
       '/api/word-explanation': ['./src/data/bible/**/*'],
       // Same story for per-verse audio: it looks the verse up by reference
       // instead of receiving its text, so it needs the corpus at runtime.
-      '/api/tts/verse/[bookId]/[chapter]/[verse]': ['./src/data/bible/**/*'],
+      '/api/tts/verse/[version]/[bookId]/[chapter]/[verse]': ['./src/data/bible/**/*'],
     },
   },
 }

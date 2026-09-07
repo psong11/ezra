@@ -19,6 +19,7 @@ import { useObject } from '@ai-sdk/react';
 import { BibleChapter } from '@/types/bible';
 import { wordStudySchema, PartialWordStudy } from '@/lib/explanation/schema';
 import WordExplanationSidebar from '@/components/bible/WordExplanationSidebar';
+import { AUDIO_VERSION } from '@/lib/tts/audioVersion';
 
 interface Props {
   bookId: string;
@@ -239,7 +240,7 @@ export default function ChapterReader({
 
           // Addressed by reference, not by text, so the response is
           // immutable and both the browser cache and the CDN can keep it.
-          const url = `/api/tts/verse/${bookId}/${chapterNum}/${verseNum}`;
+          const url = `/api/tts/verse/${AUDIO_VERSION}/${bookId}/${chapterNum}/${verseNum}`;
           let lastError: Error | null = null;
 
           // One blip used to end the chapter: a single failed verse threw,
