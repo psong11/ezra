@@ -20,7 +20,8 @@
     "add-translations": "npx tsx scripts/add-translations.ts",
     "import-stepbible": "npx tsx scripts/import-stepbible-data.ts",
     "import-glosses": "npx tsx scripts/import-stepbible-simple.ts",
-    "import-all-books": "npx tsx scripts/import-all-books.ts"
+    "import-all-books": "npx tsx scripts/import-all-books.ts",
+    "compare-tts": "npx tsx scripts/compare-hebrew-tts.ts"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^4.0.49",
