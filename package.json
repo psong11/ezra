@@ -21,13 +21,15 @@
     "import-stepbible": "npx tsx scripts/import-stepbible-data.ts",
     "import-glosses": "npx tsx scripts/import-stepbible-simple.ts",
     "import-all-books": "npx tsx scripts/import-all-books.ts",
-    "compare-tts": "npx tsx scripts/compare-hebrew-tts.ts"
+    "compare-tts": "npx tsx scripts/compare-hebrew-tts.ts",
+    "audio-usage": "npx tsx scripts/audio-usage.ts"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^4.0.49",
     "@ai-sdk/react": "^4.0.32",
     "@google-cloud/text-to-speech": "^5.8.1",
     "@types/xml2js": "^0.4.14",
+    "@vercel/analytics": "^2.0.1",
     "@vercel/blob": "^2.6.1",
     "ai": "^7.0.29",
     "dotenv": "^17.2.3",

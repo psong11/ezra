@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Frank_Ruhl_Libre, EB_Garamond, Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 // Hebrew scripture — a serif designed for Hebrew, handles niqqud + cantillation well
@@ -38,6 +39,11 @@ export default function RootLayout({
     <html lang="en" className={`${frankRuhl.variable} ${garamond.variable} ${inter.variable}`}>
       <body className="min-h-screen bg-[#faf6ee] font-sans text-stone-900 antialiased">
         {children}
+        {/* Cookieless page-view counts. Chapters are their own routes
+            (/bible/genesis/8), so plain page views already say which
+            chapters get read — no custom events needed, which matters
+            because those are Pro-only. */}
+        <Analytics />
       </body>
     </html>
   );
